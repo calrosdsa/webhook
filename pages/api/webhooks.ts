@@ -1,8 +1,30 @@
+import { SMTPClient } from "emailjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 // import axios from 'axios';
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
+    const data = JSON.stringify(req.body)
+    const client = new SMTPClient({
+        user: 'jorgemiranda0180@gmail.com',
+        password: 'opcpmdfaqrhtwwws',
+        host: 'smtp.gmail.com',
+        ssl:true
+      });
+        client.send(
+          {
+            text: data,
+            from: 'jorgemiranda0180@gmail.com',
+            to: 'alejandro12ab34cd@gmail.com',
+            subject: `Just for testing purpose`,
+           
+          },
+          (err, message) => {
+            console.log(err || message);
+        }
+          )
+      
+      res.status(200).end(JSON.stringify({ message:'Send Mail' }))
     // const data = {"id": "0684D0000004VgeTTE", "success": true, "errors": []}
     // const resApi = await fetch("https://graph.facebook.com/v14.0/108991665306423/messages ", {
     //   method: 'POST',
