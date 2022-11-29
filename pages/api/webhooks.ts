@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
-    const data = JSON.stringify(req.body)
+    // const data = JSON.stringify(req.body)
     const client = new SMTPClient({
         user: 'jorgemiranda0180@gmail.com',
         password: 'opcpmdfaqrhtwwws',
@@ -13,7 +13,7 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
       });
         client.send(
           {
-            text: data,
+            text: "sasakd",
             from: 'jorgemiranda0180@gmail.com',
             to: 'alejandro12ab34cd@gmail.com',
             subject: `Just for testing purpose`,
