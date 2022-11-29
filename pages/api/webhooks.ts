@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
     // const data = JSON.stringify(req.body)
+    try{
     const client = new SMTPClient({
         user: 'jorgemiranda0180@gmail.com',
         password: 'opcpmdfaqrhtwwws',
@@ -23,6 +24,9 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
             console.log(err || message);
         }
           )
+    }catch(err){
+        res.status(500).send({ error: 'failed to fetch data' })
+    }
       
       res.status(200).end(JSON.stringify({ message:'Send Mail' }))
     // const data = {"id": "0684D0000004VgeTTE", "success": true, "errors": []}
