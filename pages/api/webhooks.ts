@@ -3,7 +3,7 @@ import axios from 'axios';
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
-    const text = "JSON.stringify(req.body)"
+    const text = JSON.stringify(req.body)
     try{
     const sendData =await axios.post("https://6268-200-87-209-44.sa.ngrok.io/post/",{text})
     sendData
