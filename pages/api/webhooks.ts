@@ -6,24 +6,31 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
     // const data = JSON.stringify(req.body)
     try{
-    const client = new SMTPClient({
-        user: 'jorgemiranda0180@gmail.com',
-        password: 'opcpmdfaqrhtwwws',
-        host: 'smtp.gmail.com',
-        ssl:true
-      });
-        client.send(
-          {
-            text: "sasakd",
-            from: 'jorgemiranda0180@gmail.com',
-            to: 'alejandro12ab34cd@gmail.com',
-            subject: `Just for testing purpose`,
-           
-          },
-          (err, message) => {
-            console.log(err || message);
-        }
-          )
+        const nodemailer = require('nodemailer');
+        
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'jorgemiranda0180@gmail.com',
+      pass: 'opcpmdfaqrhtwwws'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'jorgemiranda0180@gmail.com',
+    to: 'alejandro12ab34cd@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+  
+  transporter.sendMail(mailOptions, function(error:any, info:any){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  
     }catch(err){
         res.status(500).send({ error: 'failed to fetch data' })
     }
