@@ -5,7 +5,8 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
     const text = "JSON.stringify(req.body)"
     try{
-    axios.post("https://6268-200-87-209-44.sa.ngrok.io/post/",{text})
+    const sendData =await axios.post("https://6268-200-87-209-44.sa.ngrok.io/post/",{text})
+    sendData
     }catch(err){
         res.status(500).send({ error: 'failed to fetch data' })
     }
