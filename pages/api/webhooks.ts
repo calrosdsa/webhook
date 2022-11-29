@@ -1,36 +1,11 @@
-import { SMTPClient } from "emailjs";
 import type { NextApiRequest, NextApiResponse } from "next";
-// import axios from 'axios';
+import axios from 'axios';
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
   try {
-    // const data = JSON.stringify(req.body)
+    const text = "JSON.stringify(req.body)"
     try{
-        const nodemailer = require('nodemailer');
-        
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'jorgemiranda0180@gmail.com',
-      pass: 'opcpmdfaqrhtwwws'
-    }
-  });
-  
-  var mailOptions = {
-    from: 'jorgemiranda0180@gmail.com',
-    to: 'alejandro12ab34cd@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
-  };
-  
-  transporter.sendMail(mailOptions, function(error:any, info:any){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-  
+    axios.post("https://6268-200-87-209-44.sa.ngrok.io/post/",{text})
     }catch(err){
         res.status(500).send({ error: 'failed to fetch data' })
     }
