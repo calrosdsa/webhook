@@ -21,18 +21,16 @@ export default function Home() {
           function(response) {
               // Insert your code here
               console.log(response)
-              setCookie("email",response.email,{
+            setCookie('email',response.email,{
                 path:'/',
-                maxAge:60*5
+                maxAge:60*5,
           })
-          setCookie("name",response.name,{
+          setCookie('name',response.name,{
             path:'/',
             maxAge:60*5
       })
-      setCookie("id",response.id,{
-        path:'/',
-        maxAge:60*5
-  })
+      setCookie('id',response.id,{ path:'/',maxAge:60*5})
+  setCookie('name', newName, { path:'/' });
           }
         );
         //  FB.api('/me', function(response) {
