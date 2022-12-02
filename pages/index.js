@@ -1,4 +1,4 @@
-// import {useCookies } from 'react-cookie'
+import {useCookies } from 'react-cookie'
 import { useEffect } from "react";
 
 export default function Home() {
