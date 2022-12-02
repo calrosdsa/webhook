@@ -5,7 +5,7 @@ export default function Home() {
   // const [session, loading] = useSession()
   // const [providers, setProviders] = useState({});
   // const [isLoggedin, setIsLoggedin] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+  const [cookies, setCookie, removeCookie] = useCookies(['name']);
 
 
  
@@ -24,10 +24,10 @@ export default function Home() {
                   path:'/',
                   maxAge:60*5,
             })
-            setCookie('name',response.name,{
-              path:'/',
-              maxAge:60*5
-        })
+        //     setCookie('name',response.name,{
+        //       path:'/',
+        //       maxAge:60*5
+        // })
               console.log(response)
       setCookie('id',response.id,{ path:'/',maxAge:60*5})
      setCookie('name', "smkasmda", { path:'/' });
