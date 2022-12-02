@@ -11,6 +11,7 @@ export default function Home() {
  
   const onLoginClick = () => {
     if (typeof window !== 'undefined') {
+     setCookie('name', "smkasmda", { path:'/' });
       window.FB.login(function(response) {
         if (response.authResponse) {
          console.log('Welcome!  Fetching your information.... ');
@@ -44,6 +45,7 @@ export default function Home() {
 }
 
   useEffect(() => {
+    setCookie('name', "smkasmda", { path:'/' });
     if (typeof window !== 'undefined') {
       window.fbAsyncInit = () => {
           window.FB.init({
