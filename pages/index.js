@@ -1,8 +1,8 @@
 import { useEffect,useState } from "react";
+import { useCookies } from "react-cookie";
 
 export default function Home() {
-  // const [session, loading] = useSession()
-  // const [providers, setProviders] = useState({});
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
   const onLoginClick = () => {
     if (typeof window !== 'undefined') {
@@ -11,6 +11,14 @@ export default function Home() {
          console.log('Welcome!  Fetching your information.... ');
          FB.api('/me', function(response) {
           console.log(response)
+          setCookie("name",response.name,{
+            path:'/',
+            maxAge:60*5
+          })
+          setCookie("id",response.id,{
+            path:'/',
+            maxAge:60*5
+          })
            console.log('Good to see you, ' + response.name + '.');
          });
         } else {
@@ -38,7 +46,6 @@ export default function Home() {
           js.src = "https://connect.facebook.net/en_US/sdk.js";
           fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-      onLoginClick()
   }, []);
 
   return (
