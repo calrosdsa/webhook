@@ -1,11 +1,8 @@
-import { getProviders,signIn ,useSession} from "next-auth/react"
 import { useEffect,useState } from "react";
-import FacebookLogin from 'react-facebook-login';
 
 export default function Home() {
   // const [session, loading] = useSession()
   // const [providers, setProviders] = useState({});
-  const [isLoggedin, setIsLoggedin] = useState(false);
 
   const onLoginClick = () => {
     if (typeof window !== 'undefined') {
