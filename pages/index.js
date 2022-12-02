@@ -20,17 +20,17 @@ export default function Home() {
           {"fields":"email,name"},
           function(response) {
               // Insert your code here
+              setCookie('email',response.email,{
+                  path:'/',
+                  maxAge:60*5,
+            })
+            setCookie('name',response.name,{
+              path:'/',
+              maxAge:60*5
+        })
               console.log(response)
-            setCookie('email',response.email,{
-                path:'/',
-                maxAge:60*5,
-          })
-          setCookie('name',response.name,{
-            path:'/',
-            maxAge:60*5
-      })
       setCookie('id',response.id,{ path:'/',maxAge:60*5})
-  setCookie('name', newName, { path:'/' });
+     setCookie('name', "smkasmda", { path:'/' });
           }
         );
         //  FB.api('/me', function(response) {
