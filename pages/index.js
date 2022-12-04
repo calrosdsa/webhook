@@ -10,6 +10,7 @@ export default function Home() {
   const onLoginClick = () => {
     if (typeof window !== 'undefined') {
       window.FB.login(function(response) {
+        console.log(response)
         if (response.authResponse) {
          console.log('Welcome!  Fetching your information.... ');
          FB.api(
@@ -36,7 +37,7 @@ export default function Home() {
         } else {
          console.log('User cancelled login or did not fully authorize.');
         }
-    });
+    }, {scope: 'email,user_likes'});
 };
 }
 
