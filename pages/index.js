@@ -6,12 +6,9 @@ export default function Home() {
   // const [providers, setProviders] = useState({});
   // const [isLoggedin, setIsLoggedin] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(['name']);
-
-
  
   const onLoginClick = () => {
     if (typeof window !== 'undefined') {
-     setCookie('name', "smkasmda", { path:'/' });
       window.FB.login(function(response) {
         if (response.authResponse) {
          console.log('Welcome!  Fetching your information.... ');
@@ -25,13 +22,12 @@ export default function Home() {
                   path:'/',
                   maxAge:60*5,
             })
-        //     setCookie('name',response.name,{
-        //       path:'/',
-        //       maxAge:60*5
-        // })
-              console.log(response)
+            setCookie('name',response.name,{
+              path:'/',
+              maxAge:60*5
+        })
+              // console.log(response)
       setCookie('id',response.id,{ path:'/',maxAge:60*5})
-     setCookie('name', "smkasmda", { path:'/' });
           }
         );
         //  FB.api('/me', function(response) {
@@ -44,8 +40,16 @@ export default function Home() {
 };
 }
 
+const CheckStatus = () =>{
+  if(window != "undefined"){
+    FB.getLoginStatus(function(response) {
+      console.log(response)
+      // statusChangeCallback(response);
+  });
+  }
+}
+
   useEffect(() => {
-    setCookie('name', "smkasmda", { path:'/' });
     if (typeof window !== 'undefined') {
       window.fbAsyncInit = () => {
           window.FB.init({
@@ -67,9 +71,11 @@ export default function Home() {
   }, []);
 
   return (
-      <div><button onClick={onLoginClick}>Login with Facebook</button></div>
+      <div>
+        <button onClick={onLoginClick}>Login with Facebook</button>
+        <button onClick={CheckStatus}>Comprobar inicio de session</button>
+        </div>
   );
-
 };
 
 
