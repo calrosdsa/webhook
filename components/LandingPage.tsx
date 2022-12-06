@@ -3,8 +3,8 @@ import Image from "next/image";
 const LandingPage = () =>{
 
     return(
-        <div className='mx-auto fixed w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
-        inset-x-0 top-1/2 -translate-y-1/2 z-20 bg-white'>
+        <div className=' absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
+         -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white'>
             <div className="grid grid-cols-1 items-center place-items-center py-3 xl:py-10 gap-y-10 2xl:gap-y-20">      
         <Image 
       src='/images/logo.png'
