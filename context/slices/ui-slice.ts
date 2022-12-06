@@ -5,7 +5,7 @@ import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 const initialUiState :UiState ={
     loading:false,
     errorMessage:"",
-    buttonText:"Iniciar session con facebook"
+    buttonText:"Continuar con facebook"
 }
 
 const uiSlice = createSlice({

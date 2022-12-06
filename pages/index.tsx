@@ -48,7 +48,7 @@ export default function Home() {
   }, []);
 
   return (
-      <div className='relative h-screen w-full'>
+      <div className='relative h-screen w-full noselect'>
         {/* <button  className='absolute bg-white p-10 z-10'
         onClick={changeState}>CHANGE ESTATE</button> */}
         <img 

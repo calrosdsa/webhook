@@ -3,12 +3,12 @@ import Image from "next/image";
 const LandingPage = () =>{
 
     return(
-        <div className='mx-auto fixed w-3/4 lg:w-1/2 2xl:w-1/3 rounded-xl 
+        <div className='mx-auto fixed w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
         inset-x-0 top-1/2 -translate-y-1/2 z-20 bg-white'>
             <div className="grid grid-cols-1 items-center place-items-center py-3 xl:py-10 gap-y-10 2xl:gap-y-20">      
         <Image 
       src='/images/logo.png'
-      width={240}
+      width={210}
       height={100}
       alt="logo ypfb"
       />
@@ -24,7 +24,7 @@ const LandingPage = () =>{
        <LoginButton/>
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 
     //    target="_blank"
-        className=" underline text-indigo-600 cursor-pointer font-medium">Politicas de Privacidad</a>
+        className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
 
       </div>
