@@ -70,6 +70,24 @@ const CheckStatus = () =>{
       }(document, 'script', 'facebook-jssdk'));
       // onLoginClick()
   }, []);
+  const Dialog = ()=>{
+    if(window != 'undefined'){
+      FB.ui(
+        {
+          method: 'share',
+          href: 'https://developers.facebook.com/docs/',
+        },
+        // callback
+        function(response) {
+          if (response && !response.error_message) {
+            alert('Posting completed.');
+          } else {
+            alert('Error while posting.');
+          }
+        }
+      );
+    }
+  }
 
   return (
       <div className='relative h-screen w-full'>
@@ -79,7 +97,7 @@ const CheckStatus = () =>{
         />
         <div className='mx-auto sm:w-3/4 md:w-2/4 h-64 fixed inset-x-0 top-1/2 -translate-y-1/2 z-20 bg-white'>
         <button className=' z-20 '
-         onClick={onLoginClick}>Login with Facebook</button>
+         onClick={Dialog}>Login with Facebook</button>
          <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02bZaaF79ZBxmg9GKSp8JExCYnAzcV9ktgwBtZ81i3bGGTU2eJjZ3zgfugchZGtiSl%26id%3D100085355185099&show_text=true&width=500" width="500" height="312" 
          scrolling="no" frameborder="0"
           allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
