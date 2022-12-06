@@ -4,23 +4,26 @@ import Image from 'next/image';
 import LandingPage from '../components/LandingPage';
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { uiActions } from '../context/slices/ui-slice';
+import { authActions } from '../context/slices/auth-slice';
 
 export default function Home() {
   const [cookies, setCookie,removeCookie ] = useCookies<any>(['name']);
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui.loading)
-  const auth = useAppSelector(state => state.auth)
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
   const email = cookies.name
   const id = cookies.id
 
+  const changeState = () => {
+    dispatch(authActions.setAuthenticated(true))
+  }
+
   useEffect(()=>{
-    console.log(ui)
-    setCookie('id',"12737271737131",{ path:'/',maxAge:60*60*5})
-    if(id){
+    if(isAuthenticated){
       dispatch(uiActions.setButtonText("Ir a al ultimo post"))
         // console.log("exist")
       }
-  },[auth.isAuthenticated])
+  },[isAuthenticated])
 
   useEffect(() => {
     // console.log(id)
@@ -46,6 +49,8 @@ export default function Home() {
 
   return (
       <div className='relative h-screen w-full'>
+        {/* <button  className='absolute bg-white p-10 z-10'
+        onClick={changeState}>CHANGE ESTATE</button> */}
         <img 
         className='w-full h-screen blur-sm absolute'
         src='/images/background.jpg'
