@@ -2,6 +2,7 @@ import {useCookies } from 'react-cookie'
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { useRouter } from 'next/router';
 import { authActions } from '../context/slices/auth-slice';
+import axios from 'axios'
 const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
@@ -30,7 +31,14 @@ const LoginButton = () =>{
             'GET',
             {"fields":"email,name"},
             function(response:any) {
+
               dispatch(authActions.setAuthenticated(true))
+              async function fetchMyAPI() {
+                const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
+                console.log(res)
+              }
+              fetchMyAPI()
+              // res;
                 // Insert your code here
                 setCookie('email',response.email,{
                     path:'/',

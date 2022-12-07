@@ -5,6 +5,7 @@ import LandingPage from '../components/LandingPage';
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { uiActions } from '../context/slices/ui-slice';
 import { authActions } from '../context/slices/auth-slice';
+import axios from 'axios';
 
 export default function Home() {
   const [cookies, setCookie,removeCookie ] = useCookies<any>(['name']);
@@ -27,6 +28,12 @@ export default function Home() {
 
   useEffect(() => {
     // console.log(id)
+    //https://teclu.com/validatelike.php?id=113209743565830
+    async function fetchMyAPI() {
+      const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
+      console.log(response)
+    }
+    fetchMyAPI()
     if (typeof window !== 'undefined') {
       window.fbAsyncInit = () => {
           window.FB.init({
