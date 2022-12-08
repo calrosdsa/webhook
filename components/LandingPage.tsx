@@ -63,9 +63,11 @@ const sendToRadius4 = async() =>{
         Send to Radius3
       </button>
 
-      <button onClick={sendToRadius4}>
-        Send to Radius4
-      </button>
+      <form>
+					<input type="text" placeholder="marca"/>
+					<input type="password" placeholder="201120"/>
+					<button type="submit" className="btn btn-primary">submit </button>
+      </form>
 
 
       </div>
