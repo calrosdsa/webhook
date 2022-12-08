@@ -32,30 +32,30 @@ export default function Home() {
 
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
-    async function fetchMyAPI() {
-      const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      console.log(response)
-    }
-    fetchMyAPI()
+    // async function fetchMyAPI() {
+    //   const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
+    //   console.log(response)
+    // }
+    // fetchMyAPI()
     if (typeof window !== 'undefined') {
       const parsed = queryString.parse(window.location.search)
       console.log(parsed)
-      window.fbAsyncInit = () => {
-          window.FB.init({
-              appId            : '694102408690400',
-              autoLogAppEvents : true,
-              xfbml            : true,
-              version          : 'v11.0'
-          });
-      };
+      // window.fbAsyncInit = () => {
+      //     window.FB.init({
+      //         appId            : '694102408690400',
+      //         autoLogAppEvents : true,
+      //         xfbml            : true,
+      //         version          : 'v11.0'
+      //     });
+      // };
     }
-      (function (d, s, id) {
-          var js:any, fjs:any = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) { return; }
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+      // (function (d, s, id) {
+      //     var js:any, fjs:any = d.getElementsByTagName(s)[0];
+      //     if (d.getElementById(id)) { return; }
+      //     js = d.createElement(s); js.id = id;
+      //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+      //     fjs.parentNode.insertBefore(js, fjs);
+      // }(document, 'script', 'facebook-jssdk'));
       // onLoginClick()
   }, []);
 

@@ -1,29 +1,18 @@
 import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
+import { useState } from 'react';
 const LandingPage = () =>{
     const username = "marca"
     const password  = "201120"
+    const [url,setUrl] = useState("https://captiveportal-login.radius.edu/cgi-bin/login?user=marca&password=201120&cmd=authenticate")
     const sendToRadius = async() =>{
-          const send = await axios.post("http://www.msftconnecttest.com/redirect",{username,password})
+        const send = await axios.post(url,{username,password})
       console.log(send)
           
     }
 
-    const sendToRadius2 = async() =>{
-      const send = await axios.post("securelogin.arubanetworks.com",{username,password})
-      console.log(send)
-}
-const sendToRadius3 = async() =>{
-  const send = await axios.post("https://securelogin.arubanetworks.com",{username,password})
-  console.log(send)
-  
-}
-const sendToRadius4 = async() =>{
-  const send = await axios.post("https://www.securelogin.arubanetworks.com",{username,password})
-  console.log(send)
-  
-}
+   
 
 
     return(
@@ -55,20 +44,8 @@ const sendToRadius4 = async() =>{
         Send to Radius
       </button>
 
-      <button onClick={sendToRadius2}>
-        Send to Radius2
-      </button>
-
-      <button onClick={sendToRadius3}>
-        Send to Radius3
-      </button>
-
-      <form>
-					<input type="text" placeholder="marca"/>
-					<input type="password" placeholder="201120"/>
-					<button type="submit" className="btn btn-primary">submit </button>
-      </form>
-
+      <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
+      className="w-full"/>
 
       </div>
          </div>
