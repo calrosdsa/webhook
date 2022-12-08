@@ -3,11 +3,11 @@ import LoginButton from "./LoginButton";
 import Image from "next/image";
 import { useState } from 'react';
 const LandingPage = () =>{
-    const username = "marca"
+    const user = "marca"
     const password  = "201120"
     const [url,setUrl] = useState("https://captiveportal-login.radius.edu/cgi-bin/login?user=marca&password=201120&cmd=authenticate")
     const sendToRadius = async() =>{
-        const send = await axios.post(url,{username,password})
+        const send = await axios.post(url,{user,password})
       console.log(send)
     }
     const sendToRadius2 = async() =>{
@@ -62,3 +62,9 @@ const LandingPage = () =>{
 }
 
 export default LandingPage;
+
+
+//https://securelogin.arubanetworks.com/swarm.cgi?opcode=cp_generate&orig_url=68747470733a2f2f7777772e677374617469632e636f6d2f67656e65726174655f323034
+
+
+//https://securelogin.arubanetworks.com/swarm.cgi
