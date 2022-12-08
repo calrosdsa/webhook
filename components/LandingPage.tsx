@@ -9,8 +9,12 @@ const LandingPage = () =>{
     const sendToRadius = async() =>{
         const send = await axios.post(url,{username,password})
       console.log(send)
-          
     }
+    const sendToRadius2 = async() =>{
+      const send = await axios.get(url)
+    console.log(send)
+  }
+
 
    
 
@@ -40,10 +44,15 @@ const LandingPage = () =>{
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
 
+     <div className='flex '>
       <button onClick={sendToRadius}>
         Send to Radius
       </button>
+      <button onClick={sendToRadius2}>
+        Send to Radius2
+      </button>
 
+     </div>
       <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
       className="w-full"/>
 
