@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { uiActions } from '../context/slices/ui-slice';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios';
+import queryString from "query-string";
+
 
 export default function Home() {
   const [cookies, setCookie,removeCookie ] = useCookies<any>(['name']);
@@ -27,6 +29,7 @@ export default function Home() {
   },[isAuthenticated])
 
   useEffect(() => {
+
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
     async function fetchMyAPI() {
@@ -35,6 +38,8 @@ export default function Home() {
     }
     fetchMyAPI()
     if (typeof window !== 'undefined') {
+      const parsed = queryString.parse(window.location.search)
+      console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
               appId            : '694102408690400',
@@ -68,3 +73,4 @@ export default function Home() {
 };
 
 
+//https://76.76.21.241/?cmd=login&mac=ac:12:03:9c:ae:05&essid=radius&ip=172.31.98.4&apname=40%3Ae3%3Ad6%3Acc%3A62%3Aa8&apmac=40%3Ae3%3Ad6%3Acc%3A62%3Aa8&vcname=SetMeUp-CC%3A62%3AA8&switchip=securelogin.arubanetworks.com&url=http%3A%2F%2Fwww.msftconnecttest.com%2Fredirect

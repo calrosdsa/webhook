@@ -1,6 +1,30 @@
+import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
 const LandingPage = () =>{
+    const username = "marca"
+    const password  = "201120"
+    const sendToRadius = async() =>{
+          const send = await axios.post("http://www.msftconnecttest.com/redirect",{username,password})
+      console.log(send)
+          
+    }
+
+    const sendToRadius2 = async() =>{
+      const send = await axios.post("securelogin.arubanetworks.com",{username,password})
+      console.log(send)
+}
+const sendToRadius3 = async() =>{
+  const send = await axios.post("https://securelogin.arubanetworks.com",{username,password})
+  console.log(send)
+  
+}
+const sendToRadius4 = async() =>{
+  const send = await axios.post("https://www.securelogin.arubanetworks.com",{username,password})
+  console.log(send)
+  
+}
+
 
     return(
         <div className=' absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
@@ -26,6 +50,23 @@ const LandingPage = () =>{
     //    target="_blank"
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
+
+      <button onClick={sendToRadius}>
+        Send to Radius
+      </button>
+
+      <button onClick={sendToRadius2}>
+        Send to Radius2
+      </button>
+
+      <button onClick={sendToRadius3}>
+        Send to Radius3
+      </button>
+
+      <button onClick={sendToRadius4}>
+        Send to Radius4
+      </button>
+
 
       </div>
          </div>
