@@ -40,23 +40,22 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const parsed = queryString.parse(window.location.search)
       console.log(parsed)
-      // window.fbAsyncInit = () => {
-      //     window.FB.init({
-      //         appId            : '694102408690400',
-      //         autoLogAppEvents : true,
-      //         xfbml            : true,
-      //         version          : 'v11.0'
-      //     });
-      // };
+      window.fbAsyncInit = () => {
+          window.FB.init({
+              appId            : '694102408690400',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v11.0'
+          });
+      };
     }
-      // (function (d, s, id) {
-      //     var js:any, fjs:any = d.getElementsByTagName(s)[0];
-      //     if (d.getElementById(id)) { return; }
-      //     js = d.createElement(s); js.id = id;
-      //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-      //     fjs.parentNode.insertBefore(js, fjs);
-      // }(document, 'script', 'facebook-jssdk'));
-      // onLoginClick()
+      (function (d, s, id) {
+          var js:any, fjs:any = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) { return; }
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
   }, []);
 
   return (

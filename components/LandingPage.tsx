@@ -1,7 +1,7 @@
 import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const LandingPage = () =>{
     const user = "marca"
     const password  = "201120"
@@ -16,6 +16,10 @@ const LandingPage = () =>{
   }
 
 
+  useEffect(()=>{
+    console.log({user,password})
+
+  },[])
    
 
 
@@ -44,7 +48,7 @@ const LandingPage = () =>{
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
 
-     <div className='flex '>
+     {/* <div className='flex '>
       <button onClick={sendToRadius}>
         Send to Radius
       </button>
@@ -52,9 +56,9 @@ const LandingPage = () =>{
         Send to Radius2
       </button>
 
-     </div>
-      <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-      className="w-full"/>
+     </div> */}
+      {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
+      className="w-full"/> */}
 
       </div>
          </div>
