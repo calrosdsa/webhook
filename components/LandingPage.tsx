@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 const LandingPage = () =>{
     const user = "marca"
     const password  = "201120"
-    const [url,setUrl] = useState("https://captiveportal-login.radius.edu/cgi-bin/login?user=marca&password=201120&cmd=authenticate")
+    const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
     const sendToRadius = async() =>{
         const send = await axios.post(url,{user,password})
       console.log(send)
@@ -55,11 +55,14 @@ const LandingPage = () =>{
       <button onClick={sendToRadius2}>
         Send to Radius2
       </button>
-
      </div>
     <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
       className="w-full"/>
-
+      <form action='/' method='POOST'>
+          <input type="text" name='user' placeholder='Username' />
+          <input type="password" name="password" placeholder='Passwrod'/>
+          <input type="submit" value="Login"/>
+      </form>
       </div>
          </div>
     )
