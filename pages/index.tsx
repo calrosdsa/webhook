@@ -23,12 +23,12 @@ export default function Home() {
     dispatch(authActions.setAuthenticated(true))
   }
 
-  // useEffect(()=>{
-  //   if(isAuthenticated){
-  //     dispatch(uiActions.setButtonText("Ir a al ultimo post"))
-  //       // console.log("exist")
-  //     }
-  // },[isAuthenticated])
+  useEffect(()=>{
+    if(isAuthenticated){
+      dispatch(uiActions.setButtonText("Ir a al ultimo post"))
+        // console.log("exist")
+      }
+  },[isAuthenticated])
   const fetchMyAPI=async()=> {
     const nameUser = cookies.name
     const queries = queryString.parse(window.location.search)
