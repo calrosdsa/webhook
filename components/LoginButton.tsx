@@ -32,6 +32,7 @@ const LoginButton = () =>{
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
+        console.log('si dio like')
           const sendRequest = await axios.post(login_url,{username,password,continue_url})
           console.log(sendRequest)
       }else{
