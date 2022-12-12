@@ -16,6 +16,8 @@ export default function Home() {
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
   const email = cookies.name
   const id = cookies.id
+  const username = 'marca'
+  const password = "201120"
 
   const changeState = () => {
     dispatch(authActions.setAuthenticated(true))
@@ -35,14 +37,37 @@ export default function Home() {
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
     async function fetchMyAPI() {
+      const nameUser = cookies.name
+      const queries = queryString.parse(window.location.search)
+      setCookie('login_url',queries.login_url,{
+        path:'/',
+        maxAge:60*60,
+      })
+      setCookie('continue_url',queries.continue_url,{
+        path:'/',
+        maxAge:60*60,
+      })
+      const login_url =queries.login_url || cookies.login_url
+      const continue_url =queries.continue_url || cookies.continue_url
+    console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get('https://graph.facebook.com/v15.0/111941735089630?fields=feed%7Blikes%7D&access_token=EAALZALdJy4pQBAMDjZBJHGSZBIrFVG5tv6JENZBY87g6HwLnS6ZCaCjWfBJotpZABWXuv53tbRZBgdANdup5RpLWZBSw0K6ltVomA10cHVrtQ4vHakUY0alGmm0gPYLzuHiZAnVTncsX9q3Wqz3ZBjSPpMrP75A8HF7ooNMvOrSj6U9qB6Gxw2gYTzZBRzNPPHo9U4ZD')
-      console.log(response)
+      const response = await axios.get('https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBACtqn2pkoGZBpt51bx0rDSKTLcYpIjnugwZBe5azmp4ceymENJKho0v7q1ElZAgFL21VLi26zBCv1BZBCjEwwbCQIq4Jb1CqjzWsrWwezGbv610AbBThAABAQcuHHNgUjFv3CEP6Ytqcy4fZBZBNMOIN2cw2r1OjYMkaOQ7sll')
+      const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
+      if(validation){
+          const sendRequest = await axios.post(login_url,{username,password,continue_url})
+          console.log(sendRequest)
+      }else{
+        console.log('No diste like')
+      }
+        // if(response.data.feed.data[0])
+      // console.log(response)
     }
     fetchMyAPI()
     if (typeof window !== 'undefined') {
-      const parsed = queryString.parse(window.location.search)
-      console.log(parsed)
+    // console.log(queryString.parse(window.location.search))
+
+      // const parsed = queryString.parse(window.location.search)
+      // console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
               appId            : '801740780921492',

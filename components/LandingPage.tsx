@@ -1,23 +1,26 @@
 import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
+import queryString from "query-string";
+
 import { useEffect, useState } from 'react';
 const LandingPage = () =>{
     const user = "marca"
     const password  = "201120"
-    const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
-    const sendToRadius = async() =>{
-        const send = await axios.post(url,{user,password})
-      console.log(send)
-    }
-    const sendToRadius2 = async() =>{
-      const send = await axios.get(url)
-    console.log(send)
-  }
+  //   const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
+  //   const sendToRadius = async() =>{
+  //       const send = await axios.post(url,{user,password})
+  //     console.log(send)
+  //   }
+  //   const sendToRadius2 = async() =>{
+  //     const send = await axios.get(url)
+  //   console.log(send)
+  // }
 
 
   useEffect(()=>{
-    console.log({user,password})
+    console.log(queryString.parse(window.location.search))
+    // console.log({user,password})
 
   },[])
    
@@ -48,7 +51,7 @@ const LandingPage = () =>{
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
 
-     <div className='flex '>
+     {/* <div className='flex '>
       <button onClick={sendToRadius}>
         Send to Radius
       </button>
@@ -62,7 +65,7 @@ const LandingPage = () =>{
           <input type="text" name='user' placeholder='Username' />
           <input type="password" name="password" placeholder='Passwrod'/>
           <input type="submit" value="Login"/>
-      </form>
+      </form> */}
       </div>
          </div>
     )
