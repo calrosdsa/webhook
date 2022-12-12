@@ -29,36 +29,35 @@ export default function Home() {
   //       // console.log("exist")
   //     }
   // },[isAuthenticated])
-  useEffect(()=>{
-    async function fetchMyAPI() {
-      const nameUser = cookies.name
-      const queries = queryString.parse(window.location.search)
-      setCookie('login_url',queries.login_url,{
-        path:'/',
-        maxAge:60*60,
-      })
-      setCookie('continue_url',queries.continue_url,{
-        path:'/',
-        maxAge:60*60,
-      })
-      const login_url =queries.login_url || cookies.login_url
-      const continue_url =queries.continue_url || cookies.continue_url
-    console.log(login_url)
-      // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBACqEPw6hyiocvmj9HXvUg4uKIQZCuGIzZCmmZBguUhhcrp0cZBfZCNfWgDtIllf1N6YZBBHYrrwhJ3JyhFKHcL70lAJTBtwbJZCH4J5SpTgOe39g1oZCMoQccdDA9hN5FOQEMnhLhRDR9PZCfA8yujKvOxfhz5fliZBOIC4mgHDxhDX262UgZC1h3dIs97LuRBEZAwZDZD")
-      console.log(response.data)
-      const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
-      if(validation){
-          const sendRequest = await axios.post(login_url,{username,password,continue_url})
-          console.log(sendRequest)
-      }else{
-        console.log('No diste like')
-      }
-        if(response.data.feed.data[0])
-      console.log(response)
+  const fetchMyAPI=async()=> {
+    const nameUser = cookies.name
+    const queries = queryString.parse(window.location.search)
+    setCookie('login_url',queries.login_url,{
+      path:'/',
+      maxAge:60*60,
+    })
+    setCookie('continue_url',queries.continue_url,{
+      path:'/',
+      maxAge:60*60,
+    })
+    const login_url =queries.login_url || cookies.login_url
+    const continue_url =queries.continue_url || cookies.continue_url
+  console.log(login_url)
+    // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
+    const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBACqEPw6hyiocvmj9HXvUg4uKIQZCuGIzZCmmZBguUhhcrp0cZBfZCNfWgDtIllf1N6YZBBHYrrwhJ3JyhFKHcL70lAJTBtwbJZCH4J5SpTgOe39g1oZCMoQccdDA9hN5FOQEMnhLhRDR9PZCfA8yujKvOxfhz5fliZBOIC4mgHDxhDX262UgZC1h3dIs97LuRBEZAwZDZD")
+    console.log(response.data)
+    const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
+    if(validation){
+        const sendRequest = await axios.post(login_url,{username,password,continue_url})
+        console.log(sendRequest)
+    }else{
+      console.log('No diste like')
     }
+      if(response.data.feed.data[0])
+    console.log(response)
+  }
+  useEffect(()=>{
     fetchMyAPI()
-
   },[])
 
   useEffect(() => {
