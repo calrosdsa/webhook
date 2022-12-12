@@ -28,7 +28,7 @@ const LoginButton = () =>{
       const continue_url =queries.continue_url || cookies.continue_url
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAG22TLsbJhIkK2sVtkoKFYWoqLMwGWJKsTQeKZCmYplDAqyZA4UmdkYNBED3ZBsynFd4YsyjSGEfT7J9aDZANLKEp56R3UZBTbw1JaZAY9NY72hkhceNEWMQY4rEJQZBjHZCQhTlMSO4F9MZAQgoD2GbZAEId0E9In885GCVYBCfZCrMAkTJTNtA6CrcAXRGnycZBqTTUH7IyLdCjfcGLmjtjGoZD")
+      const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAIqyopvRv8y8zgdMpekf4tAaCEI5B68i08NZADZCDGDWOObBuYx4CC6c5nzakCZBalc2u0zsAYXAOPK78H5Oge1jZAEvq6wFVEE4VyP3nATd6Q4B84IveZB9X8HTnt4ISRZAg2CZAFXZACUrScoqzBWNHWmtG68CmqyVnE5MgZAaX8WRCQxSYhDSoDsd7iEph2wZDZD")
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
