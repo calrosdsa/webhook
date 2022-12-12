@@ -51,7 +51,7 @@ export default function Home() {
       const continue_url =queries.continue_url || cookies.continue_url
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get("https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBANqJUmNePPF3ZBIBDxrTGBDYqHbgbd9Hi2WCh4HlNYDzbLMO0rp5hfAH2luzOTTuB2ly3uMQb4i9OXXOjA2rKUDcl3Bj5CvKrWN2ROnZBm9FxGcSqATwUgsxYF8o681jyWyvekbPEgQjnnTcH6UWMnO3Qzdj8K0ZCHw1H8g")
+      const response = await axios.get("https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBAL5yn1FNSBSVAoWWa6uBKk75ZBZBrB0o7qPXGtVHRmql444qKHvKtx7LfQDarcOPZCjzc7ZBWcZB1ZAUzVqaubuuH6erJc5qRq6YP5dw2b3WAAgmEyf6HVMj4JYALEbcxlMaddO91ZBXDGdD9CIrJrHxnifh6HPQtryDflj4ZCWuZCNsDMD0FAqfTKdu71K9WZAxZBFbCIVchW5")
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
@@ -63,29 +63,29 @@ export default function Home() {
         // if(response.data.feed.data[0])
       // console.log(response)
     }
-    fetchMyAPI()
     if (typeof window !== 'undefined') {
-    // console.log(queryString.parse(window.location.search))
+      // console.log(queryString.parse(window.location.search))
 
       // const parsed = queryString.parse(window.location.search)
       // console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
-              appId            : '801740780921492',
+            appId            : '681826853306904',
               autoLogAppEvents : true,
               xfbml            : true,
-              version          : 'v11.0'
+              version          : 'v15.0'
           });
-      };
+        };
     }
       (function (d, s, id) {
-          var js:any, fjs:any = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) { return; }
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
+        var js:any, fjs:any = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-  }, []);
+      fetchMyAPI()
+    }, []);
 
   return (
       <div className='relative h-screen w-full noselect'>
