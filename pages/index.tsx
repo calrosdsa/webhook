@@ -57,7 +57,9 @@ export default function Home() {
     console.log(response)
   }
   useEffect(()=>{
-    fetchMyAPI()
+    setTimeout(()=>{
+      fetchMyAPI()
+    },4000)
   },[])
 
   useEffect(() => {
