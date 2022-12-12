@@ -13,17 +13,23 @@ const LandingPage = () =>{
   //     console.log(send)
   //   }
     const sendToRadius2 = async() =>{
-      const send = await axios.get(url)
+      const input = document.createElement('input')
+      input.value = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAH5GwDjDHQVFKyJrLveyOddgSahE4JuEztIHKSma2ZAuRwlP2p6Kg7jZAfCbG5ZCybb3wQkI7IGkoLjKL2ZAsc77IRYZCYly4ZA5Ae6tguUHqJlLGMd4EDwegjj6PwVkslyMBvi341FwHylckqIpHT4DZAjztmCaBLgXtKVzf3BC6Us4nbClE1tiDgu6tYBLD6BIJkw1GCziZBURDXyfhJ4ZD'
+      console.log(input.value)
+      const button = document.createElement('button')
+      button.addEventListener('click',async function handleClick(event){
+        const send = await axios.get(input.value)
     console.log(send)
+      })
+      button.click()
+    //   const send = await axios.get(url)
+    // console.log(send)
   }
 
-  const fetchLikes = async() =>{
-    const call  =await axios.get('/api/facebook/likes')
-    console.log(call)
-  }
-
+  
   useEffect(()=>{
-    fetchLikes()
+    sendToRadius2()
+    // fetchLikes()
     console.log(queryString.parse(window.location.search))
     // console.log({user,password})
 
