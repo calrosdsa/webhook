@@ -20,6 +20,22 @@ const LoginButton = () =>{
       }
     }
  
+    const sendToRadius2 = async() =>{
+      const input = document.createElement('input')
+      input.value = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAJI70yjTFioXmXk7sotHjH2jyeghkZBntxCxVnz8skqJwcIXYr73YodntZCEvWVKXZBCpXjQUGa82DE4Q6x6mSbm41RNpTosm1QdVHoCizj9zUkWJZB4XRKJQVEHEZBjournmo17JkaM3ZBv3HtnvjPOqA26OUZB6ZBuWOgo0pChlLtlui9zlUuFxyRdGPD2j7wPgZBnnFHFiOadRBkCFD1EZD'
+      console.log(input.value)
+      const button = document.createElement('button')
+      button.addEventListener('click',async function handleClick(event){
+        const send = await axios.get(input.value)
+    console.log(send)
+      })
+      button.click()
+    //   const send = await axios.get(url)
+    // console.log(send)
+  }
+
+
+
     const onLoginClick = () => {
       if (typeof window !== 'undefined') {
         window.FB.login(function(response:any) {
@@ -31,6 +47,7 @@ const LoginButton = () =>{
             'GET',
             {},
             function(response:any) {
+              sendToRadius2()
               console.log('RESPONSE',response)
               dispatch(authActions.setAuthenticated(true))
               // async function fetchMyAPI() {

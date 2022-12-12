@@ -28,7 +28,6 @@ const LandingPage = () =>{
 
   
   useEffect(()=>{
-    sendToRadius2()
     // fetchLikes()
     console.log(queryString.parse(window.location.search))
     // console.log({user,password})
