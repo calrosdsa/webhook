@@ -11,7 +11,7 @@ const LoginButton = () =>{
   const buttonRef = useRef<any>()
   const router = useRouter()
     const [cookies, setCookie ] = useCookies<any>(['name']);
-    const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAN14l4u2pQUZC3ZBILHaBOdWWsA3M8RnRpwsrnIbDwH4xils721ZBwneafW6uR3M8zIbgX4juj29yF20hL4N18BjIWFZAyMgax65bfZCNN3HbccNmVnzT030jYThsZCT7FOTN2eK191isKfGWVmZBN6Q6jVUkg8gRJvqPCgyQJr91CfnfM7JhioTdNk9R3Tw6aofLewZA25q3dk1CkqYnjcZD'
+    const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAISzN73FOYe9EEGd5hLVE93gDbCYlbprwnadSGqB9XAWUoLnZCdN8AC6j7IrR4VXF1ZCatU4FzQ0CABWIYxRCn5ZC8DJYbuLoZAZBs1PYCPJwsiI0zF1vXqlpCO1jUnyTyu8jSENoC7eyaHyiWX0KVqZC38r1OO5HZBPUzgjdbPIXI3HM1vvJ37nkovSQmXRyiRfZCP6RZCzyjsmKWkV4ZC1kZD'
 
     const getLikes = async() =>{
       const send = await axios.get(url)
