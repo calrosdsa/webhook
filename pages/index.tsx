@@ -51,7 +51,7 @@ export default function Home() {
       const continue_url =queries.continue_url || cookies.continue_url
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get('https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBACtqn2pkoGZBpt51bx0rDSKTLcYpIjnugwZBe5azmp4ceymENJKho0v7q1ElZAgFL21VLi26zBCv1BZBCjEwwbCQIq4Jb1CqjzWsrWwezGbv610AbBThAABAQcuHHNgUjFv3CEP6Ytqcy4fZBZBNMOIN2cw2r1OjYMkaOQ7sll')
+      const response = await axios.get('https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBAFW48xyyf33ZAXZCToRzvAQwCpikiffFNWzbJdwTyZBr0ECwtbQSv5uqNPtymL4IVD8zbcPeNbg5yYGfsZA9w6ug7toAn7Sf65PLLYnZCpycgGgoBNZCoRpoybliUuZB2ReXGV4ON3YcCohe6w2IghSfFzUnU2SHwAVW9fy8wWSVr4kx8eGWuHAd2WLTUsekf7EOkrI0DH0')
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){

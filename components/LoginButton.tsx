@@ -29,15 +29,15 @@ const LoginButton = () =>{
            window.FB.api(
             '/me',
             'GET',
-            {"fields":"email,name"},
+            {},
             function(response:any) {
-
+              console.log('RESPONSE',response)
               dispatch(authActions.setAuthenticated(true))
-              async function fetchMyAPI() {
-                const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
-                console.log(res)
-              }
-              fetchMyAPI()
+              // async function fetchMyAPI() {
+              //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
+              //   console.log(res)
+              // }
+              // fetchMyAPI()
               // res;
                 // Insert your code here
                 setCookie('email',response.email,{
