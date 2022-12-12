@@ -16,7 +16,6 @@ const LoginButton = () =>{
 
     const fetchMyAPI=async()=> {
       const nameUser = cookies.name
-      setUrl('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAOQpcrlZB4AbmIZBfs5xKlTe9lRwj9YvLZCt8g1UDLZBp59wNaM8h62JEHZAOfNa13W8YGJE85Sep6f6MyKrtEqN7R0eYfuSZAbk4CO96J6E6kgiMpockvSJfEbkv1lxD02ABK6oNflt0ioFncAZC1ejCkXQpTrTuIDhZAj1qo66b81MTtZAXZAqMhhh2txgmxBwZDZD')
       const queries = queryString.parse(window.location.search)
       setCookie('login_url',queries.login_url,{
         path:'/',
@@ -104,16 +103,17 @@ const LoginButton = () =>{
   };
   }
     return(
-        <div onClick={buttonAction}
+        <div 
         className='flex  px-3 rounded-2xl bg-facebook  items-center'>
             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#039be5"
              d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/><path fill="#fff" 
              d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>
              <span 
+             onClick={buttonAction}
               className='text-white font-semibold truncate'
       >{ui.buttonText}</span>
       <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-          className="w-full hidden"/>
+          className="w-full "/>
         </div>
     )
 }
