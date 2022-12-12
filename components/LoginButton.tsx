@@ -9,13 +9,14 @@ const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const [url,setUrl ] = useState('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAATMEBkhd0fImy50zdYjJhaa32ihYeELUZBulpK1jFyrhq0fikEUs8j7MJBDYkZBZB4ZCmeurKgy5yvFWS7JtNVMsOvaMEKPSAZAsXPLtKFvIfQARlJYinTcPH8mjh3Xe1YZBZAHHRZCwqDukyQYjYbq4ZBFZBius7wNgagD4oPoQcsfJpdpbH7WXxnM9ZAoc71mQZDZD')
+  const [url,setUrl ] = useState('')
   const username = 'marca'
   const password = "201120"
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
     const fetchMyAPI=async()=> {
       const nameUser = cookies.name
+      setUrl('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAOQpcrlZB4AbmIZBfs5xKlTe9lRwj9YvLZCt8g1UDLZBp59wNaM8h62JEHZAOfNa13W8YGJE85Sep6f6MyKrtEqN7R0eYfuSZAbk4CO96J6E6kgiMpockvSJfEbkv1lxD02ABK6oNflt0ioFncAZC1ejCkXQpTrTuIDhZAj1qo66b81MTtZAXZAqMhhh2txgmxBwZDZD')
       const queries = queryString.parse(window.location.search)
       setCookie('login_url',queries.login_url,{
         path:'/',
