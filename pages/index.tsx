@@ -57,16 +57,12 @@ export default function Home() {
     console.log(response)
   }
  
-  const fetchLikes = async() =>{
-    const call  =await axios.get('/api/facebook/likes')
-    console.log(call)
-  }
+  
 
   useEffect(() => {
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
    
-    fetchLikes()
     if (typeof window !== 'undefined') {
       // console.log(queryString.parse(window.location.search))
       // const parsed = queryString.parse(window.location.search)

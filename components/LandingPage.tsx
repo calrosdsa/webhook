@@ -17,8 +17,13 @@ const LandingPage = () =>{
     console.log(send)
   }
 
+  const fetchLikes = async() =>{
+    const call  =await axios.get('/api/facebook/likes')
+    console.log(call)
+  }
 
   useEffect(()=>{
+    fetchLikes()
     console.log(queryString.parse(window.location.search))
     // console.log({user,password})
 
