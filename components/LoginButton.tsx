@@ -22,14 +22,14 @@ const LoginButton = () =>{
 
     const buttonAction = ()=>{
       getLikes()
-      if(ui.buttonText == "Ir a al ultimo post"){
-        const link = document.createElement('a');
-        link.href = "https://www.facebook.com/134170669438105/posts/133206869534485";
-        // link.target ="_blank";
-        link.click();
-      }else{
-        onLoginClick()
-      }
+      // if(ui.buttonText == "Ir a al ultimo post"){
+      //   const link = document.createElement('a');
+      //   link.href = "https://www.facebook.com/134170669438105/posts/133206869534485";
+      //   // link.target ="_blank";
+      //   link.click();
+      // }else{
+      //   onLoginClick()
+      // }
     }
  
 
