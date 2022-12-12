@@ -3,26 +3,48 @@ import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { useRouter } from 'next/router';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios'
-import { useRef } from 'react';
+import queryString from 'query-string'
 
 const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
-  const buttonRef = useRef<any>()
   const router = useRouter()
+  const username = 'marca'
+  const password = "201120"
     const [cookies, setCookie ] = useCookies<any>(['name']);
-    const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAISzN73FOYe9EEGd5hLVE93gDbCYlbprwnadSGqB9XAWUoLnZCdN8AC6j7IrR4VXF1ZCatU4FzQ0CABWIYxRCn5ZC8DJYbuLoZAZBs1PYCPJwsiI0zF1vXqlpCO1jUnyTyu8jSENoC7eyaHyiWX0KVqZC38r1OO5HZBPUzgjdbPIXI3HM1vvJ37nkovSQmXRyiRfZCP6RZCzyjsmKWkV4ZC1kZD'
 
-    const getLikes = async() =>{
-      const send = await axios.get('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAODbMmJmhngaDnnZByjzL9EvMHcbGezPMZArPmxdZBoZBTXiGPtJGQX1LH5c41uRrTZCOFyZCLTuqRS2CP3Y0z3xJmZCgOJQmkFRc3OEuDfYtrEFJnSy27TlOUZCfKj4plOmeK5uK4HgqquYkyZAWcZBqZCaHTueQy5ELYAK6UWuMtUpil8GvIvzqUp9U5LUPHOwYHRQDIuLgSbLZBoutCQYJdsZD')
-      console.log(send)
-      //   const send = await axios.get(url)
-      // console.log(send)
+    const fetchMyAPI=async()=> {
+      const nameUser = cookies.name
+      const queries = queryString.parse(window.location.search)
+      setCookie('login_url',queries.login_url,{
+        path:'/',
+        maxAge:60*60,
+      })
+      setCookie('continue_url',queries.continue_url,{
+        path:'/',
+        maxAge:60*60,
+      })
+      const login_url =queries.login_url || cookies.login_url
+      const continue_url =queries.continue_url || cookies.continue_url
+    console.log(login_url)
+      // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
+      const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAODbMmJmhngaDnnZByjzL9EvMHcbGezPMZArPmxdZBoZBTXiGPtJGQX1LH5c41uRrTZCOFyZCLTuqRS2CP3Y0z3xJmZCgOJQmkFRc3OEuDfYtrEFJnSy27TlOUZCfKj4plOmeK5uK4HgqquYkyZAWcZBqZCaHTueQy5ELYAK6UWuMtUpil8GvIvzqUp9U5LUPHOwYHRQDIuLgSbLZBoutCQYJdsZD")
+      console.log(response.data)
+      const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
+      if(validation){
+          const sendRequest = await axios.post(login_url,{username,password,continue_url})
+          console.log(sendRequest)
+      }else{
+        console.log('No diste like')
+      }
+        if(response.data.feed.data[0])
+      console.log(response)
     }
-
+   
     const buttonAction = async()=>{
       if(ui.buttonText == "Ir a al ultimo post"){
-         getLikes()
+        //  getLikes()
+        fetchMyAPI()
         const link = document.createElement('a');
         link.href = "https://www.facebook.com/134170669438105/posts/133206869534485";
         // link.target ="_blank";
