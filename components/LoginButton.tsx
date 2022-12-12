@@ -14,20 +14,19 @@ const LoginButton = () =>{
     const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAISzN73FOYe9EEGd5hLVE93gDbCYlbprwnadSGqB9XAWUoLnZCdN8AC6j7IrR4VXF1ZCatU4FzQ0CABWIYxRCn5ZC8DJYbuLoZAZBs1PYCPJwsiI0zF1vXqlpCO1jUnyTyu8jSENoC7eyaHyiWX0KVqZC38r1OO5HZBPUzgjdbPIXI3HM1vvJ37nkovSQmXRyiRfZCP6RZCzyjsmKWkV4ZC1kZD'
 
     const getLikes = async() =>{
-      const send = await axios.get(url)
+      const send = await axios.get('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAODbMmJmhngaDnnZByjzL9EvMHcbGezPMZArPmxdZBoZBTXiGPtJGQX1LH5c41uRrTZCOFyZCLTuqRS2CP3Y0z3xJmZCgOJQmkFRc3OEuDfYtrEFJnSy27TlOUZCfKj4plOmeK5uK4HgqquYkyZAWcZBqZCaHTueQy5ELYAK6UWuMtUpil8GvIvzqUp9U5LUPHOwYHRQDIuLgSbLZBoutCQYJdsZD')
       console.log(send)
       //   const send = await axios.get(url)
       // console.log(send)
     }
 
     const buttonAction = async()=>{
-      const likes =  await getLikes()
-      likes
       if(ui.buttonText == "Ir a al ultimo post"){
+         getLikes()
         const link = document.createElement('a');
         link.href = "https://www.facebook.com/134170669438105/posts/133206869534485";
         // link.target ="_blank";
-        link.click();
+        // link.click();
       }else{
         onLoginClick()
       }
