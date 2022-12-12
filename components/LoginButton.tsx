@@ -20,17 +20,10 @@ const LoginButton = () =>{
       }
     }
  
-    const sendToRadius2 = async() =>{
-    const send = await axios.get('https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAEa3AxRA6eDmRBOLFRG9Xc7nHR6h5hp1B6TMQ7njlP5Xen7AidjZC725DFFq5WSiIOQKZBaq5XGgDuJ2il2dzOFzQqZAs4FZApwIQucQdCdd5BRs59JDYsP12dunuCL5pJuSCRViZBu7FYknhP83UPZBIEZAfRJe7mr0AbaHFmbTZC9UNhpRQtwZD')
-    console.log(send)
-    //   const send = await axios.get(url)
-    // console.log(send)
-  }
-
+   
 
 
     const onLoginClick = () => {
-      sendToRadius2()
       if (typeof window !== 'undefined') {
         window.FB.login(function(response:any) {
           console.log(response)

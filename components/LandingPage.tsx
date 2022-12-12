@@ -2,16 +2,27 @@ import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
 import queryString from "query-string";
+import { useRef } from 'react';
 
 import { useEffect, useState } from 'react';
 const LandingPage = () =>{
     const user = "marca"
     const password  = "201120"
-    const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
+    const buttonRef = useRef<any>()
+    const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAHEU5nQ70iEyUo8l7uuEMXS9CqwKjZA2FYr3FkI3KSBpzw7ipqk6vACirR6pcYBIdXv2W0hB1EddGi24AgnzTtVBNberK5PzZCmvMOIqnL6qvHlarn56ay4QW3a6TEkUJFJBZBLDtu68f5DvsUxAJgLI0V4iL44b0QXMgIugTse1YGNTA2tgtE2U7a9ronOZBR3ab4DwynNsjXXvWI0ZD'
   //   const sendToRadius = async() =>{
   //       const send = await axios.post(url,{user,password})
   //     console.log(send)
   //   }
+
+  const getLikes = async() =>{
+    const send = await axios.get(url)
+    console.log(send)
+    //   const send = await axios.get(url)
+    // console.log(send)
+  }
+
+
     const sendToRadius2 = async() =>{
       const input = document.createElement('input')
       input.value = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAH5GwDjDHQVFKyJrLveyOddgSahE4JuEztIHKSma2ZAuRwlP2p6Kg7jZAfCbG5ZCybb3wQkI7IGkoLjKL2ZAsc77IRYZCYly4ZA5Ae6tguUHqJlLGMd4EDwegjj6PwVkslyMBvi341FwHylckqIpHT4DZAjztmCaBLgXtKVzf3BC6Us4nbClE1tiDgu6tYBLD6BIJkw1GCziZBURDXyfhJ4ZD'
@@ -29,6 +40,7 @@ const LandingPage = () =>{
   
   useEffect(()=>{
     // fetchLikes()
+    buttonRef.current.click()
     console.log(queryString.parse(window.location.search))
     // console.log({user,password})
 
@@ -60,11 +72,11 @@ const LandingPage = () =>{
     //    target="_blank"
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
-    <button onClick={sendToRadius2}>
-  Send to Radius
+    <button ref={buttonRef}  onClick={getLikes}>
+  getLikes
   </button>
-        <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-          className="w-full"/>
+        {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
+          className="w-full"/> */}
 
      {/* <div className='flex '>
       <button onClick={sendToRadius2}>
