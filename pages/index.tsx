@@ -56,19 +56,19 @@ export default function Home() {
       if(response.data.feed.data[0])
     console.log(response)
   }
-  useEffect(()=>{
-    setTimeout(()=>{
-      fetchMyAPI()
-    },4000)
-  },[])
+ 
+  const fetchLikes = async() =>{
+    const call  =await axios.get('/api/facebook/likes')
+    console.log(call)
+  }
 
   useEffect(() => {
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
    
+    fetchLikes()
     if (typeof window !== 'undefined') {
       // console.log(queryString.parse(window.location.search))
-
       // const parsed = queryString.parse(window.location.search)
       // console.log(parsed)
       window.fbAsyncInit = () => {
