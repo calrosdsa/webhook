@@ -52,6 +52,7 @@ export default function Home() {
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
       const response = await axios.get('https://graph.facebook.com/v15.0/104467269083136?fields=feed.limit(1)%7Blikes%7D&access_token=EAAJsHi9jwhgBACtqn2pkoGZBpt51bx0rDSKTLcYpIjnugwZBe5azmp4ceymENJKho0v7q1ElZAgFL21VLi26zBCv1BZBCjEwwbCQIq4Jb1CqjzWsrWwezGbv610AbBThAABAQcuHHNgUjFv3CEP6Ytqcy4fZBZBNMOIN2cw2r1OjYMkaOQ7sll')
+      console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
           const sendRequest = await axios.post(login_url,{username,password,continue_url})
