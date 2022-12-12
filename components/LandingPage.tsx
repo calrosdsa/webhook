@@ -7,15 +7,15 @@ import { useEffect, useState } from 'react';
 const LandingPage = () =>{
     const user = "marca"
     const password  = "201120"
-  //   const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
+    const [url,setUrl] = useState("https://securelogin.arubanetworks.com")
   //   const sendToRadius = async() =>{
   //       const send = await axios.post(url,{user,password})
   //     console.log(send)
   //   }
-  //   const sendToRadius2 = async() =>{
-  //     const send = await axios.get(url)
-  //   console.log(send)
-  // }
+    const sendToRadius2 = async() =>{
+      const send = await axios.get(url)
+    console.log(send)
+  }
 
 
   useEffect(()=>{
@@ -50,17 +50,17 @@ const LandingPage = () =>{
     //    target="_blank"
         className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
+    <button onClick={sendToRadius2}>
+  Send to Radius
+  </button>
+        <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
+          className="w-full"/>
 
      {/* <div className='flex '>
-      <button onClick={sendToRadius}>
-        Send to Radius
-      </button>
       <button onClick={sendToRadius2}>
         Send to Radius2
       </button>
      </div>
-    <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-      className="w-full"/>
       <form action='/' method='POOST'>
           <input type="text" name='user' placeholder='Username' />
           <input type="password" name="password" placeholder='Passwrod'/>
