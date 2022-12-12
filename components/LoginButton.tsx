@@ -15,7 +15,8 @@ const LoginButton = () =>{
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
     const fetchMyAPI=async()=> {
-      const urlFacebook = await axios.get('/api/facebook/likes')
+      // const urlFacebook = await axios.get('/api/facebook/likes')
+      const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
 
       const nameUser = cookies.name
       const queries = queryString.parse(window.location.search)
@@ -31,7 +32,7 @@ const LoginButton = () =>{
       const continue_url =queries.continue_url || cookies.continue_url
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const facebookUrl = urlFacebook.data.url
+      const facebookUrl = urlFacebook.data
       const response = await axios.get(facebookUrl)
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
