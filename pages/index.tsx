@@ -21,6 +21,7 @@ export default function Home() {
 
 
   useEffect(()=>{
+
     if(isAuthenticated){
       dispatch(uiActions.setButtonText("Ir a al ultimo post"))
         // console.log("exist")
