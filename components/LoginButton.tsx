@@ -4,11 +4,12 @@ import { useRouter } from 'next/router';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios'
 import queryString from 'query-string'
-
+import { useState } from 'react';
 const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const [url,setUrl ] = useState('')
   const username = 'marca'
   const password = "201120"
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -28,7 +29,7 @@ const LoginButton = () =>{
       const continue_url =queries.continue_url || cookies.continue_url
     console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      const response = await axios.get("https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAIqyopvRv8y8zgdMpekf4tAaCEI5B68i08NZADZCDGDWOObBuYx4CC6c5nzakCZBalc2u0zsAYXAOPK78H5Oge1jZAEvq6wFVEE4VyP3nATd6Q4B84IveZB9X8HTnt4ISRZAg2CZAFXZACUrScoqzBWNHWmtG68CmqyVnE5MgZAaX8WRCQxSYhDSoDsd7iEph2wZDZD")
+      const response = await axios.get(url)
       console.log(response.data)
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
@@ -102,13 +103,16 @@ const LoginButton = () =>{
   };
   }
     return(
-        <div onClick={buttonAction}
-        className='flex  px-3 rounded-2xl bg-facebook  items-center'>
+        <div 
+        className='flex flex-col  px-3 rounded-2xl bg-facebook  items-center'>
             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#039be5"
              d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/><path fill="#fff" 
              d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>
-             <span className='text-white font-semibold truncate'
+             <span onClick={buttonAction}
+              className='text-white font-semibold truncate'
       >{ui.buttonText}</span>
+      <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
+          className="w-full"/>
         </div>
     )
 }
