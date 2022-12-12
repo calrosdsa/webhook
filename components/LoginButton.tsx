@@ -3,13 +3,25 @@ import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { useRouter } from 'next/router';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios'
+import { useRef } from 'react';
+
 const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
+  const buttonRef = useRef<any>()
   const router = useRouter()
     const [cookies, setCookie ] = useCookies<any>(['name']);
+    const url = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAA1PjkpJDX0WO4wkFurncRRjkDoFBIyutb2zp5g9OoZBqvd7Xiwd03osL7O0Hjetuzy9p07sBI3VKS0ltuhK69ypQ7qfE6r8T4nkLs63qVO7DR9i7rBNhB2mIYbszZCHLeNKRXMT8WeEmv7OyBqZB436ZAnY7AIaKPNUwZAMTxydGMZC0pYEoyMvYBBq0NoPadSZBiWMImNnuUAcMAUIl0ZD'
+
+    const getLikes = async() =>{
+      const send = await axios.get(url)
+      console.log(send)
+      //   const send = await axios.get(url)
+      // console.log(send)
+    }
 
     const buttonAction = ()=>{
+      getLikes()
       if(ui.buttonText == "Ir a al ultimo post"){
         const link = document.createElement('a');
         link.href = "https://www.facebook.com/134170669438105/posts/133206869534485";
@@ -20,7 +32,6 @@ const LoginButton = () =>{
       }
     }
  
-   
 
 
     const onLoginClick = () => {
