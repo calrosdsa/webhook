@@ -16,7 +16,7 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
       console.log(sendRequest.data)
       
             res.send({
-                status:" successful"
+                status:sendRequest.data
             })
     }
 }

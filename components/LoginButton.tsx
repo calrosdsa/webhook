@@ -37,8 +37,11 @@ const LoginButton = () =>{
       const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
       if(validation){
         console.log('si dio like')
-          const sendRequest = await axios.post('/api/send',{username,password,continue_url,login_url})
-          console.log(sendRequest.data.status)
+          const sendRequest = await axios.post('/api/send',{username,password,continue_url,login_url});
+          const link =document.createElement('a');
+          link.href = continue_url;
+          link.click();
+          console.log(sendRequest.data.status);
       }else{
         console.log('No diste like')
       }
