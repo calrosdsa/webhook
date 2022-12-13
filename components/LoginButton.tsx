@@ -10,8 +10,8 @@ const LoginButton = () =>{
   const dispatch = useAppDispatch()
   const router = useRouter()
   const [url,setUrl ] = useState('')
-  const username = 'marca'
-  const password = "201120"
+  const username = 'admin'
+  const password = "password"
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
     const fetchMyAPI=async()=> {
@@ -30,7 +30,6 @@ const LoginButton = () =>{
       })
       const login_url =queries.login_url || cookies.login_url
       const continue_url =queries.continue_url || cookies.continue_url
-    console.log(login_url)
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
       const facebookUrl = urlFacebook.data
       const response = await axios.get(facebookUrl)
