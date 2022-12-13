@@ -1,22 +1,18 @@
-import axios from 'axios'
 import LoginButton from "./LoginButton";
 import Image from "next/image";
 import queryString from "query-string";
 
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 const LandingPage = () =>{
-  const queries = queryString.parse(window.location.search)
-  const login_url =queries.login_url 
-  const continue_url =queries.continue_url
+  let login_url;
+  let continue_url;
+  if(typeof window != 'undefined'){
+    const queries = queryString.parse(location.search)
+     login_url =queries.login_url 
+     continue_url =queries.continue_url
+  }
   
-  useEffect(()=>{
-    // fetchLikes()
-    console.log(queryString.parse(window.location.search))
-    // console.log({user,password})
-
-  },[])
-   
-
+ 
 
     return(
         <div className=' absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
@@ -37,14 +33,15 @@ const LandingPage = () =>{
       </div>
 
         <div className="grid grid-cols-1 items-center place-items-center gap-y-1">
-       <LoginButton/>
+       <LoginButton continu2={continue_url} login={login_url}/>
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
         <div className='flex justify-around w-full'>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.chrome;end" target="_blank" rel="noreferrer">Chrome</a>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.browser;end" target="_blank" rel="noreferrer">Browser</a>
-        <a  href={`intent://webhook-murex.vercel.app?login_url=${login_url}&continue_url=${continue_url}/#Intent;scheme=https;end`} target="_blank" rel='noreferrer'>Open Browser</a>
+        <a  href={`intent://webhook-murex.vercel.app?login_url=${login_url}&continue_url=${continue_url}#Intent;scheme=https;end`} 
+          target="_blank" rel='noreferrer'>Open Browser</a>
         </div>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}

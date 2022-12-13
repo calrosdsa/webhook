@@ -5,7 +5,12 @@ import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios'
 import queryString from 'query-string'
 import { useState } from 'react';
-const LoginButton = () =>{
+
+interface Props {
+     login:string | (string | null)[] | null | undefined
+     continu2:string | (string | null)[] | null | undefined
+}
+const LoginButton = ({login,continu2}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
   const router = useRouter()
@@ -19,17 +24,16 @@ const LoginButton = () =>{
       const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
 
       const nameUser = cookies.name
-      const queries = queryString.parse(window.location.search)
-      setCookie('login_url',queries.login_url,{
+      const login_url =login || cookies.login_url
+      const continue_url =continu2 || cookies.continue_url
+      setCookie('login_url',login_url,{
         path:'/',
         maxAge:60*60,
       })
-      setCookie('continue_url',queries.continue_url,{
+      setCookie('continue_url',continue_url,{
         path:'/',
         maxAge:60*60,
       })
-      const login_url =queries.login_url || cookies.login_url
-      const continue_url =queries.continue_url || cookies.continue_url
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
       const facebookUrl = urlFacebook.data
       const response = await axios.get(facebookUrl)
