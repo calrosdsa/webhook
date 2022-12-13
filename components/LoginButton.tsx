@@ -9,7 +9,6 @@ const LoginButton = () =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
   const router = useRouter()
-  const [url,setUrl ] = useState('')
   const username = 'admin'
   const password = "password"
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -118,8 +117,7 @@ const LoginButton = () =>{
              onClick={buttonAction}
               className='text-white font-semibold truncate'
       >{ui.buttonText}</span>
-      <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-          className="w-full "/>
+      
         </div>
     )
 }
