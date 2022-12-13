@@ -59,8 +59,7 @@ const LandingPage = () =>{
         <div className="grid grid-cols-1 items-center place-items-center gap-y-1">
        <LoginButton/>
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 
-       target="_blank"
-        className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
+       target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
    
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
