@@ -75,7 +75,6 @@ const LoginButton = () =>{
             {},
             function(response:any) {
               console.log('RESPONSE',response)
-              dispatch(authActions.setAuthenticated(true))
               // async function fetchMyAPI() {
               //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
               //   console.log(res)
@@ -103,6 +102,7 @@ const LoginButton = () =>{
           }
       }, {scope: 'email'});
       window.FB.getLoginStatus(function(response:any) {
+        dispatch(authActions.setAuthenticated(true))
         console.log(response)
     });
   };
