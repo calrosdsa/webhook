@@ -61,10 +61,7 @@ const LandingPage = () =>{
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
-        <form>
-<input type="button" value="New Window!" onClick={()=>window.open("https://www.facebook.com","", "width=300, height=300")}
-  className='w-20 h-10 bg-gray-400'/>
-</form> 
+        <a href="intent:http://google.com" target="_blank">Open Browser</a>
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
   {/* <h1>dmskdaskdksa</h1> */}
