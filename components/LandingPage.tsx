@@ -5,29 +5,9 @@ import queryString from "query-string";
 
 import { useEffect, useState } from 'react';
 const LandingPage = () =>{
-    const user = "marca"
-    const password  = "201120"
-  //   const sendToRadius = async() =>{
-  //       const send = await axios.post(url,{user,password})
-  //     console.log(send)
-  //   }
-
-
-
-    const sendToRadius2 = async() =>{
-      const input = document.createElement('input')
-      input.value = 'https://graph.facebook.com/v15.0/111114835172863?fields=feed.limit(1)%7Blikes%7D&access_token=EAALZALdJy4pQBAH5GwDjDHQVFKyJrLveyOddgSahE4JuEztIHKSma2ZAuRwlP2p6Kg7jZAfCbG5ZCybb3wQkI7IGkoLjKL2ZAsc77IRYZCYly4ZA5Ae6tguUHqJlLGMd4EDwegjj6PwVkslyMBvi341FwHylckqIpHT4DZAjztmCaBLgXtKVzf3BC6Us4nbClE1tiDgu6tYBLD6BIJkw1GCziZBURDXyfhJ4ZD'
-      console.log(input.value)
-      const button = document.createElement('button')
-      button.addEventListener('click',async function handleClick(event){
-        const send = await axios.get(input.value)
-    console.log(send)
-      })
-      button.click()
-    //   const send = await axios.get(url)
-    // console.log(send)
-  }
-
+  const queries = queryString.parse(window.location.search)
+  const login_url =queries.login_url 
+  const continue_url =queries.continue_url
   
   useEffect(()=>{
     // fetchLikes()
@@ -64,7 +44,7 @@ const LandingPage = () =>{
         <div className='flex justify-around w-full'>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.chrome;end" target="_blank" rel="noreferrer">Chrome</a>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.browser;end" target="_blank" rel="noreferrer">Browser</a>
-        <a  href="intent://google.com#Intent;scheme=http;end" target="_blank" rel='noreferrer'>Open Browser</a>
+        <a  href={`intent://webhook-murex.vercel.app?login_url=${login_url}&continue_url=${continue_url}/#Intent;scheme=https;end`} target="_blank" rel='noreferrer'>Open Browser</a>
         </div>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
