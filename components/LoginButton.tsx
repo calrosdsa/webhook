@@ -11,6 +11,7 @@ const LoginButton = () =>{
   const router = useRouter()
   const username = 'admin'
   const password = "password"
+  const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
     const fetchMyAPI=async()=> {
@@ -65,44 +66,45 @@ const LoginButton = () =>{
 
     const onLoginClick = () => {
       if (typeof window !== 'undefined') {
-        window.FB.login(function(response:any) {
-          console.log(response)
-          if (response.authResponse) {
-           console.log('Welcome!  Fetching your information.... ');
-           window.FB.api(
-            '/me',
-            'GET',
-            {},
-            function(response:any) {
-              console.log('RESPONSE',response)
-              // async function fetchMyAPI() {
-              //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
-              //   console.log(res)
-              // }
-              // fetchMyAPI()
-              // res;
-                // Insert your code here
-                setCookie('email',response.email,{
-                    path:'/',
-                    maxAge:60*5,
-              })
-              setCookie('name',response.name,{
-                path:'/',
-                maxAge:60*5
-          })
-                // console.log(response)
-        setCookie('id',response.id,{ path:'/',maxAge:60*5})
-            }
-          );
-          //  FB.api('/me', function(response) {
-          //    console.log('Good to see you, ' + response.name + '.');
-          //  });
-          } else {
-           console.log('User cancelled login or did not fully authorize.');
-          }
-      }, {scope: 'email'});
+      //   window.FB.login(function(response:any) {
+      //     console.log(response)
+      //     if (response.authResponse) {
+      //      console.log('Welcome!  Fetching your information.... ');
+      //      window.FB.api(
+      //       '/me',
+      //       'GET',
+      //       {},
+      //       function(response:any) {
+      //         console.log('RESPONSE',response)
+      //         // async function fetchMyAPI() {
+      //         //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
+      //         //   console.log(res)
+      //         // }
+      //         // fetchMyAPI()
+      //         // res;
+      //           // Insert your code here
+      //           setCookie('email',response.email,{
+      //               path:'/',
+      //               maxAge:60*5,
+      //         })
+      //         setCookie('name',response.name,{
+      //           path:'/',
+      //           maxAge:60*5
+      //     })
+      //           // console.log(response)
+      //   setCookie('id',response.id,{ path:'/',maxAge:60*5})
+      //       }
+      //     );
+      //     //  FB.api('/me', function(response) {
+      //     //    console.log('Good to see you, ' + response.name + '.');
+      //     //  });
+      //     } else {
+      //      console.log('User cancelled login or did not fully authorize.');
+      //     }
+      // });
       window.FB.getLoginStatus(function(response:any) {
         dispatch(authActions.setAuthenticated(true))
+        setToken(response.authResponse.accessToken)
         console.log(response)
     });
   };
@@ -116,7 +118,7 @@ const LoginButton = () =>{
              <span 
              onClick={buttonAction}
               className='text-white font-semibold truncate'
-      >{ui.buttonText}</span>
+      >{ui.buttonText} {token}</span>
       
         </div>
     )
