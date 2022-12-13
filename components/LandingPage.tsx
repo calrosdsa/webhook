@@ -64,7 +64,7 @@ const LandingPage = () =>{
         <div className='flex justify-around w-full'>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.chrome;end" target="_blank" rel="noreferrer">Chrome</a>
         <a  href="intent://google.com#Intent;scheme=http;package=com.android.browser;end" target="_blank" rel="noreferrer">Browser</a>
-        <a  href="intent://google.com#Intent;scheme=http;end" target="_blank">Open Browser</a>
+        <a  href="intent://google.com#Intent;scheme=http;end" target="_blank" rel='noreferrer'>Open Browser</a>
         </div>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
