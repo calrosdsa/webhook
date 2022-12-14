@@ -74,7 +74,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
    
       
     }
-    const getDataUser = async(accessToken:string):any=>{
+    const getDataUser = async(accessToken:string):Promise<AxiosResponse<any, any>>=>{
       const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
       return userRes
     }
@@ -84,13 +84,14 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
           console.log('Login response',response)
           if (response.authResponse) {
             const accessToken = response.authResponse.accessToken
-            const userRes =getDataUser(accessToken)
-            console.log(userRes.data)
-            setCookie('name',userRes.data.name,{
-              path:'/',
-              maxAge:60*60
-        })
-            dispatch(authActions.setAuthenticated(true))
+            getDataUser(accessToken).then((userRes)=>{
+              console.log(userRes.data)
+              setCookie('name',userRes.data.name,{
+                path:'/',
+                maxAge:60*60
+              })
+              dispatch(authActions.setAuthenticated(true))
+            })
             // setToken(response.authResponse.accessToken)
             console.log(response)
             console.log('Login response',response)
