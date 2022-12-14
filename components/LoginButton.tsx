@@ -52,10 +52,10 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
           console.log('sendresponse',sendRequest.data)
           console.log("execute code");
       }else{
-        const link =document.createElement('a');
-        link.href = 'https://google.com';
-        link.click();
         dispatch(uiActions.setLoading(false))
+        const link =document.createElement('a');
+        link.href = 'https://www.facebook.com/103742875921865/posts/102737289355757';
+        link.click();
         console.log('No diste like')
       }
         if(response.data.feed.data[0])
