@@ -44,17 +44,16 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
       console.log(dataFacebook)
         const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
           if(validation){
-            console.log('si dio like')
-          // const res = await axios.post('/api/send',{username,password,continue_url,login_url});
-          const res = await axios.post(login_url,{username,password,continue_url});
+          console.log('si dio like')
+          await axios.post('/api/send',{username,password,continue_url,login_url});
           dispatch(uiActions.setLoading(false))
-          if(res.status == 200){
+          // if(res.status == 200){
             const link =document.createElement('a');
             link.href = 'https://google.com';
             link.click();
-          }else{
-            console.log("algo salio mal ",res.status);
-          }
+          // }else{
+            // console.log("algo salio mal ",res.status);
+          // }
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
