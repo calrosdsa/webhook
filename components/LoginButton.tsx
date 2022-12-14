@@ -86,7 +86,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
     }
     
     const onLoginClick = () => {
-      dispatch(authActions.setAuthLoading(true))
+      if(typeof window != 'undefined'){
+        dispatch(authActions.setAuthLoading(true))
         window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
@@ -110,10 +111,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
             dispatch(authActions.setAuthLoading(false))
            console.log('User cancelled login or did not fully authorize.');
           }
-      });
-
-  }
-    return(
+        })}
+      }
+      return(
       <>
       {isAuthenticated ?
         <div 
