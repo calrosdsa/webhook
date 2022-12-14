@@ -11,6 +11,8 @@ interface Props{
 const LandingPage = ({isAuthenticated,isLoading}:Props) =>{
   const [loginUrl,setLoginUrl]= useState('')
   const [continueUrl,setContinueUrl]= useState('')
+
+  
   useEffect(()=>{
       if(typeof window != 'undefined'){
         const queries = queryString.parse(location.search)

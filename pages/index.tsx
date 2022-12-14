@@ -35,9 +35,9 @@ export default function Home() {
     //https://teclu.com/validatelike.php?id=113209743565830
    
     if (typeof window !== 'undefined') {
-      // console.log(queryString.parse(window.location.search))
-      // const parsed = queryString.parse(window.location.search)
-      // console.log(parsed)
+      console.log(queryString.parse(window.location.search))
+      const parsed = queryString.parse(window.location.search)
+      console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
               appId            : '801740780921492',

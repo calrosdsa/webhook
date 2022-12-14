@@ -13,10 +13,11 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
         //          "Access-Control-Allow-Headers":"Content-Type, Authorization, X-Requested-With",
         // }}
       )
-      console.log(sendRequest.data)
-      
-            res.send({
-                status:sendRequest.data
-            })
+      console.log(sendRequest)
+           if(sendRequest.status == 200){
+             res.status(200)
+            }else{
+              res.status(500)
+            }
     }
 }
