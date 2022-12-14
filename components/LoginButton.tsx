@@ -11,8 +11,9 @@ interface Props {
      login:string | (string | null)[] | null | undefined
      continu2:string | (string | null)[] | null | undefined
      isAuthenticated:boolean
+     authLoading:boolean
 }
-const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
+const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
   const username = 'admin'
@@ -81,7 +82,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
     }
     
     const onLoginClick = () => {
-      dispatch(uiActions.setLoading(true))
+      dispatch(authActions.setAuthLoading(true))
         window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
@@ -97,14 +98,15 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
             // setToken(response.authResponse.accessToken)
             console.log(response)
             console.log('Login response',response)
-            console.log('Login response',response.authResponse)
-            dispatch(authActions.setLoading(false))
+            setTimeout(()=>{
+              console.log('Login response',response.authResponse)
+            },2000)
+            dispatch(authActions.setAuthLoading(false))
           } else {
-            dispatch(uiActions.setLoading(false))
+            dispatch(authActions.setAuthLoading(false))
            console.log('User cancelled login or did not fully authorize.');
           }
       });
-      dispatch(uiActions.setLoading(false))
 
   }
     return(
@@ -120,7 +122,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         <div 
         onClick={onLoginClick}
         className='flex h-12 px-3 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
-          {ui.loading ?
+          {authLoading ?
               <svg aria-hidden="true" 
           className=" w-6 h-6 text-gray-200 animate-spin fill-facebook mr-2 z-10 "
           viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

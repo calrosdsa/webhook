@@ -6,9 +6,10 @@ import { useEffect,useState } from "react";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
-  isLoading:boolean
+  isLoading:boolean,
+  authLoading:boolean
 }
-const LandingPage = ({isAuthenticated,isLoading}:Props) =>{
+const LandingPage = ({isAuthenticated,isLoading,authLoading}:Props) =>{
   const [loginUrl,setLoginUrl]= useState('')
   const [continueUrl,setContinueUrl]= useState('')
 
@@ -48,6 +49,7 @@ const LandingPage = ({isAuthenticated,isLoading}:Props) =>{
        continu2={continueUrl} 
        login={loginUrl}
        isAuthenticated={isAuthenticated}
+       authLoading={authLoading}
        />
        {isAuthenticated ?
         <a href="https://www.facebook.com/103742875921865/posts/107517872211032" 

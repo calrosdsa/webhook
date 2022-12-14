@@ -4,7 +4,7 @@ import { AuthModel } from "../../data/models/redux-models/auth-model";
 
 
 const initialAuthState:AuthModel = {
-    loading:false,
+    authLoading:false,
     isAuthenticated:false,
 
 }
@@ -13,8 +13,8 @@ const authSlice = createSlice({
     name:'auth',
     initialState:initialAuthState,
     reducers:{
-        setLoading(state,action:PayloadAction<boolean>){
-            state.loading = action.payload
+        setAuthLoading(state,action:PayloadAction<boolean>){
+            state.authLoading = action.payload
         },
         setAuthenticated(state,action:PayloadAction<boolean>){
             state.isAuthenticated = action.payload

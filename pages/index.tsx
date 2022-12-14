@@ -13,7 +13,7 @@ export default function Home() {
   const [cookies, setCookie,removeCookie ] = useCookies<any>(['name']);
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui)
-  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
+  const auth = useAppSelector(state => state.auth)
   const email = cookies.name
   const id = cookies.id
   
@@ -22,11 +22,11 @@ export default function Home() {
 
   useEffect(()=>{
 
-    if(isAuthenticated){
+    if(auth.isAuthenticated){
       dispatch(uiActions.setButtonText("Ir a al ultimo post"))
         // console.log("exist")
       }
-  },[isAuthenticated])
+  },[auth.isAuthenticated])
  
   
 
@@ -67,7 +67,8 @@ export default function Home() {
         />   
         <LandingPage
         isLoading={ui.loading}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={auth.isAuthenticated}
+        authLoading={auth.authLoading}
         />
         {ui.loading &&
     <svg aria-hidden="true" 
