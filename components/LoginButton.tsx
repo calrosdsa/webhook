@@ -65,31 +65,27 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
     const onLoginClick = () => {
       if (typeof window !== 'undefined') {
         window.FB.login(function(response:any) {
-          console.log(response)
+          console.log('Login response',response)
           if (response.authResponse) {
            console.log('Welcome!  Fetching your information.... ');
-           window.FB.api(
-            '/me',
-            'GET',
-            {},
-            function(response:any) {
-              console.log('RESPONSE',response)
-              // async function fetchMyAPI() {
-              //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
-              //   console.log(res)
-              // }
-              // fetchMyAPI()
-              // res;
-                // Insert your code here
+        //    window.FB.api(
+        //     '/me',
+        //     'GET',
+        //     {},
+        //     function(response:any) {
+        //       console.log('RESPONSE',response)
+        //       // async function fetchMyAPI() {
+        //       //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
+        //       //   console.log(res)
+        //       // }
+        //       // fetchMyAPI()
+        //       // res;
+        //         // Insert your code here
             
-              setCookie('name',response.name,{
-                path:'/',
-                maxAge:60*5
-          })
-                // console.log(response)
-        setCookie('id',response.id,{ path:'/',maxAge:60*5})
-            }
-          );
+        //         // console.log(response)
+        // setCookie('id',response.id,{ path:'/',maxAge:60*5})
+        //     }
+          // );
           //  FB.api('/me', function(response) {
           //    console.log('Good to see you, ' + response.name + '.');
           //  });
@@ -97,7 +93,15 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
            console.log('User cancelled login or did not fully authorize.');
           }
       });
-      window.FB.getLoginStatus(function(response:any) {
+      window.FB.getLoginStatus(async function(response:any) {
+        console.log('STATUS',response)
+        const accessToken = response.authResponse.accessToken
+        const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+        console.log(userRes.data)
+        setCookie('name',userRes.data.name,{
+          path:'/',
+          maxAge:60*60
+    })
         dispatch(authActions.setAuthenticated(true))
         // setToken(response.authResponse.accessToken)
         console.log(response)
