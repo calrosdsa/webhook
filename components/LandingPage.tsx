@@ -48,7 +48,7 @@ const LandingPage = ({isAuthenticated,isLoading}:Props) =>{
        isAuthenticated={isAuthenticated}
        />
        {isAuthenticated ?
-        <a href="https://www.facebook.com/103742875921865/posts/102737289355757" 
+        <a href="https://www.facebook.com/103742875921865/posts/107517872211032" 
         target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
        :
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 

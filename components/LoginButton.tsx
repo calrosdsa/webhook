@@ -40,55 +40,38 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
       const facebookUrl = urlFacebook.data
       const response = await axios.get(facebookUrl)
-      console.log(response.data)
-      const validation =  response.data.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
-      if(validation){
-        console.log('si dio like')
-          const sendRequest = await axios.post('/api/send',{username,password,continue_url,login_url});
+      const dataFacebook = response.data
+      console.log(dataFacebook)
+        const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
+        try{
+          if(validation){
+            console.log('si dio like')
+          await axios.post('/api/send',{username,password,continue_url,login_url});
           dispatch(uiActions.setLoading(false))
           const link =document.createElement('a');
           link.href = 'https://google.com';
           link.click();
-          console.log('sendresponse',sendRequest.data)
           console.log("execute code");
-      }else{
+        }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
         link.href = 'https://www.facebook.com/103742875921865/posts/107517872211032';
         link.click();
         console.log('No diste like')
       }
-        if(response.data.feed.data[0])
-      console.log(response)
+    }catch(err){
+      console.log('error catched')
+      console.log(err)
     }
-   
+      
+    }
+    
     const onLoginClick = () => {
       if (typeof window !== 'undefined') {
         window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
            console.log('Welcome!  Fetching your information.... ');
-        //    window.FB.api(
-        //     '/me',
-        //     'GET',
-        //     {},
-        //     function(response:any) {
-        //       console.log('RESPONSE',response)
-        //       // async function fetchMyAPI() {
-        //       //   const res = await axios.get(`https://teclu.com/userexists.php?id=${response.id}`)
-        //       //   console.log(res)
-        //       // }
-        //       // fetchMyAPI()
-        //       // res;
-        //         // Insert your code here
-            
-        //         // console.log(response)
-        // setCookie('id',response.id,{ path:'/',maxAge:60*5})
-        //     }
-          // );
-          //  FB.api('/me', function(response) {
-          //    console.log('Good to see you, ' + response.name + '.');
-          //  });
           } else {
            console.log('User cancelled login or did not fully authorize.');
           }
