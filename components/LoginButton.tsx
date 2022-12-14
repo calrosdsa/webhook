@@ -45,13 +45,23 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(nameUser)
           if(validation){
           console.log('si dio like')
-         const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
-         console.log(res)
-          dispatch(uiActions.setLoading(false))
-          // if(res.status == 200){
-            const link =document.createElement('a');
-            link.href = 'https://google.com';
-            link.click();
+          try{
+
+            const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
+            dispatch(uiActions.setLoading(false))
+            // if(res.status == 200){
+              const link =document.createElement('a');
+              link.href = 'https://google.com';
+              link.click();
+            console.log(res)
+          }catch(err){
+            console.log(err)
+            dispatch(uiActions.setLoading(false))
+            // if(res.status == 200){
+              const link =document.createElement('a');
+              link.href = 'https://google.com';
+              link.click();
+            }
           // }else{
             // console.log("algo salio mal ",res.status);
           // }
