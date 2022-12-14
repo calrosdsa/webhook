@@ -54,7 +54,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
       }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = 'https://www.facebook.com/103742875921865/posts/102737289355757';
+        link.href = 'https://www.facebook.com/103742875921865/posts/107517872211032';
         link.click();
         console.log('No diste like')
       }
