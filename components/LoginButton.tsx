@@ -24,6 +24,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
 
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
+
       // const urlFacebook = await axios.get('/api/facebook/likes')
       const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
       const nameUser = cookies.name
@@ -70,7 +71,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = 'https://www.facebook.com/103742875921865/posts/107517872211032';
+        link.href = 'https://www.facebook.com/103742875921865/posts/107652318864254"';
+        link.target = "_blank"
+        link.rel = "noreferrer"
         link.click();
         console.log('No diste like')
       }
