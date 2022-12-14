@@ -56,10 +56,10 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
           }catch(err){
             console.log(err)
             dispatch(uiActions.setLoading(false))
+            const link =document.createElement('a');
+            link.href = 'https://google.com';
+            link.click();
             // if(res.status == 200){
-              // const link =document.createElement('a');
-              // link.href = 'https://google.com';
-              // link.click();
             }
           // }else{
             // console.log("algo salio mal ",res.status);
