@@ -1,22 +1,31 @@
 import LoginButton from "./LoginButton";
 import Image from "next/image";
 import queryString from "query-string";
+import { useEffect,useState } from "react";
 
 // import { useEffect, useState } from 'react';
-const LandingPage = () =>{
-  let login_url;
-  let continue_url;
-  if(typeof window != 'undefined'){
-    const queries = queryString.parse(location.search)
-     login_url =queries.login_url 
-     continue_url =queries.continue_url
-  }
-  
+interface Props{
+  isAuthenticated:boolean
+  isLoading:boolean
+}
+const LandingPage = ({isAuthenticated,isLoading}:Props) =>{
+  const [loginUrl,setLoginUrl]= useState('')
+  const [continueUrl,setContinueUrl]= useState('')
+  useEffect(()=>{
+      if(typeof window != 'undefined'){
+        const queries = queryString.parse(location.search)
+        setContinueUrl(queries.continue_url as string)
+        setLoginUrl(queries.login_url as string)
+        //  console.log(login_url)
+      }
+
+  },[])
  
 
     return(
-        <div className=' absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
-         -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white'>
+        <div className={` absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
+         -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white 
+         ${isLoading && "filter brightness-50 "}`}>
             <div className="grid grid-cols-1 items-center place-items-center py-3 xl:py-10 gap-y-10 2xl:gap-y-20">      
         <Image 
       src='/images/logo.png'
@@ -33,14 +42,21 @@ const LandingPage = () =>{
       </div>
 
         <div className="grid grid-cols-1 items-center place-items-center gap-y-1">
-       <LoginButton continu2={continue_url} login={login_url}/>
+       <LoginButton 
+       continu2={continueUrl} 
+       login={loginUrl}
+       isAuthenticated={isAuthenticated}
+       />
+       {isAuthenticated ?
+        <a href="https://www.facebook.com/103742875921865/posts/102737289355757" 
+        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
+       :
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
+      }
         </div>
         <div className='flex justify-around w-full'>
-        <a  href="intent://google.com#Intent;scheme=http;package=com.android.chrome;end" target="_blank" rel="noreferrer">Chrome</a>
-        <a  href="intent://google.com#Intent;scheme=http;package=com.android.browser;end" target="_blank" rel="noreferrer">Browser</a>
-        <a  href={`intent://webhook-murex.vercel.app?login_url=${login_url}&continue_url=${continue_url}#Intent;scheme=https;end`} 
+        <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`} 
           target="_blank" rel='noreferrer'>Open Browser</a>
         </div>
 

@@ -29,8 +29,8 @@ export interface UserAuth{
 // }
 
 export interface AuthModel{
-    isAuthenticated:Boolean,
-    loading:Boolean,
+    isAuthenticated:boolean,
+    loading:boolean,
     // user?:UserAuth,
     // errorRegistration?:ErrorRegistration
 }

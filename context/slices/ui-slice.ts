@@ -12,7 +12,7 @@ const uiSlice = createSlice({
     name:'ui',
     initialState:initialUiState,
     reducers:{
-        setLoadingDialog(state,action:PayloadAction<boolean>){
+        setLoading(state,action:PayloadAction<boolean>){
             state.loading = action.payload
         },
         setButtonText(state,action:PayloadAction<string>){
