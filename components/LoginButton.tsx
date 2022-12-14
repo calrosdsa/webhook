@@ -76,29 +76,26 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
     }
     
     const onLoginClick = () => {
-        window.FB.login(function(response:any) {
+        window.FB.login(async function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
+            const accessToken = response.authResponse.accessToken
+            const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+            console.log(userRes.data)
+            setCookie('name',userRes.data.name,{
+              path:'/',
+              maxAge:60*60
+        })
+            dispatch(authActions.setAuthenticated(true))
+            // setToken(response.authResponse.accessToken)
+            console.log(response)
             console.log('Login response',response)
             console.log('Login response',response.authResponse)
-           console.log('Welcome!  Fetching your information.... ');
           } else {
            console.log('User cancelled login or did not fully authorize.');
           }
       });
-      window.FB.getLoginStatus(async function(response:any) {
-        console.log('STATUS',response)
-        const accessToken = response.authResponse.accessToken
-        const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
-        console.log(userRes.data)
-        setCookie('name',userRes.data.name,{
-          path:'/',
-          maxAge:60*60
-    })
-        dispatch(authActions.setAuthenticated(true))
-        // setToken(response.authResponse.accessToken)
-        console.log(response)
-    });
+     
   }
     return(
       <>
