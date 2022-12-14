@@ -49,10 +49,11 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
             const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
             dispatch(uiActions.setLoading(false))
             // if(res.status == 200){
-              const link =document.createElement('a');
-              link.href = 'https://google.com';
-              link.click();
-            console.log(res)
+              console.log(res)
+              console.log("EXITOSO")
+              // const link =document.createElement('a');
+              // link.href = 'https://google.com';
+              // link.click();
           }catch(err){
             console.log(err)
             dispatch(uiActions.setLoading(false))
