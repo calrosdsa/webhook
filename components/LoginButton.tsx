@@ -57,10 +57,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
               console.log("EXITOSO")
           }catch(err){
             console.log(err)
+            console.log("Error")
             dispatch(uiActions.setLoading(false))
-            const link =document.createElement('a');
-            link.href = 'https://google.com';
-            link.click();
+            // const link =document.createElement('a');
+            // link.href = 'https://google.com';
+            // link.click();
             // if(res.status == 200){
             }
           // }else{
@@ -113,7 +114,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
       <>
       {isAuthenticated ?
         <div 
-        className='flex  px-3 rounded-2xl items-center p-2 bg-facebook cursor-pointer'>
+        className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
              onClick={fetchMyAPI}
              className=' font-semibold truncate text-white'>Continuar</span>
