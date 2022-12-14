@@ -104,7 +104,8 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
            console.log('User cancelled login or did not fully authorize.');
           }
       });
-     
+      dispatch(uiActions.setLoading(false))
+
   }
     return(
       <>
