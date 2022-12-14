@@ -2,7 +2,7 @@ import {useCookies } from 'react-cookie'
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { useRouter } from 'next/router';
 import { authActions } from '../context/slices/auth-slice';
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import queryString from 'query-string'
 import { useState } from 'react';
 import { uiActions } from '../context/slices/ui-slice';
@@ -74,13 +74,17 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
    
       
     }
+    const getDataUser = async(accessToken:string):any=>{
+      const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+      return userRes
+    }
     
     const onLoginClick = () => {
-        window.FB.login(async function(response:any) {
+        window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
             const accessToken = response.authResponse.accessToken
-            const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+            const userRes =getDataUser(accessToken)
             console.log(userRes.data)
             setCookie('name',userRes.data.name,{
               path:'/',
