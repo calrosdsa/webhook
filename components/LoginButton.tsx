@@ -15,7 +15,6 @@ interface Props {
 const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
-  const router = useRouter()
   const username = 'admin'
   const password = "password"
   // const [token,setToken] = useState('')
@@ -58,9 +57,9 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
             console.log(err)
             dispatch(uiActions.setLoading(false))
             // if(res.status == 200){
-              const link =document.createElement('a');
-              link.href = 'https://google.com';
-              link.click();
+              // const link =document.createElement('a');
+              // link.href = 'https://google.com';
+              // link.click();
             }
           // }else{
             // console.log("algo salio mal ",res.status);
@@ -77,10 +76,11 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
     }
     
     const onLoginClick = () => {
-      if (typeof window !== 'undefined') {
         window.FB.login(function(response:any) {
           console.log('Login response',response)
           if (response.authResponse) {
+            console.log('Login response',response)
+            console.log('Login response',response.authResponse)
            console.log('Welcome!  Fetching your information.... ');
           } else {
            console.log('User cancelled login or did not fully authorize.');
@@ -99,7 +99,6 @@ const LoginButton = ({login,continu2,isAuthenticated}:Props) =>{
         // setToken(response.authResponse.accessToken)
         console.log(response)
     });
-  };
   }
     return(
       <>
