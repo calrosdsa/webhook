@@ -14,10 +14,10 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
         // }}
       )
       console.log(sendRequest)
-           if(sendRequest.status == 200){
+          //  if(sendRequest.status == 200){
              res.status(200)
-            }else{
-              res.status(500)
-            }
+            // }else{
+              // res.status(500)
+            // }
     }
 }
