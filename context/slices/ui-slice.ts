@@ -5,7 +5,8 @@ import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 const initialUiState :UiState ={
     loading:false,
     errorMessage:"",
-    buttonText:"Continuar con facebook"
+    buttonText:"Continuar con facebook",
+    isMobile:false
 }
 
 const uiSlice = createSlice({
@@ -17,6 +18,9 @@ const uiSlice = createSlice({
         },
         setButtonText(state,action:PayloadAction<string>){
             state.buttonText = action.payload
+        },
+        setDevice(state,action:PayloadAction<boolean>){
+            state.isMobile = action.payload
         }
       
     }

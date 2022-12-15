@@ -13,7 +13,8 @@ export interface UiState {
     // openCreateUserDialog:boolean,
     loading:boolean,
     errorMessage:string,
-    buttonText:string
+    buttonText:string,
+    isMobile:boolean
     // shouldFetch:boolean,
     // dialogLoading:boolean,
 }

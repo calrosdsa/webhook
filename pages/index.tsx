@@ -17,9 +17,6 @@ export default function Home() {
   const email = cookies.name
   const id = cookies.id
   
-
-
-
   useEffect(()=>{
 
     if(auth.isAuthenticated){
@@ -33,6 +30,16 @@ export default function Home() {
   useEffect(() => {
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      console.log('is mobile')
+      dispatch(uiActions.setDevice(true))
+      // true for mobile device
+      // document.write("mobile device");
+    }else{
+      dispatch(uiActions.setDevice(false))
+      // false for not mobile device
+      // document.write("not mobile device");
+    }
    
     if (typeof window !== 'undefined') {
       console.log(queryString.parse(window.location.search))
@@ -69,6 +76,7 @@ export default function Home() {
         isLoading={ui.loading}
         isAuthenticated={auth.isAuthenticated}
         authLoading={auth.authLoading}
+        isMobile={ui.isMobile}
         />
         {ui.loading &&
     <svg aria-hidden="true" 

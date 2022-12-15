@@ -7,9 +7,10 @@ import { useEffect,useState } from "react";
 interface Props{
   isAuthenticated:boolean
   isLoading:boolean,
-  authLoading:boolean
+  authLoading:boolean,
+  isMobile:boolean
 }
-const LandingPage = ({isAuthenticated,isLoading,authLoading}:Props) =>{
+const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
   const [loginUrl,setLoginUrl]= useState('')
   const [continueUrl,setContinueUrl]= useState('')
 
@@ -59,10 +60,12 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading}:Props) =>{
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
+        {isMobile  &&
         <div className='flex justify-around w-full'>
         <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`} 
           target="_blank" rel='noreferrer'>Open Browser</a>
         </div>
+        }
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
