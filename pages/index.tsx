@@ -30,7 +30,10 @@ export default function Home() {
   useEffect(() => {
     // console.log(id)
     //https://teclu.com/validatelike.php?id=113209743565830
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    const isHaveTouch = 'ontouchstart' in window
+    console.log('onTouch',isHaveTouch)
+    // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      if(isHaveTouch){
       console.log('is mobile')
       dispatch(uiActions.setDevice(true))
       // true for mobile device
