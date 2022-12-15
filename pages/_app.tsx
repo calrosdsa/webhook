@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux';
 import store from '../context/store';
 import   '../styles/App.css'
+import { useEffect } from 'react';
 
 
 

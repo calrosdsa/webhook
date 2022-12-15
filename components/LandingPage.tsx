@@ -40,7 +40,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
       <div className="grid grid-cols-1 items-center place-items-center px-10 gap-y-5">
       <h1 className="text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
       <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center"
-      >Para acceder a la red debera iniciar sesion con su cuenta de facebook y posteriormente dar like a una publicacion de la 
+      >Para acceder a la red debera iniciar sesion con su cuenta de facebook y posteriormente dar like a una publicacion en la 
         pagina oficial de YPFB 
       </p>
       </div>
@@ -60,12 +60,16 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
-        {isMobile  &&
-        <div className='flex justify-around w-full'>
+        <div className='flex justify-around w-full base:hidden'>
         <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`} 
-          target="_blank" rel='noreferrer'>Open Browser</a>
+          target="_blank" rel='noreferrer'>
+          {isMobile  &&
+            <span>
+              Open Browser
+            </span>
+          } 
+            </a>
         </div>
-        }
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
