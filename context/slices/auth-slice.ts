@@ -7,7 +7,7 @@ const initialAuthState:AuthModel = {
     authLoading:false,
     isAuthenticated:false,
     username:'',
-    postUrl:'https://www.facebook.com/Yacimientos',
+    postUrl:'https://www.facebook.com/667567951730217/posts/625859722567707',
 }
 
 const authSlice = createSlice({
