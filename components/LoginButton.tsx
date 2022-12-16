@@ -1,12 +1,8 @@
-import {useCookies } from 'react-cookie'
+import {useCookies } from 'react-cookie';
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
-import { useRouter } from 'next/router';
-import { authActions } from '../context/slices/auth-slice';
-import axios, { AxiosResponse } from 'axios'
-import queryString from 'query-string'
-import { useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
 import { uiActions } from '../context/slices/ui-slice';
-import { getDataUser, initAuth } from '../context/actions/authActions';
+import { initAuth } from '../context/actions/authActions';
 
 interface Props {
      login:string | (string | null)[] | null | undefined

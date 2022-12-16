@@ -37,16 +37,16 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
     }
 }
 
-export const validateLike = async()=>{
-    const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
-    const hasLike:boolean = validateLike.data
-}
+// export const validateLike = async()=>{
+//     const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
+//     const hasLike:boolean = validateLike.data
+// }
 
-export const getDataUser = async(accessToken:string):Promise<AxiosResponse<any, any>>=>{
-    const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
-    // const username = userRes.data.name
-    // const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
-    // const hasLike:boolean = validateLike.data
-    return userRes
-}
+// export const getDataUser = async(accessToken:string):Promise<AxiosResponse<any, any>>=>{
+//     const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+//     // const username = userRes.data.name
+//     // const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
+//     // const hasLike:boolean = validateLike.data
+//     return userRes
+// }
   
