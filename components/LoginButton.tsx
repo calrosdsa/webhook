@@ -16,8 +16,8 @@ interface Props {
 const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const dispatch = useAppDispatch()
-  const username = 'jorge'
-  const password = "201120"
+  const username = "admin"
+  const password = "password"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
