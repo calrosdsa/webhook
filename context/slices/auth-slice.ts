@@ -6,7 +6,8 @@ import { AuthModel } from "../../data/models/redux-models/auth-model";
 const initialAuthState:AuthModel = {
     authLoading:false,
     isAuthenticated:false,
-    username:''
+    username:'',
+    postUrl:'https://www.facebook.com/Yacimientos',
 }
 
 const authSlice = createSlice({
@@ -21,6 +22,9 @@ const authSlice = createSlice({
         },
         setUsername(state,action:PayloadAction<string>){
             state.username = action.payload
+        },
+        setPostUrl(state,action:PayloadAction<string>){
+            state.postUrl = action.payload
         }
     }
 })

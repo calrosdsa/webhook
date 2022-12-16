@@ -7,6 +7,7 @@ import { uiActions } from '../context/slices/ui-slice';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios';
 import queryString from "query-string";
+import { getLink } from '../context/actions/authActions';
 
 
 export default function Home() {
@@ -18,7 +19,11 @@ export default function Home() {
   const id = cookies.id
   
   useEffect(()=>{
+     dispatch(getLink())
+  },[])
 
+  useEffect(()=>{
+  
     if(auth.isAuthenticated){
       dispatch(uiActions.setButtonText("Ir a al ultimo post"))
         // console.log("exist")

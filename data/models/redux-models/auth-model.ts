@@ -31,7 +31,8 @@ export interface UserAuth{
 export interface AuthModel{
     isAuthenticated:boolean,
     authLoading:boolean,
-    username:string
+    username:string,
+    postUrl:string
     // user?:UserAuth,
     // errorRegistration?:ErrorRegistration
 }

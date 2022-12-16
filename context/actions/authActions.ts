@@ -23,19 +23,26 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
             console.log(userRes)
             const username = userRes.data.name
             dispatch(authActions.setUsername(username))
-            // const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
-            // setCookie('name',userRes.data.name,{
-            //     path:'/',
-            //     maxAge:60*60
-            //   })
-            //   console.log('cookie',cookies.name)
             dispatch(authActions.setAuthLoading(false))
             dispatch(authActions.setAuthenticated(true))
-            // setToken(response.authResponse.accessToken)
-            // console.log(response)
-            // console.log('Login response',response)
+            const existUser = await axios.get('https://teclu.com/userexists.php?name='+username)
+            console.log(existUser.data)
         }catch(err:any){
             dispatch(authActions.setAuthLoading(false))
+            console.log('fail auth')
+            console.log('ERROR',err.response.data.success)
+        }
+    }
+}
+
+export const getLink = () :ThunkAction<void,RootState,undefined,AnyAction> =>{
+    return async(dispatch)=>{
+        try{
+            const urlRes = await axios.get('https://teclu.com/ApiFb_LinkPost.php')
+            const url = urlRes.data
+            dispatch(authActions.setPostUrl(url))
+            console.log(url)
+        }catch(err:any){
             console.log('fail auth')
             console.log('ERROR',err.response.data.success)
         }
