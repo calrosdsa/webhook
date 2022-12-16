@@ -6,7 +6,7 @@ import { AuthModel } from "../../data/models/redux-models/auth-model";
 const initialAuthState:AuthModel = {
     authLoading:false,
     isAuthenticated:false,
-
+    username:''
 }
 
 const authSlice = createSlice({
@@ -18,6 +18,9 @@ const authSlice = createSlice({
         },
         setAuthenticated(state,action:PayloadAction<boolean>){
             state.isAuthenticated = action.payload
+        },
+        setUsername(state,action:PayloadAction<string>){
+            state.username = action.payload
         }
     }
 })
