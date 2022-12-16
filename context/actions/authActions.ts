@@ -15,8 +15,10 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
     return async(dispatch,getState)=>{
         const [cookies ,setCookie] = useCookies<any>(['name'])
         try{
+            console.log("INIT AUTH")
             dispatch(authActions.setAuthLoading(true))
             const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+            console.log(userRes)
             // const username = userRes.data.name
             // const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
             setCookie('name',userRes.data.name,{
