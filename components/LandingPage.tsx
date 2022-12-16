@@ -10,9 +10,10 @@ interface Props{
   isAuthenticated:boolean
   isLoading:boolean,
   authLoading:boolean,
-  isMobile:boolean
+  isMobile:boolean,
+  postUrl:string
 }
-const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
+const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Props) =>{
   const [loginUrl,setLoginUrl]= useState('')
   const dispatch = useAppDispatch()
   const [continueUrl,setContinueUrl]= useState('')
@@ -64,7 +65,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
        authLoading={authLoading}
        />
        {isAuthenticated ?
-        <a href="https://www.facebook.com/103742875921865/posts/107652318864254" 
+        <a href={postUrl} 
         target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
        :
        <a href="https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6" 

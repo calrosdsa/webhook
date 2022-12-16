@@ -71,7 +71,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = 'https://www.facebook.com/103742875921865/posts/107652318864254';
+        link.href = auth.postUrl;
         link.target = "_blank"
         link.rel = "noreferrer"
         link.click();
