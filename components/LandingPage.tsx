@@ -23,15 +23,14 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
         //  console.log(login_url)
-        window.FB.getLoginStatus(function(response:any) {
-          console.log(response)
-          console.log(response.status == 'connected')
-
-        if (response.status === 'connected') {
-          const accessToken = response.authResponse.accessToken;
-          dispatch(initAuth(accessToken));
-        }
-    })
+  //       window.FB.getLoginStatus(function(response:any) {
+  //         console.log(response)
+  //         console.log(response.status == 'connected')
+  //       if(response.status === 'connected') {
+  //         const accessToken = response.authResponse.accessToken;
+  //         dispatch(initAuth(accessToken));
+  //       }
+  //   })
   }      
   },[])
  
