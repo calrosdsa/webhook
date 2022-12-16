@@ -2,7 +2,11 @@ import LoginButton from "./LoginButton";
 import Image from "next/image";
 import queryString from "query-string";
 import { useEffect,useState } from "react";
-
+import { getDataUser, initAuth } from "../context/actions/authActions";
+import { useCookies } from "react-cookie";
+import { useAppDispatch } from "../context/reduxHooks";
+import { authActions } from "../context/slices/auth-slice";
+import axios from "axios";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -12,8 +16,9 @@ interface Props{
 }
 const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
   const [loginUrl,setLoginUrl]= useState('')
+  const dispatch = useAppDispatch()
   const [continueUrl,setContinueUrl]= useState('')
-
+  const [cookies,setCookie]=useCookies<any>(['name'])
   
   useEffect(()=>{
       if(typeof window != 'undefined'){
@@ -21,8 +26,46 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
         //  console.log(login_url)
-      }
-
+        
+        window.FB.getLoginStatus(function(response:any) {
+        if (response.status === 'connected') {
+          const accessToken = response.authResponse.accessToken
+          dispatch(initAuth(accessToken))
+        }
+      //     getDataUser(accessToken).then((userRes)=>{
+      //       console.log(userRes.data)
+      //       setCookie('name',userRes.data.name,{
+      //         path:'/',
+      //         maxAge:60*60
+      //       })
+      //       dispatch(authActions.setAuthenticated(true))
+      //     })
+      //     // setToken(response.authResponse.accessToken)
+      //     console.log(response)
+      //     console.log('Login response',response)
+      //     setTimeout(()=>{
+      //       console.log('Login response',response.authResponse)
+      //     },2000)
+      //     dispatch(authActions.setAuthLoading(false))
+      //     // The user is logged in and has authenticated your
+      //     // app, and response.authResponse supplies
+      //     // the user's ID, a valid access token, a signed
+      //     // request, and the time the access token 
+      //     // and signed request each expire.
+      //     console.log(accessToken)
+      //   } else if (response.status === 'not_authorized') {
+      //     console.log('user no authorized')
+      //     // The user hasn't authorized your application.  They
+      //     // must click the Login button, or you must call FB.login
+      //     // in response to a user gesture, to launch a login dialog.
+      //   } else {
+      //     console.log('necesita log in')
+      //     // The user isn't logged in to Facebook. You can launch a
+      //     // login dialog with a user gesture, but the user may have
+      //     // to log in to Facebook before authorizing your application.
+      // }
+    })
+  }      
   },[])
  
 
@@ -39,9 +82,11 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
       />
       <div className="grid grid-cols-1 items-center place-items-center px-10 gap-y-5">
       <h1 className="text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
-      <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center"
-      >Para acceder a la red debera iniciar sesion con su cuenta de facebook y posteriormente dar like a una publicacion en la 
-        pagina oficial de YPFB 
+      <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center "
+      >Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente dar "me gusta" a
+       una publicación en la página. {' '}
+        <a href="https://www.facebook.com/Yacimientos/" target={'_blank'} rel='noreferrer'
+        className="text-facebook">YPFB Corp</a>.
       </p>
       </div>
 
@@ -70,6 +115,8 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
           } 
             </a>
         </div>
+        <a href="https://teclu.com/" target='_blank' rel="noreferrer"
+         className="absolute bottom-2 shadow-xl text-teclu opacity-80">By Teclu</a>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}

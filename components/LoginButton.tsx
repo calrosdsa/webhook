@@ -6,6 +6,7 @@ import axios, { AxiosResponse } from 'axios'
 import queryString from 'query-string'
 import { useState } from 'react';
 import { uiActions } from '../context/slices/ui-slice';
+import { getDataUser, initAuth } from '../context/actions/authActions';
 
 interface Props {
      login:string | (string | null)[] | null | undefined
@@ -24,7 +25,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
 
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
-
       // const urlFacebook = await axios.get('/api/facebook/likes')
       const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
       const nameUser = cookies.name
@@ -84,37 +84,35 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
    
       
     }
-    const getDataUser = async(accessToken:string):Promise<AxiosResponse<any, any>>=>{
-      const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
-      return userRes
-    }
-    
+   
     const onLoginClick = () => {
       if(typeof window != 'undefined'){
-        dispatch(authActions.setAuthLoading(true))
         window.FB.login(function(response:any) {
-          console.log('Login response',response)
-          if (response.authResponse) {
-            const accessToken = response.authResponse.accessToken
-            getDataUser(accessToken).then((userRes)=>{
-              console.log(userRes.data)
-              setCookie('name',userRes.data.name,{
-                path:'/',
-                maxAge:60*60
-              })
-              dispatch(authActions.setAuthenticated(true))
-            })
-            // setToken(response.authResponse.accessToken)
-            console.log(response)
-            console.log('Login response',response)
-            setTimeout(()=>{
-              console.log('Login response',response.authResponse)
-            },2000)
-            dispatch(authActions.setAuthLoading(false))
-          } else {
-            dispatch(authActions.setAuthLoading(false))
-           console.log('User cancelled login or did not fully authorize.');
-          }
+          const accessToken = response.authResponse.accessToken
+          dispatch(initAuth(accessToken))
+
+          // dispatch(authActions.setAuthLoading(true))
+          // console.log('Login response',response)
+          // if (response.authResponse) {
+          //   getDataUser(accessToken).then((userRes)=>{
+          //     console.log(userRes.data)
+          //     setCookie('name',userRes.data.name,{
+          //       path:'/',
+          //       maxAge:60*60
+          //     })
+          //     dispatch(authActions.setAuthenticated(true))
+          //   })
+          //   // setToken(response.authResponse.accessToken)
+          //   console.log(response)
+          //   console.log('Login response',response)
+          //   setTimeout(()=>{
+          //     console.log('Login response',response.authResponse)
+          //   },2000)
+          //   dispatch(authActions.setAuthLoading(false))
+          // } else {
+          //   dispatch(authActions.setAuthLoading(false))
+          //  console.log('User cancelled login or did not fully authorize.');
+          // }
         })}
       }
       return(

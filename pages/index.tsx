@@ -71,10 +71,17 @@ export default function Home() {
       <div className={`relative h-screen w-full noselect`}>
         {/* <button  className='absolute bg-white p-10 z-10'
         onClick={changeState}>CHANGE ESTATE</button> */}
-        <img 
+        <Image
+        src='/images/background.jpg'
+        width={210}
+        className={`w-full h-screen blur-sm absolute ${ui.loading && "filter brightness-50 "}`}
+        height={100}  
+        alt="logo ypfb"
+        />
+        {/* <img 
         className={`w-full h-screen blur-sm absolute ${ui.loading && "filter brightness-50 "}`}
         src='/images/background.jpg'
-        />   
+        />    */}
         <LandingPage
         isLoading={ui.loading}
         isAuthenticated={auth.isAuthenticated}
