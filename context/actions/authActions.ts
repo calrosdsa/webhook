@@ -13,19 +13,20 @@ import { useCookies } from "react-cookie";
 export const authActions = authSlice.actions
 export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefined,AnyAction> =>{
     return async(dispatch,getState)=>{
-        // const [cookies ,setCookie] = useCookies<any>(['name'])
+        const [cookies ,setCookie] = useCookies<any>(['name'])
+        console.log(cookies.name)
         try{
             console.log("INIT AUTH")
             dispatch(authActions.setAuthLoading(true))
             const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
             console.log(userRes)
-            // const username = userRes.data.name
-            // const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
-            // setCookie('name',userRes.data.name,{
-            //     path:'/',
-            //     maxAge:60*60
-            //   })
-            //   console.log('cookie',cookies.name)
+            const username = userRes.data.name
+            const validateLike = await axios.get(`https://teclu.com/validatelike.php?name=${username}`)
+            setCookie('name',userRes.data.name,{
+                path:'/',
+                maxAge:60*60
+              })
+              console.log('cookie',cookies.name)
             dispatch(authActions.setAuthLoading(false))
             dispatch(authActions.setAuthenticated(true))
             // setToken(response.authResponse.accessToken)
