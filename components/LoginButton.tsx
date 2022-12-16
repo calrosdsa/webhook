@@ -23,7 +23,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
       // const urlFacebook = await axios.get('/api/facebook/likes')
-      const urlFacebook = await axios.get('https://teclu.com/validatelike.php?name='+auth.username)
+      const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
       const login_url =login || cookies.login_url
       const continue_url =continu2 || cookies.continue_url
       setCookie('login_url',login_url,{
@@ -35,11 +35,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
         maxAge:60*60,
       })
       // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      // const facebookUrl = urlFacebook.data
-      // const response = await axios.get(facebookUrl)
-      // const dataFacebook = response.data
-      // console.log(dataFacebook)
-        const validation = urlFacebook.data
+      const facebookUrl = urlFacebook.data
+      const response = await axios.get(facebookUrl)
+      const dataFacebook = response.data
+      console.log(dataFacebook)
+        const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(auth.username)
           if(validation){
           console.log('si dio like')
           try{
@@ -71,7 +71,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = auth.postUrl;
+        link.href = 'https://www.facebook.com/103742875921865/posts/107652318864254';
         link.target = "_blank"
         link.rel = "noreferrer"
         link.click();
