@@ -6,7 +6,7 @@ import axios from 'axios';
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     const {username,password,continue_url,login_url} = req.body
     if(req.method == 'POST'){
-      const sendRequest = await axios.post(login_url,{username,password,continue_url},{timeout:20000}
+      const sendRequest = await axios.post(login_url,{username,password,continue_url},{timeout:10000}
         // ,{headers:{
         //          "Access-Control-Allow-Origin": "*",
         //         " Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
@@ -15,7 +15,9 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
       )
       console.log(sendRequest)
           //  if(sendRequest.status == 200){
-             res.status(200)
+             res.status(200).json({
+              ok:"Pk"
+             })
             // }else{
               // res.status(500)
             // }
