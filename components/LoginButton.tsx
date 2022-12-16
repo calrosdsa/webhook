@@ -59,7 +59,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
           }catch(err){
             console.log(err)
             console.log("Error")
+            const link =document.createElement('a');
+            link.href = 'https://google.com';
+            link.click();
             dispatch(uiActions.setLoading(false))
+            
             // const link =document.createElement('a');
             // link.href = 'https://google.com';
             // link.click();
