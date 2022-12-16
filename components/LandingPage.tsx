@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../context/reduxHooks";
 import { authActions } from "../context/slices/auth-slice";
 import axios from "axios";
+import { resolve } from "path";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -28,6 +29,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile}:Props) =>{
         //  console.log(login_url)
         
         window.FB.getLoginStatus(function(response:any) {
+          console.log(response)
+          console.log(response.status == 'connected')
+
         if (response.status === 'connected') {
           const accessToken = response.authResponse.accessToken
           dispatch(initAuth(accessToken))
