@@ -92,6 +92,7 @@ export default function Home() {
         isAuthenticated={auth.isAuthenticated}
         authLoading={auth.authLoading}
         isMobile={ui.isMobile}
+        postUrl={auth.postUrl}
         />
         {ui.loading &&
     <svg aria-hidden="true" 
