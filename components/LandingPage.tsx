@@ -75,18 +75,18 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         </div>
         <div className='flex justify-around w-full base:hidden mb-5'>
         {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
-        <a onClick={()=>{
+        <span onClick={()=>{
           if(typeof window != 'undefined'){
-            window.open('https://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}', '_system');
+            window.open(`https://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}`, '_system');
           }
-        }}
-          target="_blank" rel='noreferrer'>
+        }}>
+          {/* target="_blank" rel='noreferrer'> */}
           {isMobile  &&
             <span>
               Open Browser
             </span>
           } 
-            </a>
+            </span>
         </div>
         <a href="https://teclu.com/" target='_blank' rel="noreferrer"
          className="absolute bottom-2 shadow-xl text-teclu opacity-80 text-sm">By Teclu</a>
