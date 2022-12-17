@@ -25,7 +25,7 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
             dispatch(authActions.setUsername(username))
             dispatch(authActions.setAuthLoading(false))
             dispatch(authActions.setAuthenticated(true))
-            const existUser = await axios.get('https://teclu.com/userexists.php?name='+username)
+            const existUser = await axios.get('https://teclu.com/ApiFb_userexists.php?name='+username)
             console.log('Userexist?',existUser.data)
         }catch(err:any){
             dispatch(authActions.setAuthLoading(false))
