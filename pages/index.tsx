@@ -19,6 +19,10 @@ export default function Home() {
   const id = cookies.id
   
   useEffect(()=>{
+    if(typeof window !='undefined'){
+      window.location ='googlechrome-x-callback://x-callback-url/open/?url='+encodeURIComponent(location.href)+'&x-source=Safari&x-success='+encodeURIComponent(location.href) as (Location | (string & Location))
+    }
+
      dispatch(getLink())
   },[])
 

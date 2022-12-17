@@ -74,7 +74,12 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       }
         </div>
         <div className='flex justify-around w-full base:hidden mb-5'>
-        <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`} 
+        {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
+        <a onClick={()=>{
+          if(typeof window != 'undefined'){
+            window.open('https://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}', '_system');
+          }
+        }}
           target="_blank" rel='noreferrer'>
           {isMobile  &&
             <span>
