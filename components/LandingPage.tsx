@@ -5,7 +5,7 @@ import { useEffect,useState } from "react";
 import {  initAuth } from "../context/actions/authActions";
 import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../context/reduxHooks";
-import { isAndroid, isIOS,isEmbedded } from "react-device-detect";
+import { isAndroid, isIOS,isEmbedded,browserName } from "react-device-detect";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -33,6 +33,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   }
   
   useEffect(()=>{
+    console.log(browserName)
       if(typeof window != 'undefined'){
         const queries = queryString.parse(location.search)
         setContinueUrl(queries.continue_url as string)
@@ -97,7 +98,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
           {/* target="_blank" rel='noreferrer'> */}
           {isMobile  &&
             <span>
-              Open Browser
+              Open Browser {browserName}
             </span>
           } 
             </span>
