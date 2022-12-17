@@ -14,8 +14,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
-  const username = "admin"
-  const password = "password"
+  const username = auth.username
+  const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
