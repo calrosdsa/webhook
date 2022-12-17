@@ -5,6 +5,7 @@ import { useEffect,useState } from "react";
 import {  initAuth } from "../context/actions/authActions";
 import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../context/reduxHooks";
+import { isAndroid, isIOS } from "react-device-detect";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -17,6 +18,20 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const [loginUrl,setLoginUrl]= useState('')
   const dispatch = useAppDispatch()
   const [continueUrl,setContinueUrl]= useState('')
+
+  const navigateToBrowser = ()=>{
+    if (isAndroid) {
+      const url =
+        "intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end";
+
+      window.location.replace(url);
+    } else if (isIOS) {
+      window.location.replace("instagram://");
+        window.location.replace(
+          "https://apps.apple.com/us/app/instagram/id389801252"
+        );
+    }
+  }
   
   useEffect(()=>{
       if(typeof window != 'undefined'){
