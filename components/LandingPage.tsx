@@ -38,10 +38,12 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         const queries = queryString.parse(location.search)
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
-        
-        if(browserName == "Chrome WebView"){
-          navigateToBrowser()
-        }
+
+        // if(browserName == "Chrome WebView"){
+          if(isEmbedded){
+            navigateToBrowser()
+          }
+        // }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
   //         console.log(response)
@@ -99,7 +101,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
           {/* target="_blank" rel='noreferrer'> */}
           {isMobile  &&
             <span>
-              Open Browser {browserName}
+              Open Browser 
             </span>
           } 
             </span>
