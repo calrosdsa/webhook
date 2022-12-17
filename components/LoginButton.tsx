@@ -15,7 +15,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
-  const username = auth.username
+  const username = auth.username.replace(/ /g,"")
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
