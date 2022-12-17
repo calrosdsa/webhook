@@ -63,6 +63,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        login={loginUrl}
        isAuthenticated={isAuthenticated}
        authLoading={authLoading}
+       postUrl={postUrl}
        />
        {isAuthenticated ?
         <a href={postUrl} 

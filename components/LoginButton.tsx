@@ -9,8 +9,9 @@ interface Props {
      continu2:string | (string | null)[] | null | undefined
      isAuthenticated:boolean
      authLoading:boolean
+     postUrl:string
 }
-const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
+const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
@@ -72,7 +73,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading}:Props) =>{
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = 'https://www.facebook.com/103742875921865/posts/107652318864254';
+        link.href = postUrl;
         link.target = "_blank"
         link.rel = "noreferrer"
         link.click();
