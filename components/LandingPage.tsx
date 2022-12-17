@@ -36,6 +36,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   },[])
  
 
+  
     return(
         <div className={` absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
          -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white 
@@ -75,9 +76,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         </div>
         <div className='flex justify-around w-full base:hidden mb-5'>
         {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
-        <span onClick={()=>{
+        <span onClick={()=>function(event:any){
           if(typeof window != 'undefined'){
-            window.open(`https://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}`, '_system');
+            var url = `https://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}`
+            window.open( url, '_system' ); url = "javascript:void(0)"; event.preventDefault();
           }
         }}>
           {/* target="_blank" rel='noreferrer'> */}
