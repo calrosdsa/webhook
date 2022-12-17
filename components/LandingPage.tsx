@@ -5,7 +5,7 @@ import { useEffect,useState } from "react";
 import {  initAuth } from "../context/actions/authActions";
 import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../context/reduxHooks";
-import { isAndroid, isIOS } from "react-device-detect";
+import { isAndroid, isIOS,isEmbedded } from "react-device-detect";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -21,8 +21,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
   const navigateToBrowser = ()=>{
     if (isAndroid) {
-      const url =
-        "intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end";
+      const url =`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`;
 
       window.location.replace(url);
     } else if (isIOS) {
@@ -38,6 +37,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         const queries = queryString.parse(location.search)
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
+        if(isEmbedded){
+          navigateToBrowser
+        }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
   //         console.log(response)
