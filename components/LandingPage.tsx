@@ -72,7 +72,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
-        <div className='flex justify-around w-full base:hidden'>
+        <div className='flex justify-around w-full base:hidden mb-5'>
         <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`} 
           target="_blank" rel='noreferrer'>
           {isMobile  &&
@@ -83,7 +83,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
             </a>
         </div>
         <a href="https://teclu.com/" target='_blank' rel="noreferrer"
-         className="absolute bottom-2 shadow-xl text-teclu opacity-80">By Teclu</a>
+         className="absolute bottom-2 shadow-xl text-teclu opacity-80 text-sm">By Teclu</a>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
