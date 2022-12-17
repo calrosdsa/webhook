@@ -38,8 +38,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         const queries = queryString.parse(location.search)
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
-        if(isEmbedded){
-          navigateToBrowser
+        
+        if(browserName == "Chrome WebView"){
+          navigateToBrowser()
         }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
