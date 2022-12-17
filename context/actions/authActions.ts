@@ -13,7 +13,7 @@ import { uiActions } from "../slices/ui-slice";
 
 export const authActions = authSlice.actions
 export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefined,AnyAction> =>{
-    return async(dispatch,getState)=>{
+    return async(dispatch)=>{
         // const [cookies ,setCookie] = useCookies<any>(['name'])
         // console.log(cookies.name)
         try{
@@ -26,7 +26,7 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
             dispatch(authActions.setAuthLoading(false))
             dispatch(authActions.setAuthenticated(true))
             const existUser = await axios.get('https://teclu.com/userexists.php?name='+username)
-            console.log(existUser.data)
+            console.log('Userexist?',existUser.data)
         }catch(err:any){
             dispatch(authActions.setAuthLoading(false))
             console.log('fail auth')
@@ -43,7 +43,7 @@ export const getLink = () :ThunkAction<void,RootState,undefined,AnyAction> =>{
             dispatch(authActions.setPostUrl(url))
             console.log(url)
         }catch(err:any){
-            console.log('fail auth')
+            console.log('fail fetch url ')
             console.log('ERROR',err.response.data.success)
         }
     }
