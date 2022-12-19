@@ -15,7 +15,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
-  const username = auth.username.replace(/ /g,"")
+  const username = auth.username.replace(/ /g,"_")
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -23,8 +23,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
 
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
-      // const urlFacebook = await axios.get('/api/facebook/likes')
-      // const urlFacebook = await axios.get('https://teclu.com/ApiFb_url.php')
       const login_url =login || cookies.login_url
       const continue_url =continu2 || cookies.continue_url
       setCookie('login_url',login_url,{
@@ -35,14 +33,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
         path:'/',
         maxAge:60*60,
       })
-      // const response = await axios.get(`https://teclu.com/validatelike.php?id=${id}`)
-      // const facebookUrl = urlFacebook.data
-      // const response = await axios.get(facebookUrl)
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       console.log('useDioLike?',response.data)
       const dioLike = response.data
-      // console.log(dataFacebook)
-        // const validation =  dataFacebook.feed.data[0].likes.data.map((item:any)=>item.name).includes(auth.username)
           if(dioLike){
           console.log('si dio like')
           try{
@@ -61,15 +54,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
             link.href = 'https://google.com';
             link.click();
             dispatch(uiActions.setLoading(false))
-            
-            // const link =document.createElement('a');
-            // link.href = 'https://google.com';
-            // link.click();
-            // if(res.status == 200){
             }
-          // }else{
-            // console.log("algo salio mal ",res.status);
-          // }
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
@@ -88,38 +73,14 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
         window.FB.login(function(response:any) {
           const accessToken = response.authResponse.accessToken
           dispatch(initAuth(accessToken))
-
-          // dispatch(authActions.setAuthLoading(true))
-          // console.log('Login response',response)
-          // if (response.authResponse) {
-          //   getDataUser(accessToken).then((userRes)=>{
-          //     console.log(userRes.data)
-          //     setCookie('name',userRes.data.name,{
-          //       path:'/',
-          //       maxAge:60*60
-          //     })
-          //     dispatch(authActions.setAuthenticated(true))
-          //   })
-          //   // setToken(response.authResponse.accessToken)
-          //   console.log(response)
-          //   console.log('Login response',response)
-          //   setTimeout(()=>{
-          //     console.log('Login response',response.authResponse)
-          //   },2000)
-          //   dispatch(authActions.setAuthLoading(false))
-          // } else {
-          //   dispatch(authActions.setAuthLoading(false))
-          //  console.log('User cancelled login or did not fully authorize.');
-          // }
         })}
       }
       return(
       <>
       {isAuthenticated ?
-        <div 
+        <div  onClick={fetchMyAPI}
         className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
-             onClick={fetchMyAPI}
              className=' font-semibold truncate text-white'>Continuar</span>
         </div>
         :
