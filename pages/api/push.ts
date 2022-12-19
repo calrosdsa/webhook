@@ -6,7 +6,7 @@ import { json } from "stream/consumers";
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     if(req.method == 'POST'){
-     console.log(req)
+     console.log(req.body)
         res.status(200).json({
             ok:"200"
         })
