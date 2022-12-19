@@ -90,10 +90,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        />
        {isAuthenticated ?
         <a href={postUrl} 
-        target="_blank" rel="noreferrer" className="text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
+        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
        :
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
-       target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
+       target="_blank" rel="noreferrer" className="text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
         <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
