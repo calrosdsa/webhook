@@ -8,6 +8,7 @@ import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios';
 import queryString from "query-string";
 import { getLink } from '../context/actions/authActions';
+import Script from 'next/script';
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui)
   const auth = useAppSelector(state => state.auth)
-  
+
   const email = cookies.name
   const id = cookies.id
   
@@ -63,17 +64,18 @@ export default function Home() {
             });
       };
     }
-      (function (d, s, id) {
-          var js:any, fjs:any = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) { return; }
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+      // (function (d, s, id) {
+      //     var js:any, fjs:any = d.getElementsByTagName(s)[0];
+      //     if (d.getElementById(id)) { return; }
+      //     js = d.createElement(s); js.id = id;
+      //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+      //     fjs.parentNode.insertBefore(js, fjs);
+      //   }(document, 'script', 'facebook-jssdk'));
       }, []);
 
   return (
     <>
+    <Script src='https://connect.facebook.net/en_US/sdk.js'/>
       <div className={`relative h-screen w-full noselect`}>
         {/* <button  className='absolute bg-white p-10 z-10'
         onClick={changeState}>CHANGE ESTATE</button> */}
