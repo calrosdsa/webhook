@@ -13,7 +13,7 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
             shell.exec("git add .")
             shell.exec("git commit -m 'changes'")
             shell.exec("git push -u origin main")
-
+            shell.exec('npm run build')
     //  }
         res.status(200).json({
             ok:"200"
