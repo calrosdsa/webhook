@@ -15,7 +15,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
-  const username = auth.username.replace(/ /g,"_")
+  const username = auth.username.replace(/ /g,"_").replaceAll(".","")
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -78,7 +78,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
       return(
       <>
       {isAuthenticated ?
-        <div  onClick={fetchMyAPI}
+        <div onClick={fetchMyAPI}
         className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
              className=' font-semibold truncate text-white'>Continuar</span>

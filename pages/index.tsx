@@ -12,15 +12,12 @@ import Script from 'next/script';
 
 
 export default function Home() {
-  const [cookies, setCookie,removeCookie ] = useCookies<any>(['name']);
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui)
   const auth = useAppSelector(state => state.auth)
 
-  const email = cookies.name
-  const id = cookies.id
-  
   useEffect(()=>{
+    dispatch(uiActions.setInitLoading(false))
      dispatch(getLink())
   },[])
 
@@ -28,15 +25,11 @@ export default function Home() {
   
     if(auth.isAuthenticated){
       dispatch(uiActions.setButtonText("Ir a al ultimo post"))
-        // console.log("exist")
       }
   },[auth.isAuthenticated])
  
-  
 
   useEffect(() => {
-    // console.log(id)
-    //https://teclu.com/validatelike.php?id=113209743565830
     const isHaveTouch = 'ontouchstart' in window
     console.log('onTouch',isHaveTouch)
     // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -76,6 +69,7 @@ export default function Home() {
   return (
     <>
     <Script src='https://connect.facebook.net/en_US/sdk.js'/>
+    {ui.initLoading == false &&
       <div className={`relative h-screen w-full noselect`}>
         {/* <button  className='absolute bg-white p-10 z-10'
         onClick={changeState}>CHANGE ESTATE</button> */}
@@ -89,7 +83,7 @@ export default function Home() {
         {/* <img 
         className={`w-full h-screen blur-sm absolute ${ui.loading && "filter brightness-50 "}`}
         src='/images/background.jpg'
-        />    */}
+      />    */}
         <LandingPage
         isLoading={ui.loading}
         isAuthenticated={auth.isAuthenticated}
@@ -107,6 +101,7 @@ export default function Home() {
     </svg>
     }
         </div>
+      }
         </>
   );
 };
