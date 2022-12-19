@@ -19,9 +19,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const dispatch = useAppDispatch()
   const [continueUrl,setContinueUrl]= useState('')
 
-  const navigateToBrowser = ()=>{
+  const navigateToBrowser = (login:any)=>{
     if (isAndroid) {
-      const url =`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+      const url =`intent://webhook-murex.vercel.app?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
 
       window.location.replace(url);
     } else if (isIOS) {
@@ -36,12 +36,13 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
     console.log(browserName)
       if(typeof window != 'undefined'){
         const queries = queryString.parse(location.search)
+        const login = queries.login_url
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
 
         if(browserName == "Chrome WebView"){
           // if(isEmbedded){
-            navigateToBrowser()
+            navigateToBrowser(login)
           // }
         }
         //  console.log(login_url)
@@ -95,33 +96,33 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        target="_blank" rel="noreferrer" className=" underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
-        <div className='flex justify-around w-full base:hidden mb-5'>
+        <div className='grid items-center place-items-center translate-y-4 w-full base:hidden mb-5'>
         {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
-        <span onClick={()=>navigateToBrowser()}>
+        {/* <div onClick={()=>navigateToBrowser()}>
           {/* target="_blank" rel='noreferrer'> */}
-          {isMobile  &&
+          {/* {isMobile ==false  &&
             <span>
               Open Browser 
             </span>
-          } 
-            </span>
-        </div>
+          }  
+            </div> */}
         <a href="https://teclu.com/" target='_blank' rel="noreferrer"
-         className="absolute bottom-2 shadow-xl text-teclu opacity-80 text-sm">By Teclu</a>
+         className=" text-teclu    text-sm">By Teclu</a>
+        </div>
 
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
   {/* <h1>dmskdaskdksa</h1> */}
      {/* <div className='flex '>
       <button onClick={sendToRadius2}>
-        Send to Radius2
+      Send to Radius2
       </button>
-     </div>
+      </div>
       <form action='/' method='POOST'>
-          <input type="text" name='user' placeholder='Username' />
-          <input type="password" name="password" placeholder='Passwrod'/>
-          <input type="submit" value="Login"/>
-      </form> */}
+      <input type="text" name='user' placeholder='Username' />
+      <input type="password" name="password" placeholder='Passwrod'/>
+      <input type="submit" value="Login"/>
+    </form> */}
       </div>
          </div>
     )

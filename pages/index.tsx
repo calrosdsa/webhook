@@ -15,6 +15,7 @@ export default function Home() {
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui)
   const auth = useAppSelector(state => state.auth)
+  
   const email = cookies.name
   const id = cookies.id
   
