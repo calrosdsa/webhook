@@ -10,8 +10,9 @@ interface Props {
      isAuthenticated:boolean
      authLoading:boolean
      postUrl:string
+     isAndroid:boolean
 }
-const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props) =>{
+const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndroid}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
   const dispatch = useAppDispatch()
@@ -58,7 +59,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl}:Props)
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href = postUrl;
+        link.href = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
         link.target = "_blank"
         link.rel = "noreferrer"
         link.click();

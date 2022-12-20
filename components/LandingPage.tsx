@@ -20,14 +20,24 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const [continueUrl,setContinueUrl]= useState('')
 
   const navigateToBrowser = (login:any)=>{
+    // if (isAndroid) {
+    //   const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+
+    //   window.location.replace(url);
+    // } else if (isIOS) {
+    //   window.location.replace("instagram://");
+    //     window.location.replace(
+    //       "https://apps.apple.com/us/app/instagram/id389801252"
+    //     );
+    // }
+    const domain = 'portal.teclumobility.com:4433'
     if (isAndroid) {
-      const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
 
       window.location.replace(url);
     } else if (isIOS) {
-      window.location.replace("instagram://");
         window.location.replace(
-          "https://apps.apple.com/us/app/instagram/id389801252"
+          `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
         );
     }
   }
@@ -87,9 +97,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        isAuthenticated={isAuthenticated}
        authLoading={authLoading}
        postUrl={postUrl}
+       isAndroid={isAndroid}
        />
        {isAuthenticated ?
-        <a href={postUrl} 
+        <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
         target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Ir al ultimo post</a>
        :
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
