@@ -21,7 +21,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
   const navigateToBrowser = (login:any)=>{
     if (isAndroid) {
-      const url =`intent://webhook-murex.vercel.app?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+      const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
 
       window.location.replace(url);
     } else if (isIOS) {
