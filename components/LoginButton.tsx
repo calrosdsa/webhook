@@ -58,8 +58,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }else{
         dispatch(uiActions.setLoading(false))
         
-        link.href =  postUrl;
-        // isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
+        // link.href =  postUrl;
+        link.href = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
         link.target = "_blank";
         link.rel = "noreferrer";
         link.click();
