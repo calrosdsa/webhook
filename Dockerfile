@@ -1,33 +1,32 @@
-# Build the app
-FROM node:14-alpine as build
-WORKDIR /app
+FROM node:16.17.0-alpine3.15
 
-COPY . .
-RUN npm ci
-RUN npm run build
-COPY ./.next ./.next
-
-
-# Run app
-FROM node:14-alpine
-
-# Only copy files required to run the app
-COPY --from=build /app/.next ./
-COPY --from=build /app/package.json ./
-COPY --from=build /app/package-lock.json ./
+RUN apk add --no-cache libc6-compat
+RUN npm i -g npm
 
 EXPOSE 3000
 
-# Required for healthcheck defined in docker-compose.yml
-# If you don't have a healthcheck that uses curl, don't install it
-RUN apk --no-cache add curl
+ENV PORT 3000
+ENV NODE_ENV production
 
-# By adding --production npm's devDependencies are not installed
-RUN npm ci --production
-RUN ./node_modules/.bin/next telemetry disable
+WORKDIR /home/nextjs/app
+
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install --omit=optional
+RUN npx browserslist@latest --update-db
+RUN npx next telemetry disable
+
+# need to install linux specific swc builds
+RUN npm install -D @swc/cli @swc/core
+
+COPY . .
+
+RUN npm run build
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 USER nextjs
-CMD ["npm", "start"]
+
+CMD [ "npm", "start" ]
