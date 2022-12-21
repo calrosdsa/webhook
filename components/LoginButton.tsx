@@ -59,10 +59,10 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }else{
         dispatch(uiActions.setLoading(false))
         const link =document.createElement('a');
-        link.href =  postUrl
+        link.href =  postUrl;
         // isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
-        link.target = "_blank"
-        link.rel = "noreferrer"
+        // link.target = "_blank"
+        // link.rel = "noreferrer"
         link.click();
         console.log('No diste like')
       }
