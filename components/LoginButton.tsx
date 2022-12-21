@@ -35,8 +35,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         maxAge:60*60,
       })
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
-      console.log('useDioLike?',response.data)
+      // console.log('useDioLike?',response.data)
       let link =document.createElement('a');
+      const lastPost = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
       const dioLike = response.data
           if(dioLike){
           console.log('si dio like')
@@ -57,11 +58,10 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             }
         }else{
         dispatch(uiActions.setLoading(false))
-        
         // link.href =  postUrl;
-        link.href = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
-        link.target = "_blank";
+        link.href = lastPost
         link.rel = "noreferrer";
+        link.target = "_blank";
         link.click();
         console.log('No diste like')
       }
