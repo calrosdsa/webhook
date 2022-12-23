@@ -93,7 +93,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         <div onClick={fetchMyAPI}
         className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
-             className=' font-semibold truncate text-white'>Continuar</span>
+             className=' font-semibold truncate text-white'>Continuar Navegando</span>
         </div>
         :
         <div 

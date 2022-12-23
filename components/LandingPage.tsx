@@ -30,7 +30,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
     //       "https://apps.apple.com/us/app/instagram/id389801252"
     //     );
     // }
-    const domain = 'portal.teclumobility.com:4433'
+    const domain = 'webhook-murex.vercel.app'
     if (isAndroid) {
       const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
 
