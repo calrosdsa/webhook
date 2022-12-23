@@ -9,6 +9,8 @@ import axios from 'axios';
 import queryString from "query-string";
 import { getLink } from '../context/actions/authActions';
 import Script from 'next/script';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Home() {
@@ -69,6 +71,10 @@ export default function Home() {
   return (
     <>
     <Script src='https://connect.facebook.net/en_US/sdk.js'/>
+    <ToastContainer
+        progressClassName="toastProgress"
+        autoClose={15000}
+    />
     {ui.initLoading == false &&
       <div className={`relative h-screen w-full noselect`}>
         {/* <button  className='absolute bg-white p-10 z-10'

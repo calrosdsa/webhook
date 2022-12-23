@@ -30,7 +30,7 @@ export interface UserAuth{
 
 export interface AuthModel{
     isAuthenticated:boolean,
-    userHasLike:boolean,
+    // userHasLike:boolean,
     authLoading:boolean,
     username:string,
     postUrl:string

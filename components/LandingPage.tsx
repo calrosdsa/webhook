@@ -122,7 +122,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        authLoading={authLoading}
        postUrl={postUrl}
        isAndroid={isAndroid}
-       />
+       />       
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
        target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
         </div>
