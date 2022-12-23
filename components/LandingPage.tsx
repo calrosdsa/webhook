@@ -41,6 +41,30 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         );
     }
   }
+
+  const navigateToBrowser2 = (login:any)=>{
+    // if (isAndroid) {
+    //   const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+
+    //   window.location.replace(url);
+    // } else if (isIOS) {
+    //   window.location.replace("instagram://");
+    //     window.location.replace(
+    //       "https://apps.apple.com/us/app/instagram/id389801252"
+    //     );
+    // }
+    const domain = 'portal.teclumobility.com:4433'
+    if (isAndroid) {
+      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
+
+      window.location.replace(url);
+    } else if (isIOS) {
+      window.location.replace("instagram://");
+        window.location.replace(
+          "https://apps.apple.com/us/app/instagram/id389801252"
+        );
+    }
+  }
   
   useEffect(()=>{
     console.log(browserName)
@@ -83,8 +107,8 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       <div className="grid grid-cols-1 items-center place-items-center px-10 gap-y-5">
       <h1 className="text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
       <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center "
-      >Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente dar "me gusta" a
-       una publicación en la página. {' '}
+      >Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
+       dar "me gusta" a la última publicación de la página de {' '}
         <a href="https://www.facebook.com/Yacimientos/" target={'_blank'} rel='noreferrer'
         className="text-facebook">YPFB Corp</a>.
       </p>
@@ -107,20 +131,27 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
       }
         </div>
-        <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
-        {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
-        {/* <div onClick={()=>navigateToBrowser()}>
-          {/* target="_blank" rel='noreferrer'> */}
-          {/* {isMobile ==false  &&
-            <span>
-              Open Browser 
-            </span>
-          }  
-            </div> */}
-        <a href="https://teclu.com/" target='_blank' rel="noreferrer"
-         className=" text-teclu    text-sm">By Teclu</a>
+        <div className="space-x-10 flex">
+          <button onClick={()=>navigateToBrowser(loginUrl)}>{browserName}1</button>
+          <button onClick={()=>navigateToBrowser2(loginUrl)}>{browserName}2</button>
+
         </div>
 
+{/* 
+        <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
+        <a href="https://teclu.com/" target='_blank' rel="noreferrer"
+         className=" text-teclu    text-sm">By Teclu</a>
+        </div> */}
+
+         {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
+         {/* <div onClick={()=>navigateToBrowser()}>
+           {/* target="_blank" rel='noreferrer'> */}
+           {/* {isMobile ==false  &&
+             <span>
+               Open Browser 
+             </span>
+           }  
+             </div> */}
         {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
           className="w-full"/> */}
   {/* <h1>dmskdaskdksa</h1> */}
