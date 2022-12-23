@@ -27,6 +27,9 @@ export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefin
             dispatch(authActions.setAuthenticated(true))
             const name = username.replace(/ /g,"_").replaceAll(".","")
             const existUser = await axios.get('https://teclu.com/ApiFb_userexists.php?name='+name)
+            const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+username)
+            dispatch(authActions.setUserLike(response.data))
+
             console.log('Userexist?',existUser.data)
         }catch(err:any){
             dispatch(authActions.setAuthLoading(false))

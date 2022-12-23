@@ -74,11 +74,11 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
       //  //WebKit
-      //   if(browserName == "Chrome WebView"){
-      //     // if(isEmbedded){
-      //       navigateToBrowser(login)
-      //     // }
-      //   }
+        if(browserName == "Chrome WebView"){
+          // if(isEmbedded){
+            navigateToBrowser(login)
+          // }
+        }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
   //         console.log(response)
@@ -123,13 +123,8 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        postUrl={postUrl}
        isAndroid={isAndroid}
        />
-       {isAuthenticated ?
-        <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
-        target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Ir al ultimo post.</a>
-       :
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
        target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
-      }
         </div>
         <div className="space-x-10 flex">
           <button onClick={()=>navigateToBrowser(loginUrl)}>{browserName}1</button>

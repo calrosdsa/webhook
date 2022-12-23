@@ -22,7 +22,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
 
-    const fetchMyAPI=async()=> {
+    const getNetworkAccess=async()=> {
       dispatch(uiActions.setLoading(true))
       const login_url =login || cookies.login_url
       const continue_url =continu2 || cookies.continue_url
@@ -34,13 +34,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         path:'/',
         maxAge:60*60,
       })
-      const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       // console.log('useDioLike?',response.data)
       let link =document.createElement('a');
-      const lastPost = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
-      const dioLike = response.data
-          if(dioLike){
-          console.log('si dio like')
           try{
             const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
             dispatch(uiActions.setLoading(false))
@@ -56,17 +51,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             link.click();
             dispatch(uiActions.setLoading(false))
             }
-        }else{
-        dispatch(uiActions.setLoading(false))
-        // link.href =  postUrl;
-        link.href = lastPost
-        link.rel = "noreferrer";
-        link.target = "_blank";
-        link.click();
-        console.log('No diste like')
-      }
-   
-      
     }
    
     const onLoginClick = () => {
@@ -79,10 +63,14 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       return(
       <>
       {isAuthenticated ?
-        <div onClick={fetchMyAPI}
-        className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
-             <span 
-             className=' font-semibold truncate text-white'>Continuar</span>
+        <div className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
+          {auth.userHasLike ?
+             <a onClick={getNetworkAccess} 
+             className=' font-semibold truncate text-white'>Continuar navegando</a>
+             :
+             <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
+             target="_blank" rel="noreferrer"className=' font-semibold truncate text-white'>Ir al ultimo post</a>
+            }
         </div>
         :
         <div 
