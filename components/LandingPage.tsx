@@ -79,11 +79,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
       //  //WebKit
-        if(browserName == "Chrome WebView"){
-          // if(isEmbedded){
-            navigateToBrowser(login)
-          // }
-        }
+        // if(browserName == "Chrome WebView"){
+        //     navigateToBrowser(login)
+        // }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
   //         console.log(response)
