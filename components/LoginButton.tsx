@@ -84,7 +84,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
-      const loginRes =await axios.get('https://www.facebook.com/v15.0/dialog/oauth?client_id=801740780921492&redirect_uri=http://localhost:3000&state={st=state123abc,ds=123456789}')
+      const loginRes =await axios.get('https://www.facebook.com/v15.0/dialog/oauth?client_id=801740780921492&redirect_uri=https://webhook-murex.vercel.app/&state={st=state123abc,ds=123456789}')
       console.log(loginRes.data)
       // if(typeof window != 'undefined'){
       //   window.FB.login(function(response:any) {
