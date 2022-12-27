@@ -114,10 +114,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       />
       <div className="grid grid-cols-1 items-center place-items-center px-10 gap-y-5">
       <h1 className="text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
-      <p onClick={()=>navigator.clipboard.writeText(url)} className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center">
-        {/* Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
-       dar "me gusta" a la última publicación de la página de */}
-       Copiar to clipboard
+      <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center">
+        Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
+       dar "me gusta" a la última publicación de la página de
         <a href="https://www.facebook.com/Yacimientos/" target={'_blank'} rel='noreferrer'
         className="text-facebook"> YPFB Corp</a>.
       </p>
