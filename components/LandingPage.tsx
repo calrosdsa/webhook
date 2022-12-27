@@ -37,10 +37,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
       window.location.replace(url);
     } else if (isIOS) {
-        window.location.replace(
-          // `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
-          `https://google.com`
-        );
+      window.location='googlechrome-x-callback://x-callback-url/open/?url='+encodeURIComponent(location.href)+'&x-source=Safari&x-success='+encodeURIComponent(location.href) as any;
+        // window.location.replace(
+        //    `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
+        // );
     }
   }
 
