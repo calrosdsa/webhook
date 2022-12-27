@@ -42,7 +42,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         // window.location.replace(
         //    `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
         // );
-      window.location.replace("safari://");
+      window.location.replace("safari-mobile://");
     }
   }
 
@@ -63,10 +63,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
       window.location.replace(url);
     } else if (isIOS) {
-      window.location.replace("safari://google.com");
-        // window.location.replace(
-        //   "https://apps.apple.com/us/app/instagram/id389801252"
-        // );
+      window.location.replace("safari://");
+        window.location.replace(
+          "https://apps.apple.com/us/app/instagram/id389801252"
+        );
     }
   }
   
