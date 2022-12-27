@@ -65,7 +65,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
     } else if (isIOS) {
       window.location.replace("safari://");
         window.location.replace(
-          "https://apps.apple.com/us/app/instagram/id389801252"
+          `https://${domain}?login_url=${login}&continue_url=${continueUrl}`
         );
     }
   }
