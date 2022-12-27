@@ -108,13 +108,13 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
             <div className="grid grid-cols-1 xl:translate-y-5  items-center place-items-center py-3 xl:py-10 gap-y-5 xl:gap-y-10">      
         <Image 
       src='/images/logo.png'
-      width={210}
-      height={100}
+      width={190}
+      height={90}
       alt="logo ypfb"
       />
-      <div className="grid grid-cols-1 items-center place-items-center px-10 gap-y-5">
-      <h1 className="text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
-      <p className="p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center">
+      <div className="grid grid-cols-1 items-center place-items-center px-5 sm:px-10 gap-y-5">
+      <h1 className="text-xl sm:text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
+      <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center">
         Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
        dar "me gusta" a la última publicación de la página de
         <a href="https://www.facebook.com/Yacimientos/" target={'_blank'} rel='noreferrer'

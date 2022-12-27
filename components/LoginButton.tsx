@@ -89,9 +89,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       const loginRes =await axios({
         method:'get',
         url: `https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=https://webhook-murex.vercel.app/&client_secret=${app_secret}`,
-        // headers:{
-        //   'Access-Control-Allow-Origin':''
-        // }
+        headers:{
+          'document-policy'             : 'force-load-at-top',
+          'cross-origin-resource-policy': 'same-origin',
+          'cross-origin-opener-policy'  : 'unsafe-none'
+        }
       })
       console.log(loginRes.data)
       // if(typeof window != 'undefined'){
