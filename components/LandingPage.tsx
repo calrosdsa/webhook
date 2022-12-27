@@ -63,9 +63,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       window.location.replace(url);
     } else if (isIOS) {
       window.location.replace("instagram://");
-        window.location.replace(
-          "https://apps.apple.com/us/app/instagram/id389801252"
-        );
+        // window.location.replace(
+        //   "https://apps.apple.com/us/app/instagram/id389801252"
+        // );
     }
   }
   
