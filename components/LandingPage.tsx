@@ -38,7 +38,8 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       window.location.replace(url);
     } else if (isIOS) {
         window.location.replace(
-          `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
+          // `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
+          `safari-https://google.com`
         );
     }
   }
