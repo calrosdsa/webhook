@@ -54,7 +54,8 @@ export default function Home() {
           window.FB.init({
               appId            : '801740780921492',
               autoLogAppEvents : true,
-              xfbml            : true,
+              cookie           : true,
+              xfbml            : false,
               version          : 'v15.0'
             });
       };
@@ -70,7 +71,7 @@ export default function Home() {
 
   return (
     <>
-    <Script src='https://connect.facebook.net/en_US/sdk.js'/>
+    <Script async defer crossOrigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'/>
     <ToastContainer
         progressClassName="toastProgress"
         autoClose={15000}
