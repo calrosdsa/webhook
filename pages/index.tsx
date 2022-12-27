@@ -53,7 +53,7 @@ export default function Home() {
       window.fbAsyncInit = () => {
           window.FB.init({
               appId            : '801740780921492',
-              autoLogAppEvents : true,
+              // autoLogAppEvents : true,
               cookie           : true,
               xfbml            : false,
               version          : 'v15.0'
