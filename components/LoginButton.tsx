@@ -20,6 +20,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
   const [token1,setToken1] = useState('')
   const dispatch = useAppDispatch()
   const username = auth.username.replace(/ /g,"_").replaceAll(".","")
+  const app_id = process.env.app_id as string
+  const app_secret = process.env.app_secret as string
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -84,7 +86,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
-      const loginRes =await axios.get('/api/login')
+      const loginRes =await axios.get(`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=https://webhook-murex.vercel.app/&client_secret=${app_secret}`,{
+        headers:{
+          'Access-Control-Allow-Origin':'webhook-murex.vercel.app'
+        }
+      })
       console.log(loginRes.data)
       // if(typeof window != 'undefined'){
       //   window.FB.login(function(response:any) {

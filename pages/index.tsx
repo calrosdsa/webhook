@@ -17,6 +17,7 @@ export default function Home() {
   const dispatch = useAppDispatch()
   const ui = useAppSelector(state => state.ui)
   const auth = useAppSelector(state => state.auth)
+  const app_id = process.env.app_id as string
 
   useEffect(()=>{
     dispatch(uiActions.setInitLoading(false))
@@ -52,7 +53,7 @@ export default function Home() {
       console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
-              appId            : '801740780921492',
+              appId            : app_id,
               // autoLogAppEvents : true,
               cookie           : true,
               xfbml            : false,
