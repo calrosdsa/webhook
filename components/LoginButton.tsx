@@ -83,13 +83,15 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       
     }
     
-    const onLoginClick = () => {
-      if(typeof window != 'undefined'){
-        window.FB.login(function(response:any) {
-          const accessToken = response.authResponse.accessToken
-          setToken1(accessToken)
-          dispatch(initAuth(accessToken))
-        })}
+    const onLoginClick = async() => {
+      const loginRes =await axios.get('https://www.facebook.com/v15.0/dialog/oauth?client_id=801740780921492&redirect_uri=http://localhost:3000&state={st=state123abc,ds=123456789}')
+      console.log(loginRes.data)
+      // if(typeof window != 'undefined'){
+      //   window.FB.login(function(response:any) {
+      //     const accessToken = response.authResponse.accessToken
+      //     setToken1(accessToken)
+      //     dispatch(initAuth(accessToken))
+      //   })}
       }
       return(
       <>
