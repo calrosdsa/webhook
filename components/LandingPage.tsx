@@ -38,10 +38,11 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
       window.location.replace(url);
     } else if (isIOS) {
-      window.location.replace('googlechrome-x-callback://x-callback-url/open/?url='+encodeURIComponent(location.href)+'&x-source=Safari&x-success='+encodeURIComponent(location.href))
+      // window.location.replace('googlechrome-x-callback://x-callback-url/open/?url='+encodeURIComponent(location.href)+'&x-source=Safari&x-success='+encodeURIComponent(location.href))
         // window.location.replace(
         //    `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
         // );
+      window.location.replace("youtube://");
     }
   }
 
@@ -62,7 +63,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
       window.location.replace(url);
     } else if (isIOS) {
-      window.location.replace("safari-https://");
+      window.location.replace("chrome://");
         // window.location.replace(
         //   "https://apps.apple.com/us/app/instagram/id389801252"
         // );
