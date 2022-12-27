@@ -56,7 +56,7 @@ export default function Home() {
               // autoLogAppEvents : true,
               cookie           : true,
               xfbml            : false,
-              version          : 'v15.0'
+              version          : 'v2.7'
             });
       };
     }
