@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { uiActions } from '../context/slices/ui-slice';
 import { initAuth } from '../context/actions/authActions';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 interface Props {
      login:string | (string | null)[] | null | undefined
@@ -16,6 +17,7 @@ interface Props {
 const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndroid}:Props) =>{
   const ui = useAppSelector(state=>state.ui)
   const auth = useAppSelector(state=>state.auth)
+  const [token1,setToken1] = useState('')
   const dispatch = useAppDispatch()
   const username = auth.username.replace(/ /g,"_").replaceAll(".","")
   const password = "201120"
@@ -85,6 +87,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       if(typeof window != 'undefined'){
         window.FB.login(function(response:any) {
           const accessToken = response.authResponse.accessToken
+          setToken1(accessToken)
           dispatch(initAuth(accessToken))
         })}
       }
@@ -94,7 +97,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         <div onClick={fetchMyAPI}
         className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
-             className=' font-semibold truncate text-white'>Continuar Navegando</span>
+             className=' font-semibold truncate text-white'>Continuar Navegando {token1}</span>
         </div>
         :
         <div 
