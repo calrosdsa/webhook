@@ -2,10 +2,10 @@ import LoginButton from "./LoginButton";
 import Image from "next/image";
 import queryString from "query-string";
 import { useEffect,useState } from "react";
-import {  initAuth } from "../context/actions/authActions";
-import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../context/reduxHooks";
 import { isAndroid, isIOS,isEmbedded,browserName } from "react-device-detect";
+import { useRouter } from "next/router";
+import Link from "next/link";
 // import { useEffect, useState } from 'react';
 interface Props{
   isAuthenticated:boolean
@@ -15,8 +15,8 @@ interface Props{
   postUrl:string
 }
 const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Props) =>{
+  const router = useRouter()
   const [loginUrl,setLoginUrl]= useState('')
-  const dispatch = useAppDispatch()
   const [continueUrl,setContinueUrl]= useState('')
 
   const navigateToBrowser = (login:any)=>{
@@ -95,9 +95,14 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   
     return(
         <div className={` absolute w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 rounded-xl 
-         -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white 
-         ${isLoading && "filter brightness-50 "}`}>
-            <div className="grid grid-cols-1 xl:translate-y-5  items-center place-items-center py-3 xl:py-10 gap-y-10 2xl:gap-y-20">      
+        -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 z-20 bg-white 
+        ${isLoading && "filter brightness-50 "}`}>
+           {/* <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>router.push('/info')}
+            fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+           className="w-6 h-6 cursor-pointer translate-y-2 ml-2">
+       <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+           </svg> */}
+            <div className="grid grid-cols-1 xl:translate-y-5  items-center place-items-center py-3 xl:py-10 gap-y-5 xl:gap-y-10">      
         <Image 
       src='/images/logo.png'
       width={210}
@@ -124,43 +129,27 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        isAndroid={isAndroid}
        />       
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
-       target="_blank" rel="noreferrer" className="underline text-facebook cursor-pointer font-medium">Politicas de Privacidad</a>
+       target="_blank" rel="noreferrer" className="underline text-sm text-facebook cursor-pointer font-medium">
+        Politicas de Privacidad</a>
+        <Link href='/info' 
+       target="_blank" rel="noreferrer" className="underline text-sm text-facebook cursor-pointer font-medium">
+        Ayuda</Link>
         </div>
-        <div className="space-x-10 flex">
+        {/* <div className="space-x-10 flex">
           <button onClick={()=>navigateToBrowser(loginUrl)}>{browserName}1</button>
           <button onClick={()=>navigateToBrowser2(loginUrl)}>{browserName}2</button>
 
-        </div>
+        </div> */}
 
-{/* 
+
         <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
         <a href="https://teclu.com/" target='_blank' rel="noreferrer"
          className=" text-teclu    text-sm">By Teclu</a>
-        </div> */}
+        </div>
 
-         {/* <a  href={`intent://webhook-murex.vercel.app?login_url=${loginUrl}&continue_url=${continueUrl}#Intent;scheme=https;end`}  */}
-         {/* <div onClick={()=>navigateToBrowser()}>
-           {/* target="_blank" rel='noreferrer'> */}
-           {/* {isMobile ==false  &&
-             <span>
-               Open Browser 
-             </span>
-           }  
-             </div> */}
-        {/* <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}
-          className="w-full"/> */}
-  {/* <h1>dmskdaskdksa</h1> */}
-     {/* <div className='flex '>
-      <button onClick={sendToRadius2}>
-      Send to Radius2
-      </button>
+        
       </div>
-      <form action='/' method='POOST'>
-      <input type="text" name='user' placeholder='Username' />
-      <input type="password" name="password" placeholder='Passwrod'/>
-      <input type="submit" value="Login"/>
-    </form> */}
-      </div>
+
          </div>
     )
 }

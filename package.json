@@ -11,6 +11,7 @@
     "prod:up": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",

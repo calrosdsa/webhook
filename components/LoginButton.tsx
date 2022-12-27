@@ -61,10 +61,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           dispatch(uiActions.setLoading(false))
           toast.info(
             <div>
-              <p className='text-sm'>Porfavor de me gusta a la
+              <p className='text-sm'>Por favor, déle me gusta a
             <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
-            target="_blank" rel="noreferrer" className='underline text-facebook cursor-pointer font-medium'> ultima publicación </a>
-            de la pagina de YPFB Corp. 
+            target="_blank" rel="noreferrer" 
+            className='underline text-facebook cursor-pointer font-medium'> última publicación  </a>
+            de la página de YPFB Corp. 
               </p>
             </div>
             
