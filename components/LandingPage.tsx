@@ -63,7 +63,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
 
       window.location.replace(url);
     } else if (isIOS) {
-      window.location.replace("chrome://");
+      window.location.replace("google-chrome://");
         // window.location.replace(
         //   "https://apps.apple.com/us/app/instagram/id389801252"
         // );
