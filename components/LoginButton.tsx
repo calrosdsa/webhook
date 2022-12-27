@@ -86,7 +86,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     const onLoginClick = async() => {
       const loginRes =await axios.get('https://www.facebook.com/v15.0/dialog/oauth?client_id=801740780921492&redirect_uri=https://webhook-murex.vercel.app/&client_secret=b6a2b4c521b8675cd86fd800619c8203&',{
         headers:{
-          'Access-Control-Allow-Origin':'*'
+          'Access-Control-Allow-Origin':'webhook-murex.vercel.app'
         }
       })
       console.log(loginRes.data)
