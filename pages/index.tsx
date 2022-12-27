@@ -76,7 +76,7 @@ export default function Home() {
         autoClose={15000}
     />
     {ui.initLoading == false &&
-      <div className={`relative h-screen w-full noselect`}>
+      <div className={`relative h-screen w-full `}>
         {/* <button  className='absolute bg-white p-10 z-10'
         onClick={changeState}>CHANGE ESTATE</button> */}
         <Image
