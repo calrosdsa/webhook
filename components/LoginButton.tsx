@@ -57,10 +57,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           dispatch(uiActions.setLoading(false))
           toast.info(
             <div>
-              <p className='text-sm'>Por favor, déle me gusta a
+              <p className='text-sm'>Por favor, déle me gusta a nuestra
             <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
             target="_blank" rel="noreferrer" 
-            className='underline text-facebook cursor-pointer font-medium'> última publicación  </a>
+            className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
+            en facebook
               </p>
             </div>
             
@@ -96,14 +97,14 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       <>
       {isAuthenticated ?
         <div onClick={fetchMyAPI}
-        className='flex  px-1 sm:px-3 mx-1 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
+        className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
              className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
         </div>
         :
         <div 
         onClick={onLoginClick}
-        className='flex h-12 px-1 sm:px-3 mx-1 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
+        className='flex h-12 pr-2 sm:px-3 mx-1 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
           {authLoading ?
               <svg aria-hidden="true" 
           className=" w-6 h-6 text-gray-200 animate-spin fill-facebook mr-2 z-10 "

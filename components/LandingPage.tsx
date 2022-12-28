@@ -19,10 +19,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const [continueUrl,setContinueUrl]= useState('')
   const [url,setUrl] = useState('')
 
-  const navigateToBrowser = (login:any)=>{
-    const domain = 'webhook-murex.vercel.app'
+  const navigateToBrowser = ()=>{
+    const domain = window.location.href
     if (isAndroid) {
-      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;package=com.android.chrome;end`;
+      const url =`intent://${domain}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.replace(url);
     } 
   }
@@ -38,7 +38,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
         if(browserName == "Chrome WebView"){
-            navigateToBrowser(login)
+            navigateToBrowser()
         }
   }      
   },[])
