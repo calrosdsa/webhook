@@ -24,7 +24,7 @@ export default function Home() {
       console.log(window.location.origin)
       console.log(queryString.parse(window.location.search))
       const parsed = queryString.parse(window.location.search)
-      const url = "https://webhook-murex.vercel.app/"
+      const url = window.location.origin +'/'
       const code = parsed.code
       if(code != undefined){
         dispatch(initAuth(code,url))
@@ -47,41 +47,29 @@ export default function Home() {
   useEffect(() => {
     const isHaveTouch = 'ontouchstart' in window
     console.log('onTouch',isHaveTouch)
-    // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
       if(isHaveTouch){
       console.log('is mobile')
       dispatch(uiActions.setDevice(true))
-      // true for mobile device
-      // document.write("mobile device");
     }else{
       dispatch(uiActions.setDevice(false))
-      // false for not mobile device
-      // document.write("not mobile device");
     }
    
-    if (typeof window !== 'undefined') {
-      window.fbAsyncInit = () => {
-          window.FB.init({
-              appId            : app_id,
-              // autoLogAppEvents : true,
-              cookie           : true,
-              xfbml            : false,
-              version          : 'v2.7'
-            });
-      };
-    }
-      // (function (d, s, id) {
-      //     var js:any, fjs:any = d.getElementsByTagName(s)[0];
-      //     if (d.getElementById(id)) { return; }
-      //     js = d.createElement(s); js.id = id;
-      //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-      //     fjs.parentNode.insertBefore(js, fjs);
-      //   }(document, 'script', 'facebook-jssdk'));
+    // if (typeof window !== 'undefined') {
+    //   window.fbAsyncInit = () => {
+    //       window.FB.init({
+    //           appId            : app_id,
+    //           // autoLogAppEvents : true,
+    //           cookie           : true,
+    //           xfbml            : false,
+    //           version          : 'v2.7'
+    //         });
+    //   };
+    // }
       }, []);
 
   return (
     <>
-    <Script async defer crossOrigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'/>
+    {/* <Script async defer crossOrigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'/> */}
     <ToastContainer
         progressClassName="toastProgress"
         autoClose={15000}

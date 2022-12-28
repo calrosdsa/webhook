@@ -87,7 +87,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         maxAge:60*60,
       })
       if(typeof window != 'undefined'){
-      const url = "https://webhook-murex.vercel.app/"
+      const url = window.location.origin + '/'
       let link = document.createElement('a')
       link.href =`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=${url}&state={st=state123abc,ds=123456789}`
       link.click()

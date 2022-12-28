@@ -37,19 +37,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         const login = queries.login_url
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
-      //  //WebKit
         if(browserName == "Chrome WebView"){
             navigateToBrowser(login)
         }
-        //  console.log(login_url)
-  //       window.FB.getLoginStatus(function(response:any) {
-  //         console.log(response)
-  //         console.log(response.status == 'connected')
-  //       if(response.status === 'connected') {
-  //         const accessToken = response.authResponse.accessToken;
-  //         dispatch(initAuth(accessToken));
-  //       }
-  //   })
   }      
   },[])
  
