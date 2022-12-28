@@ -31,14 +31,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       dispatch(uiActions.setLoading(true))
       const login_url =login || cookies.login_url
       const continue_url =continu2 || cookies.continue_url
-      setCookie('login_url',login_url,{
-        path:'/',
-        maxAge:60*60,
-      })
-      setCookie('continue_url',continue_url,{
-        path:'/',
-        maxAge:60*60,
-      })
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       // console.log('useDioLike?',response.data)
       let link =document.createElement('a');
@@ -86,8 +78,16 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
+      setCookie('login_url',login,{
+        path:'/',
+        maxAge:60*60,
+      })
+      setCookie('continue_url',continu2,{
+        path:'/',
+        maxAge:60*60,
+      })
       if(typeof window != 'undefined'){
-      const url = window.location.href
+      const url = window.location.origin
       let link = document.createElement('a')
       link.href =`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=${url}&state={st=state123abc,ds=123456789}`
       link.click()

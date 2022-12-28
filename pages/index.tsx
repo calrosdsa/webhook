@@ -20,6 +20,7 @@ export default function Home() {
   const app_id = process.env.app_id as string
 
   useEffect(()=>{
+    
     dispatch(uiActions.setInitLoading(false))
      dispatch(getLink())
   },[])
@@ -48,6 +49,7 @@ export default function Home() {
     }
    
     if (typeof window !== 'undefined') {
+      console.log(window.location.origin)
       console.log(queryString.parse(window.location.search))
       const parsed = queryString.parse(window.location.search)
       console.log(parsed)
