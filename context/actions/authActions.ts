@@ -21,7 +21,13 @@ export const initAuth = (
         // const [cookies ,setCookie] = useCookies<any>(['name'])
         // console.log(cookies.name)
         try{
-            const getSesseion = await axios.get(`https://graph.facebook.com/v15.0/oauth/access_token?client_id=${app_id}&redirect_uri=${redirect_url}&client_secret=${app_secret}&code=${code}`)
+            console.log('code',code)
+            console.log('redirect',redirect_url)
+            console.log('id',app_id)
+            console.log('secret',app_secret)
+            const facebook_url = `https://graph.facebook.com/v15.0/oauth/access_token?client_id=${app_id}&redirect_uri=${redirect_url}&client_secret=${app_secret}&code=${code}`
+            console.log(facebook_url)
+            const getSesseion = await axios.get(facebook_url)
             console.log(getSesseion)
             const access_token = getSesseion.data.access_token
             console.log("INIT AUTH")
