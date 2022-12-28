@@ -61,7 +61,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
             target="_blank" rel="noreferrer" 
             className='underline text-facebook cursor-pointer font-medium'> última publicación  </a>
-            de la página de YPFB Corp. 
               </p>
             </div>
             
@@ -91,25 +90,20 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       let link = document.createElement('a')
       link.href =`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=${url}&state={st=state123abc,ds=123456789}`
       link.click()
-      //   window.FB.login(function(response:any) {
-      //     const accessToken = response.authResponse.accessToken
-      //     setToken1(accessToken)
-          // dispatch(initAuth(accessToken))
-        // })
       }
       }
       return(
       <>
       {isAuthenticated ?
         <div onClick={fetchMyAPI}
-        className='flex  px-3 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
+        className='flex  px-1 sm:px-3 mx-1 rounded-2xl h-12 items-center p-2 bg-facebook cursor-pointer'>
              <span 
-             className=' font-semibold truncate text-white'>Continuar Navegando </span>
+             className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
         </div>
         :
         <div 
         onClick={onLoginClick}
-        className='flex h-12 px-3 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
+        className='flex h-12 px-1 sm:px-3 mx-1 rounded-2xl bg-facebook  items-center cursor-pointer relative'>
           {authLoading ?
               <svg aria-hidden="true" 
           className=" w-6 h-6 text-gray-200 animate-spin fill-facebook mr-2 z-10 "
@@ -124,7 +118,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>
       }      
              <span 
-             className='text-white font-semibold truncate'
+             className='text-white font-semibold  text-sm sm:text-base'
              >{ui.buttonText}
              </span>
         </div>

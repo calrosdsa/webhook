@@ -1,14 +1,10 @@
-import {useCookies } from 'react-cookie'
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import LandingPage from '../components/LandingPage';
 import { useAppDispatch, useAppSelector } from '../context/reduxHooks';
 import { uiActions } from '../context/slices/ui-slice';
-import { authActions } from '../context/slices/auth-slice';
-import axios from 'axios';
 import queryString from "query-string";
 import { getLink, initAuth } from '../context/actions/authActions';
-import Script from 'next/script';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -44,40 +40,14 @@ export default function Home() {
   },[auth.isAuthenticated])
  
 
-  useEffect(() => {
-    const isHaveTouch = 'ontouchstart' in window
-    console.log('onTouch',isHaveTouch)
-      if(isHaveTouch){
-      console.log('is mobile')
-      dispatch(uiActions.setDevice(true))
-    }else{
-      dispatch(uiActions.setDevice(false))
-    }
-   
-    // if (typeof window !== 'undefined') {
-    //   window.fbAsyncInit = () => {
-    //       window.FB.init({
-    //           appId            : app_id,
-    //           // autoLogAppEvents : true,
-    //           cookie           : true,
-    //           xfbml            : false,
-    //           version          : 'v2.7'
-    //         });
-    //   };
-    // }
-      }, []);
-
   return (
     <>
-    {/* <Script async defer crossOrigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'/> */}
     <ToastContainer
         progressClassName="toastProgress"
         autoClose={15000}
     />
     {ui.initLoading == false &&
       <div className={`relative h-screen w-full `}>
-        {/* <button  className='absolute bg-white p-10 z-10'
-        onClick={changeState}>CHANGE ESTATE</button> */}
         <Image
         src='/images/background.jpg'
         width={210}
@@ -85,10 +55,7 @@ export default function Home() {
         height={100}  
         alt="logo ypfb"
         />
-        {/* <img 
-        className={`w-full h-screen blur-sm absolute ${ui.loading && "filter brightness-50 "}`}
-        src='/images/background.jpg'
-      />    */}
+     
         <LandingPage
         isLoading={ui.loading}
         isAuthenticated={auth.isAuthenticated}
