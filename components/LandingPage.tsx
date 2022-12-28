@@ -15,7 +15,6 @@ interface Props{
   postUrl:string
 }
 const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Props) =>{
-  const router = useRouter()
   const [loginUrl,setLoginUrl]= useState('')
   const [continueUrl,setContinueUrl]= useState('')
   const [url,setUrl] = useState('')

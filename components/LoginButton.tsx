@@ -86,15 +86,17 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
+      if(typeof window != 'undefined'){
+      const url = window.location.href
       let link = document.createElement('a')
-      link.href =`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=https://webhook-murex.vercel.app/&state={st=state123abc,ds=123456789}`
+      link.href =`https://www.facebook.com/v15.0/dialog/oauth?client_id=${app_id}&redirect_uri=${url}&state={st=state123abc,ds=123456789}`
       link.click()
-      // if(typeof window != 'undefined'){
       //   window.FB.login(function(response:any) {
       //     const accessToken = response.authResponse.accessToken
       //     setToken1(accessToken)
       //     dispatch(initAuth(accessToken))
-      //   })}
+        // })
+      }
       }
       return(
       <>
