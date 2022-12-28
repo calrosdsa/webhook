@@ -24,10 +24,10 @@ export default function Home() {
       console.log(window.location.origin)
       console.log(queryString.parse(window.location.search))
       const parsed = queryString.parse(window.location.search)
-      const origin = window.location.origin
+      const url = "https://webhook-murex.vercel.app"
       const code = parsed.code
       if(code != undefined){
-        dispatch(initAuth(code,origin))
+        dispatch(initAuth(code,url))
       }
       console.log(parsed)
     }
