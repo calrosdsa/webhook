@@ -20,54 +20,13 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const [url,setUrl] = useState('')
 
   const navigateToBrowser = (login:any)=>{
-    // if (isAndroid) {
-    //   const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
-
-    //   window.location.replace(url);
-    // } else if (isIOS) {
-    //   window.location.replace("instagram://");
-    //     window.location.replace(
-    //       "https://apps.apple.com/us/app/instagram/id389801252"
-    //     );
-    // }
     const domain = 'webhook-murex.vercel.app'
     if (isAndroid) {
-
-      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
-
+      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.replace(url);
-    } else if (isIOS) {
-      // window.location.replace('googlechrome-x-callback://x-callback-url/open/?url='+encodeURIComponent(location.href)+'&x-source=Safari&x-success='+encodeURIComponent(location.href))
-        // window.location.replace(
-        //    `safari-https://${domain}?login_url=${login}&continue_url=${continueUrl}`
-        // );
-      window.location.replace("safari-mobile://");
-    }
+    } 
   }
 
-  const navigateToBrowser2 = (login:any)=>{
-    // if (isAndroid) {
-    //   const url =`intent://portal.teclumobility.com:4433?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
-
-    //   window.location.replace(url);
-    // } else if (isIOS) {
-    //   window.location.replace("instagram://");
-    //     window.location.replace(
-    //       "https://apps.apple.com/us/app/instagram/id389801252"
-    //     );
-    // }
-    const domain = 'portal.teclumobility.com:4433'
-    if (isAndroid) {
-      const url =`intent://${domain}?login_url=${login}&continue_url=${continueUrl}#Intent;scheme=https;end`;
-
-      window.location.replace(url);
-    } else if (isIOS) {
-      window.location.replace("safari://");
-        window.location.replace(
-          `https://${domain}?login_url=${login}&continue_url=${continueUrl}`
-        );
-    }
-  }
   
   useEffect(()=>{
     console.log(browserName)
@@ -79,9 +38,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
       //  //WebKit
-        // if(browserName == "Chrome WebView"){
-        //     navigateToBrowser(login)
-        // }
+        if(browserName == "Chrome WebView"){
+            navigateToBrowser(login)
+        }
         //  console.log(login_url)
   //       window.FB.getLoginStatus(function(response:any) {
   //         console.log(response)
@@ -138,17 +97,17 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        target="_blank" rel="noreferrer" className="underline text-sm text-facebook cursor-pointer font-medium">
         Ayuda</Link>
         </div>
-        <div className="space-x-10 flex">
+        {/* <div className="space-x-10 flex">
           <button onClick={()=>navigateToBrowser(loginUrl)}>{browserName}1</button>
           <button onClick={()=>navigateToBrowser2(loginUrl)}>{browserName}2</button>
 
-        </div>
+        </div> */}
 
 
-        {/* <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
+        <div className='grid place-items-center translate-y-4 w-full base:hidden mb-5'>
         <a href="https://teclu.com/" target='_blank' rel="noreferrer"
          className=" text-teclu    text-sm">By Teclu</a>
-        </div> */}
+        </div>
 
         
       </div>
