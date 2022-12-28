@@ -12,14 +12,21 @@ import { useCookies } from "react-cookie";
 import { uiActions } from "../slices/ui-slice";
 
 export const authActions = authSlice.actions
-export const initAuth = (accessToken:string) :ThunkAction<void,RootState,undefined,AnyAction> =>{
+export const initAuth = (
+    code:string | (string | null)[] | null,
+    redirect_url:string) :ThunkAction<void,RootState,undefined,AnyAction> =>{
     return async(dispatch)=>{
+        const app_id = process.env.app_id as string
+        const app_secret = process.env.app_secret as string
         // const [cookies ,setCookie] = useCookies<any>(['name'])
         // console.log(cookies.name)
         try{
+            const getSesseion = await axios.get(`https://graph.facebook.com/v15.0/oauth/access_token?client_id=${app_id}&redirect_uri=${redirect_url}&client_secret=${app_secret}&code=${code}`)
+            console.log(getSesseion)
+            const access_token = getSesseion.data.access_token
             console.log("INIT AUTH")
             dispatch(authActions.setAuthLoading(true))
-            const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${accessToken}`)
+            const userRes =await axios.get(`https://graph.facebook.com/v15.0/me?fields=id%2Cname&access_token=${access_token}`)
             console.log(userRes)
             const username = userRes.data.name
             dispatch(authActions.setUsername(username))

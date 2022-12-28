@@ -94,7 +94,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       //   window.FB.login(function(response:any) {
       //     const accessToken = response.authResponse.accessToken
       //     setToken1(accessToken)
-      //     dispatch(initAuth(accessToken))
+          // dispatch(initAuth(accessToken))
         // })
       }
       }

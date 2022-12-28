@@ -7,7 +7,7 @@ import { uiActions } from '../context/slices/ui-slice';
 import { authActions } from '../context/slices/auth-slice';
 import axios from 'axios';
 import queryString from "query-string";
-import { getLink } from '../context/actions/authActions';
+import { getLink, initAuth } from '../context/actions/authActions';
 import Script from 'next/script';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +20,17 @@ export default function Home() {
   const app_id = process.env.app_id as string
 
   useEffect(()=>{
+    if(typeof window != 'undefined'){
+      console.log(window.location.origin)
+      console.log(queryString.parse(window.location.search))
+      const parsed = queryString.parse(window.location.search)
+      const origin = window.location.origin
+      const code = parsed.code
+      if(code != undefined){
+        dispatch(initAuth(code,origin))
+      }
+      console.log(parsed)
+    }
     
     dispatch(uiActions.setInitLoading(false))
      dispatch(getLink())
@@ -49,10 +60,6 @@ export default function Home() {
     }
    
     if (typeof window !== 'undefined') {
-      console.log(window.location.origin)
-      console.log(queryString.parse(window.location.search))
-      const parsed = queryString.parse(window.location.search)
-      console.log(parsed)
       window.fbAsyncInit = () => {
           window.FB.init({
               appId            : app_id,
