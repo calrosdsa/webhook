@@ -58,7 +58,6 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         dispatch(uiActions.setLoading(false))
         link.href = 'https://google.com';
         link.click();
-        // if(res.status == 200){
           console.log(res)
           console.log("EXITOSO")
       }catch(err){
