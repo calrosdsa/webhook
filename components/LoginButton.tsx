@@ -29,30 +29,13 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
 
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
-      const login_url =login || cookies.login_url
-      const continue_url =continu2 || cookies.continue_url
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
-      // console.log('useDioLike?',response.data)
-      let link =document.createElement('a');
-      // const lastPost = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
       const dioLike = response.data
-          if(dioLike){
-          console.log('si dio like')
-          try{
-            const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
-            dispatch(uiActions.setLoading(false))
-            link.href = 'https://google.com';
-            link.click();
-            // if(res.status == 200){
-              console.log(res)
-              console.log("EXITOSO")
-          }catch(err){
-            console.log(err)
-            console.log("Error")
-            link.href = 'https://google.com';
-            link.click();
-            dispatch(uiActions.setLoading(false))
-            }
+        if(dioLike == 403){
+          getAccessNetwork()
+        }
+        if(dioLike){
+           getAccessNetwork()
         }else{
           dispatch(uiActions.setLoading(false))
           toast.info(
@@ -63,18 +46,29 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
             en facebook
               </p>
-            </div>
-            
-          )
-        // link.href =  postUrl;
-        // link.href = lastPost
-        // link.rel = "noreferrer";
-        // link.target = "_blank";
-        // link.click();
-        // console.log('No diste like')
-      }
-      
-      
+            </div> 
+          )}}
+
+    const getAccessNetwork = async()=>{
+      const login_url =login || cookies.login_url
+      const continue_url =continu2 || cookies.continue_url
+      console.log('si dio like')
+      let link =document.createElement('a');
+      try{
+        const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
+        dispatch(uiActions.setLoading(false))
+        link.href = 'https://google.com';
+        link.click();
+        // if(res.status == 200){
+          console.log(res)
+          console.log("EXITOSO")
+      }catch(err){
+        console.log(err)
+        console.log("Error")
+        link.href = 'https://google.com';
+        link.click();
+        dispatch(uiActions.setLoading(false))
+        }
     }
     
     const onLoginClick = async() => {
