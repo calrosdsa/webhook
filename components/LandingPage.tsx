@@ -19,10 +19,10 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const [continueUrl,setContinueUrl]= useState('')
   const [url,setUrl] = useState('')
 
-  const navigateToBrowser = ()=>{
-    const domain = window.location.href
+  const navigateToBrowser = (loginUrl:any)=>{
+    const domain = window.location.hostname
     if (isAndroid) {
-      const url =`intent://${domain}#Intent;package=com.android.chrome;end`;
+      const url =`intent://${domain}?login_url=${loginUrl}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.replace(url);
     } 
   }
@@ -32,13 +32,14 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
     console.log(browserName)
       if(typeof window != 'undefined'){
         const baseurl = window.location.href
+        console.log(baseurl)
         setUrl(baseurl)
         const queries = queryString.parse(location.search)
         const login = queries.login_url
         setContinueUrl(queries.continue_url as string)
         setLoginUrl(queries.login_url as string)
         if(browserName == "Chrome WebView"){
-            navigateToBrowser()
+            navigateToBrowser(login)
         }
   }      
   },[])
