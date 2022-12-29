@@ -31,9 +31,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       dispatch(uiActions.setLoading(true))
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       const dioLike = response.data
-        if(dioLike == 403){
-          getAccessNetwork()
-        }
+      console.log(typeof dioLike)
+      console.log(dioLike)
         if(dioLike){
            getAccessNetwork()
         }else{
