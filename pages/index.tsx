@@ -45,6 +45,7 @@ export default function Home() {
     <ToastContainer
         progressClassName="toastProgress"
         autoClose={15000}
+        closeOnClick={false}
     />
     {ui.initLoading == false &&
       <div className={`relative h-screen w-full `}>

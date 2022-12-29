@@ -34,7 +34,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
       // console.log('useDioLike?',response.data)
       let link =document.createElement('a');
-      const lastPost = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
+      // const lastPost = isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl;
       const dioLike = response.data
           if(dioLike){
           console.log('si dio like')
