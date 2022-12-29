@@ -22,7 +22,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const navigateToBrowser = ()=>{
     const domain = window.location.href
     if (isAndroid) {
-      const url =`intent://${domain}#Intent;scheme=https;package=com.android.chrome;end`;
+      const url =`intent://${domain}#Intent;package=com.android.chrome;end`;
       window.location.replace(url);
     } 
   }
