@@ -33,6 +33,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       const dioLike = response.data
       console.log(typeof dioLike)
       console.log(dioLike)
+        if(dioLike == 403){
+          getAccessNetwork()
+        }
         if(dioLike){
            getAccessNetwork()
         }else{
@@ -58,6 +61,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         dispatch(uiActions.setLoading(false))
         link.href = 'https://google.com';
         link.click();
+        // if(res.status == 200){
           console.log(res)
           console.log("EXITOSO")
       }catch(err){
