@@ -62,7 +62,7 @@ const EmailDialog = ({closeDialog,open}:Props) => {
                  text-left align-middle shadow-xl transition-all">
                   
                   <div className='flex flex-col px-2 py-4'>
-                    <p className='text-[11px] italic sm:text-xs md:text-sm border-2 p-1'
+                    <p className='text-[11px] italic sm:text-xs md:text-sm border-2 p-1 mb-2'
                     >Para solicitar acceso a la red a través de su correo electrónico, deberá completar y
                      enviar una solicitud. Esta solicitud será revisada y, si es aprobada, el administrador del sitio le
                     otorgará acceso."</p>
