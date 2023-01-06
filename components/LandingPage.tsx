@@ -67,9 +67,12 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       height={90}
       alt="logo ypfb"
       />
-      <div className="grid grid-cols-1 items-center place-items-center px-5 sm:px-10 gap-y-5">
+      {/* <div className="grid grid-cols-1 items-center place-items-center px-5 sm:px-10 gap-y-5"> */}
+      <div className="grid grid-cols-1  px-5 sm:px-10 gap-y-5">
       <h1 className="text-xl md:text-2xl font-bold text-center">Bienvenido al Portal Cautivo de YPFB</h1>
-      <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center">
+      {/* <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center"> */}
+      <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm overflow-x-auto">
+
         {url}
         {/* Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
        dar "me gusta" a la última publicación de la página de
