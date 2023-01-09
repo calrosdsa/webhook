@@ -90,7 +90,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
        postUrl={postUrl}
        isAndroid={isAndroid}
        />  
-        <div onClick={()=>setOpenEmailDialog(true)}
+        {/* <div onClick={()=>setOpenEmailDialog(true)}
         className='flex h-10 px-2 sm:px-2 mx-1 rounded-2xl  items-center cursor-pointer relative border-[2px] border-gray-300'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} 
           stroke="currentColor" className="w-6 h-6">
@@ -98,7 +98,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
          </svg>
              <span 
              className=' font-semibold text-sm sm:text-base pl-2'>Continuar con email</span>
-        </div>     
+        </div>      */}
        <a href='https://www.freeprivacypolicy.com/live/83964b85-328e-46c5-a236-33e4fd63a5a6' 
        target="_system" rel="noreferrer" className="underline text-sm text-facebook cursor-pointer font-medium">
         Politicas de Privacidad</a>
