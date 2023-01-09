@@ -73,11 +73,11 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
       {/* <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm md:text-base text-center"> */}
       <p className="p-2 sm:p-4 border-2 border-b-gray-500 text-xs sm:text-sm overflow-x-auto">
 
-        {url}
-        {/* Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
+        {/* {url} */}
+        Para acceder a la red, deberás iniciar sesión con tu cuenta de Facebook y posteriormente
        dar "me gusta" a la última publicación de la página de
         <a href="https://www.facebook.com/Yacimientos/" target={'_blank'} rel='noreferrer'
-        className="text-facebook"> YPFB Corp</a>. */}
+        className="text-facebook"> YPFB Corp</a>.
       </p>
       </div>
 

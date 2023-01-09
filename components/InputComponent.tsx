@@ -20,7 +20,6 @@ const InputComponent = ({
     return(
          <div className="relative">
               <input ref={ref}
-              required
               onKeyDown={onKeyPress}
               id={name} name={name} type={tipo}
               pattern={patron}
@@ -28,7 +27,7 @@ const InputComponent = ({
               value={value}
               className="border-[1px] rounded-lg peer  p-2  h-14 w-full
               border-gray-500 
-              text-gray-900 placeholder-transparent focus:outline-none focus:border-facebook "
+              text-gray-900 placeholder-transparent focus:outline-none focus:border-facebook"
               placeholder="john@doe.com" />
               <label htmlFor={name} className="absolute left-2  text-gray-500 transition-all
                peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500  -top-1
