@@ -6,7 +6,7 @@ import axios from 'axios';
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     const {username,password,login_url} = req.body
     if(req.method == 'POST'){
-      const sendRequest = await axios.post(login_url,{username,password}
+      const sendRequest = await axios.post(`${login_url}/`,{username,password}
         // ,{headers:{
         //          "Access-Control-Allow-Origin": "*",
         //         " Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
