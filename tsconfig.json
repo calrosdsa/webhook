@@ -16,6 +16,6 @@
     "incremental": true,
     "typeRoots": ["./src/types", "./types"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/index.ts", "util/init.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/index.ts", "util/init.js", "components/ClickButton.js"],
   "exclude": ["node_modules"]
 }

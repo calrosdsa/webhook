@@ -24,7 +24,7 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
   const navigateToBrowser = (loginUrl:any)=>{
     const domain = window.location.hostname
     if (isAndroid) {
-      const url =`intent://${domain}?login_url=${loginUrl}#Intent;scheme=https;package=com.android.chrome;end`;
+      const url =`intent://${domain}?switch_url=${loginUrl}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.replace(url);
     } 
   }
@@ -37,9 +37,9 @@ const LandingPage = ({isAuthenticated,isLoading,authLoading,isMobile,postUrl}:Pr
         setUrl(baseurl)
         console.log(baseurl)
         const queries = queryString.parse(location.search)
-        const login = queries.login_url
+        const login = queries.switch_url
         setContinueUrl(queries.continue_url as string)
-        setLoginUrl(queries.login_url as string)
+        setLoginUrl(queries.switch_url as string)
         if(browserName == "Chrome WebView"){
             navigateToBrowser(login)
         }
