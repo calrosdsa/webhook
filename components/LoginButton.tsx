@@ -19,51 +19,45 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
   const auth = useAppSelector(state=>state.auth)
   const [token1,setToken1] = useState('')
   const dispatch = useAppDispatch()
-  const name = 'Jorge Daniel Miranda'
-  // const username = auth.username.replace(/ /g,"_").replaceAll(".","")
-  const username = name.replace(/ /g,"_").replaceAll(".","")
+  const username = auth.username.replace(/ /g,"_").replaceAll(".","")
   const app_id = process.env.app_id as string
-  // const app_secret = process.env.app_secret as string
+  const app_secret = process.env.app_secret as string
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
 
     const fetchMyAPI=async()=> {
-      getAccessNetwork()
-      // dispatch(uiActions.setLoading(true))
-      // const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
-      // const dioLike = response.data
-      // console.log(typeof dioLike)
-      // console.log(dioLike)
-      //   if(dioLike == 403){
-      //     getAccessNetwork()
-      //   }
-      //   if(dioLike){
-      //      getAccessNetwork()
-      //   }else{
-      //     dispatch(uiActions.setLoading(false))
-      //     toast.info(
-      //       <div>
-      //         <p className='text-sm'>Por favor, déle me gusta a nuestra
-      //       <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
-      //       target="_blank" rel="noreferrer" 
-      //       className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
-      //       en facebook
-      //         </p>
-      //       </div> 
-      //     )}
+      dispatch(uiActions.setLoading(true))
+      const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
+      const dioLike = response.data
+      console.log(typeof dioLike)
+      console.log(dioLike)
+        if(dioLike == 403){
+          getAccessNetwork()
         }
+        if(dioLike){
+           getAccessNetwork()
+        }else{
+          dispatch(uiActions.setLoading(false))
+          toast.info(
+            <div>
+              <p className='text-sm'>Por favor, déle me gusta a nuestra
+            <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
+            target="_blank" rel="noreferrer" 
+            className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
+            en facebook
+              </p>
+            </div> 
+          )}}
 
     const getAccessNetwork = async()=>{
-      console.log(username)
-      console.log(password)
-      const switch_url =login || cookies.switch_url
-      // const continue_url =continu2 || cookies.continue_url
+      const switch_url =login || cookies.login_url
+      const continue_url =continu2 || cookies.continue_url
       console.log('si dio like')
       let link =document.createElement('a');
       try{
-        const res =  await axios.post('/api/send',{username,password,switch_url});
+        const res =  await axios.post('/api/send',{username,password,continue_url,switch_url});
         dispatch(uiActions.setLoading(false))
         link.href = 'https://google.com';
         link.click();
@@ -80,7 +74,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
-      setCookie('switch_url',login,{
+      setCookie('login_url',login,{
         path:'/',
         maxAge:60*60,
       })
@@ -115,10 +109,10 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
           </svg>
         :
-      <svg
-    xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="40px" height="48px"><path fill="#039be5"
-    d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/><path fill="#fff" 
-    d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>
+        <svg
+        xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="40px" height="48px"><path fill="#039be5"
+        d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/><path fill="#fff" 
+        d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>
       }      
              <span 
              className='text-white font-semibold  text-sm sm:text-base'
