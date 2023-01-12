@@ -29,15 +29,18 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
 
     const fetchMyAPI=async()=> {
       dispatch(uiActions.setLoading(true))
-      const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
-      const dioLike = response.data
-      console.log(typeof dioLike)
-      console.log(dioLike)
+      try{
+        console.log(`Usuario para validar ${auth.username}`)
+        const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
+        console.log('res for validatelike',response)
+        const dioLike = response.data
+        console.log(typeof dioLike)
+        console.log(dioLike)
         if(dioLike == 403){
           getAccessNetwork()
         }
         if(dioLike){
-           getAccessNetwork()
+          getAccessNetwork()
         }else{
           dispatch(uiActions.setLoading(false))
           toast.info(
@@ -49,15 +52,21 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             en facebook
               </p>
             </div> 
-          )}}
+          )}
+        }catch(err){
+          console.log('error al validar like')
+          console.log(err)
+        }
+        }
 
     const getAccessNetwork = async()=>{
-      const switch_url =login || cookies.login_url
+      const switch_url =login || cookies.switch_url
       const continue_url =continu2 || cookies.continue_url
+      console.log('Switch Url ',switch_url)
       console.log('si dio like')
       let link =document.createElement('a');
       try{
-        const res =  await axios.post('/api/send',{username,password,continue_url,switch_url});
+        const res =  await axios.post('/api/send',{username,password,switch_url});
         dispatch(uiActions.setLoading(false))
         link.href = 'https://google.com';
         link.click();
@@ -74,7 +83,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
     
     const onLoginClick = async() => {
-      setCookie('login_url',login,{
+      setCookie('switch_url',login,{
         path:'/',
         maxAge:60*60,
       })
