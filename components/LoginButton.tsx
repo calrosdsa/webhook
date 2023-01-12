@@ -19,41 +19,47 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
   const auth = useAppSelector(state=>state.auth)
   const [token1,setToken1] = useState('')
   const dispatch = useAppDispatch()
-  const username = auth.username.replace(/ /g,"_").replaceAll(".","")
+  const name = 'Jorge Daniel Miranda'
+  // const username = auth.username.replace(/ /g,"_").replaceAll(".","")
+  const username = name.replace(/ /g,"_").replaceAll(".","")
   const app_id = process.env.app_id as string
-  const app_secret = process.env.app_secret as string
+  // const app_secret = process.env.app_secret as string
   const password = "201120"
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
 
     const fetchMyAPI=async()=> {
-      dispatch(uiActions.setLoading(true))
-      const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
-      const dioLike = response.data
-      console.log(typeof dioLike)
-      console.log(dioLike)
-        if(dioLike == 403){
-          getAccessNetwork()
+      getAccessNetwork()
+      // dispatch(uiActions.setLoading(true))
+      // const response = await axios.get('https://teclu.com/ApiFb_validatelike.php?name='+auth.username)
+      // const dioLike = response.data
+      // console.log(typeof dioLike)
+      // console.log(dioLike)
+      //   if(dioLike == 403){
+      //     getAccessNetwork()
+      //   }
+      //   if(dioLike){
+      //      getAccessNetwork()
+      //   }else{
+      //     dispatch(uiActions.setLoading(false))
+      //     toast.info(
+      //       <div>
+      //         <p className='text-sm'>Por favor, déle me gusta a nuestra
+      //       <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
+      //       target="_blank" rel="noreferrer" 
+      //       className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
+      //       en facebook
+      //         </p>
+      //       </div> 
+      //     )}
         }
-        if(dioLike){
-           getAccessNetwork()
-        }else{
-          dispatch(uiActions.setLoading(false))
-          toast.info(
-            <div>
-              <p className='text-sm'>Por favor, déle me gusta a nuestra
-            <a href={isAndroid ? 'https://www.facebook.com/Yacimientos/': postUrl} 
-            target="_blank" rel="noreferrer" 
-            className='underline text-facebook cursor-pointer font-medium'> última publicación </a>
-            en facebook
-              </p>
-            </div> 
-          )}}
 
     const getAccessNetwork = async()=>{
+      console.log(username)
+      console.log(password)
       const switch_url =login || cookies.switch_url
-      const continue_url =continu2 || cookies.continue_url
+      // const continue_url =continu2 || cookies.continue_url
       console.log('si dio like')
       let link =document.createElement('a');
       try{
