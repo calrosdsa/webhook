@@ -65,22 +65,23 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       console.log('Switch Url ',switch_url)
       console.log('si dio like')
       // let link =document.createElement('a');
-      // try{
-        // const res =  await axios.post('/api/send',{username,password,switch_url});
-        sendToSwitch(switch_url,username,password)
+      try{
+        const res =  await axios.post('/api/send',{username,password,switch_url});
+        console.log(res)
+        // sendToSwitch(switch_url,username,password)
         dispatch(uiActions.setLoading(false))
         // link.href = 'https://google.com';
         // link.click();
         // if(res.status == 200){
           // console.log(res)
           // console.log("EXITOSO")
-      // }catch(err){
-      //   console.log(err)
-      //   console.log("Error")
+      }catch(err){
+        console.log(err)
+        console.log("Error al solicitar acceso a la red")
       //   link.href = 'https://google.com';
       //   link.click();
       //   dispatch(uiActions.setLoading(false))
-      //   }
+        }
     }
 
     const sendToSwitch = (url:string,username:string,password:string)=>{
