@@ -71,9 +71,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       // let link =document.createElement('a');
       try{
         // const res =  await axios.get('/api/send',{username,password,switch_url});
-        // sendToSwitch(switch_url,username,password)
+        sendToSwitch(switch_url,username,password)
         // console.log(res)
-        sendData()
         dispatch(uiActions.setLoading(false))
         // link.href = 'https://google.com';
         // link.click();
@@ -91,27 +90,27 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }
     }
 
-    const sendData=() =>{
+    // const sendData=() =>{
 
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = "http://192.0.2.1/login.html";
-      document.body.appendChild(form);
+    //   const form = document.createElement('form');
+    //   form.method = 'POST';
+    //   form.action = "http://192.0.2.1/login.html";
+    //   document.body.appendChild(form);
     
-      const formField = document.createElement('input');
-      formField.type = 'hidden';
-      formField.name = 'username';
-      formField.value = 'marca';
-      const formField2 = document.createElement('input');
-      formField2.type = 'hidden';
-      formField2.name = 'password';
-      formField2.value = '201120';
+    //   const formField = document.createElement('input');
+    //   formField.type = 'hidden';
+    //   formField.name = 'username';
+    //   formField.value = 'marca';
+    //   const formField2 = document.createElement('input');
+    //   formField2.type = 'hidden';
+    //   formField2.name = 'password';
+    //   formField2.value = '201120';
 
-      form.appendChild(formField);
-      form.appendChild(formField2);
-      console.log(form)
-      form.submit();
-    }
+    //   form.appendChild(formField);
+    //   form.appendChild(formField2);
+    //   console.log(form)
+    //   form.submit();
+    // }
 
     const sendToSwitch = (url:string,username:string,password:string)=>{
       try{
@@ -143,22 +142,15 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       link.click()
       }
       }
-      const submitData = (e:FormEvent<HTMLFormElement>)=>{
-        e.preventDefault() ;
-      }
+    
       return(
       <>
-      {isAuthenticated == false ?
-        // <div onClick={fetchMyAPI}
-        // className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
-        //      <span 
-        //      className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
-        // </div>
-        <form action="http:192.0.2.1/login.html" method='post' onSubmit={submitData}>
-          <input type="text" name='username' value={name} onChange={(e)=>setName(e.target.value)}/>
-          <input type="password" name='password' value={pass} onChange={(e)=>setPass(e.target.value)}/>
-          <button type="submit"/>
-        </form>
+      {isAuthenticated ?
+        <div onClick={fetchMyAPI}
+        className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
+             <span 
+             className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
+        </div>
         :
         <div 
         onClick={onLoginClick}
