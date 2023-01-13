@@ -67,9 +67,10 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       console.log('si dio like')
       // let link =document.createElement('a');
       try{
-        const res =  await axios.get('/api/send');
+        // const res =  await axios.get('/api/send',{username,password,switch_url});
         // sendToSwitch(switch_url,username,password)
-        console.log(res)
+        // console.log(res)
+        sendData()
         dispatch(uiActions.setLoading(false))
         // link.href = 'https://google.com';
         // link.click();
@@ -85,6 +86,27 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       //   link.click();
       //   dispatch(uiActions.setLoading(false))
         }
+    }
+
+    const sendData=() =>{
+
+      const form = document.createElement('form');
+      form.method = 'post';
+      form.action = "http://192.0.2.1/login.html";
+      document.body.appendChild(form);
+    
+      const formField = document.createElement('input');
+      formField.type = 'hidden';
+      formField.name = "username";
+      formField.value = "marca";
+      const formField2 = document.createElement('input');
+      formField.type = 'hidden';
+      formField.name = "password";
+      formField.value = "201120";
+
+      form.appendChild(formField);
+      form.appendChild(formField2);
+      form.submit();
     }
 
     const sendToSwitch = (url:string,username:string,password:string)=>{
