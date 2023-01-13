@@ -37,6 +37,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         console.log(typeof dioLike)
         console.log(dioLike)
         if(dioLike == 403){
+          console.log('fail al validar like ')
           getAccessNetwork()
         }
         if(dioLike){
@@ -76,6 +77,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
           // console.log(res)
           // console.log("EXITOSO")
       }catch(err){
+        dispatch(uiActions.setLoading(false))
+        console.log('fail to request access network')
         console.log(err)
       //   console.log("Error")
       //   link.href = 'https://google.com';
