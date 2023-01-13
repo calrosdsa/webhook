@@ -4,8 +4,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import axios from 'axios';
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
-    const {username,password,switch_url} = req.body
-    if(req.method == 'POST'){
         const formData =new FormData()
         formData.append('username','marca')
         formData.append('password','201120')
@@ -24,5 +22,4 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
             // }else{
               // res.status(500)
             // }
-    }
 }

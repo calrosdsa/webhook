@@ -67,7 +67,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       console.log('si dio like')
       // let link =document.createElement('a');
       try{
-        const res =  await axios.post('/api/send',{username,password,switch_url});
+        const res =  await axios.get('/api/send');
         // sendToSwitch(switch_url,username,password)
         console.log(res)
         dispatch(uiActions.setLoading(false))
