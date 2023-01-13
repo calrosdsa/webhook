@@ -6,8 +6,10 @@ import axios from 'axios';
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     const {username,password,switch_url} = req.body
     if(req.method == 'POST'){
-      
-      const sendRequest = await axios.post(`${switch_url}/`,{username,password},{timeout:5000}
+        const formData =new FormData()
+        formData.append('username','marca')
+        formData.append('password','201120')
+      const sendRequest = await axios.post("http://192.0.2.1/login.html",formData
         // ,{headers:{
         //          "Access-Control-Allow-Origin": "*",
         //         " Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",

@@ -67,9 +67,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       console.log('si dio like')
       // let link =document.createElement('a');
       try{
-        // const res =  await axios.post('/api/send',{username,password,switch_url});
-        sendToSwitch(switch_url,"marca",password)
-        // console.log(res)
+        const res =  await axios.post('/api/send',{username,password,switch_url});
+        // sendToSwitch(switch_url,username,password)
+        console.log(res)
         dispatch(uiActions.setLoading(false))
         // link.href = 'https://google.com';
         // link.click();
@@ -87,13 +87,13 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }
     }
 
-    const sendToSwitch = async(url:string,username:string,password:string)=>{
+    const sendToSwitch = (url:string,username:string,password:string)=>{
       try{
-        const formData =new FormData()
-        formData.append('username',username)
-        formData.append('password',password)
+        // const formData =new FormData()
+        // formData.append('username',username)
+        // formData.append('password',password)
 
-        const res =await axios.post(`${url}/`,formData)
+        const res = axios.post(`${url}/`,{username,password})
         console.log(res)
       }catch(err){
         console.log('fallo al conseguir acceso a la red')
