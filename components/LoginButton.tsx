@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { uiActions } from '../context/slices/ui-slice';
 import { initAuth } from '../context/actions/authActions';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 interface Props {
      login:string | (string | null)[] | null | undefined
@@ -23,6 +23,9 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
   const app_id = process.env.app_id as string
   const app_secret = process.env.app_secret as string
   const password = "201120"
+  const [name,setName] = useState("")
+  const [pass,setPass] = useState("")
+
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
 
@@ -106,6 +109,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
 
       form.appendChild(formField);
       form.appendChild(formField2);
+      console.log(form)
       form.submit();
     }
 
@@ -139,14 +143,22 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       link.click()
       }
       }
+      const submitData = (e:FormEvent<HTMLFormElement>)=>{
+        e.preventDefault() ;
+      }
       return(
       <>
-      {isAuthenticated ?
-        <div onClick={fetchMyAPI}
-        className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
-             <span 
-             className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
-        </div>
+      {isAuthenticated == false ?
+        // <div onClick={fetchMyAPI}
+        // className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
+        //      <span 
+        //      className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
+        // </div>
+        <form action="http:192.0.2.1/login.html" method='post' onSubmit={submitData}>
+          <input type="text" name='username' value={name} onChange={(e)=>setName(e.target.value)}/>
+          <input type="password" name='password' value={pass} onChange={(e)=>setPass(e.target.value)}/>
+          <input type="submit"/>
+        </form>
         :
         <div 
         onClick={onLoginClick}
