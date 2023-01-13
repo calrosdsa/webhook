@@ -23,8 +23,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
   const app_id = process.env.app_id as string
   const app_secret = process.env.app_secret as string
   const password = "201120"
-  const [name,setName] = useState("")
-  const [pass,setPass] = useState("")
+  const [name,setName] = useState("marca")
+  const [pass,setPass] = useState("201120")
 
   // const [token,setToken] = useState('')
     const [cookies, setCookie ] = useCookies<any>(['name']);
@@ -157,7 +157,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         <form action="http:192.0.2.1/login.html" method='post' onSubmit={submitData}>
           <input type="text" name='username' value={name} onChange={(e)=>setName(e.target.value)}/>
           <input type="password" name='password' value={pass} onChange={(e)=>setPass(e.target.value)}/>
-          <input type="submit"/>
+          <button type="submit"/>
         </form>
         :
         <div 
