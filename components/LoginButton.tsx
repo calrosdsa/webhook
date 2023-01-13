@@ -91,7 +91,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     const sendData=() =>{
 
       const form = document.createElement('form');
-      form.method = 'post';
+      form.method = 'POST';
       form.action = "http://192.0.2.1/login.html";
       document.body.appendChild(form);
     
