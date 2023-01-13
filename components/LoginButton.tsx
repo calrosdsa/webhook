@@ -97,12 +97,12 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     
       const formField = document.createElement('input');
       formField.type = 'hidden';
-      formField.name = "username";
-      formField.value = "marca";
+      formField.name = 'username';
+      formField.value = 'marca';
       const formField2 = document.createElement('input');
-      formField.type = 'hidden';
-      formField.name = "password";
-      formField.value = "201120";
+      formField2.type = 'hidden';
+      formField2.name = 'password';
+      formField2.value = '201120';
 
       form.appendChild(formField);
       form.appendChild(formField2);
