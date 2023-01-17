@@ -90,28 +90,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }
     }
 
-    // const sendData=() =>{
-
-    //   const form = document.createElement('form');
-    //   form.method = 'POST';
-    //   form.action = "http://192.0.2.1/login.html";
-    //   document.body.appendChild(form);
-    
-    //   const formField = document.createElement('input');
-    //   formField.type = 'hidden';
-    //   formField.name = 'username';
-    //   formField.value = 'marca';
-    //   const formField2 = document.createElement('input');
-    //   formField2.type = 'hidden';
-    //   formField2.name = 'password';
-    //   formField2.value = '201120';
-
-    //   form.appendChild(formField);
-    //   form.appendChild(formField2);
-    //   console.log(form)
-    //   form.submit();
-    // }
-
+   
     const sendToSwitch = (url:string,username:string,password:string)=>{
       try{
         // const formData =new FormData()
@@ -142,11 +121,36 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       link.click()
       }
       }
+
+      function sendRequest () {
+        console.log("sending request")
+         let form = document.createElement("form");
+         let element1 = document.createElement("input"); 
+         let element2 = document.createElement("input");  
+     
+         form.method = "POST";
+         form.action = "http://192.0.2.1/login.html";   
+     
+         element1.value="marca";
+         element1.name="username";
+         form.appendChild(element1);  
+     
+         element2.value="201120";
+         element2.name="password";
+         form.appendChild(element2);
+     
+         document.body.appendChild(form);
+     
+         form.submit();
+       // console.log(username)
+       
+       // window.location.replace(window.location.origin + '/about/') {% endcomment %}
+     }
     
       return(
       <>
       {isAuthenticated ?
-        <div onClick={fetchMyAPI}
+        <div onClick={()=>sendRequest()}
         className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
              <span 
              className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
