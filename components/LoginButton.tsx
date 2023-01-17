@@ -130,6 +130,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
      
          form.method = "POST";
          form.action = "http://192.0.2.1/login.html";   
+         form.id = "login-form"
      
          element1.value="marca";
          element1.name="username";
@@ -149,7 +150,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     
       return(
       <>
-      {isAuthenticated ?
+      {isAuthenticated == false ?
         <div onClick={()=>sendRequest()}
         className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
              <span 
