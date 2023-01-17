@@ -129,7 +129,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
          let element2 = document.createElement("input");  
      
          form.method = "POST";
-         form.action = "https://192.0.2.1/login.html";   
+         form.action = "http://192.0.2.1/login.html";   
      
          element1.value="marca";
          element1.name="username";
