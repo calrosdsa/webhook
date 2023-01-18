@@ -6,13 +6,19 @@ import axios from 'axios';
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     // const {username,password,switch_url} = req.body
     if(req.method == 'GET'){
-      const send = await axios.post("http://192.0.2.1/login.html",{
-        body:new URLSearchParams("username=marca&password=201120&buttonClicked=4")
+      fetch ("http://192.0.2.1/login.html",{
+        method:'POST',
+        mode: "no-cors",
+        body:new URLSearchParams("username=marca&password=211120&buttonClicked=4")
+      }).then(res=>{
+        console.log(res)
+        return res
+      }).then(res=>{
+        console.log(res)
       })
-      console.log(send)
           //  if(sendRequest.status == 200){
              res.status(200).json({
-              ok:send.data
+              ok:"okk"
              })
             // }else{
               // res.status(500)

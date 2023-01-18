@@ -123,19 +123,19 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       }
 
      async function sendRequest () {
-        // const send = await axios.get("/api/send")
-        // console.log(send)
+        const send = await axios.get("/api/send")
+        console.log(send)
         
-      fetch ("http://192.0.2.1/login.html",{
-        method:'POST',
-        mode: "no-cors",
-        body:new URLSearchParams("username=marca&password=201120&buttonClicked=4")
-      }).then(res=>{
-        console.log(res)
-        return res
-      }).then(res=>{
-        console.log(res)
-      })
+      // fetch ("http://192.0.2.1/login.html",{
+      //   method:'POST',
+      //   mode: "no-cors",
+      //   body:new URLSearchParams("username=marca&password=211120&buttonClicked=4")
+      // }).then(res=>{
+      //   console.log(res)
+      //   return res
+      // }).then(res=>{
+      //   console.log(res)
+      // })
         // console.log("sending request")
         //     let form = document.createElement("form");
         //     let element1 = document.createElement("input"); 
