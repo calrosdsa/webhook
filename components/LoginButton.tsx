@@ -132,43 +132,43 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         // const send = await axios.get("/api/access/")
         // console.log(send)
         
-      fetch ("http://192.0.2.1/login.html",{
-        method:'POST',
-        // mode: "no-cors",
-        body:formData
-      }).then(res=>{
-        console.log(res)
-        return res
-      }).then(res=>{
-        console.log(res)
-      })
+      // fetch ("http://192.0.2.1/login.html",{
+      //   method:'POST',
+      //   // mode: "no-cors",
+      //   body:formData
+      // }).then(res=>{
+      //   console.log(res)
+      //   return res
+      // }).then(res=>{
+      //   console.log(res)
+      // })
         // console.log("sending request")
-        //     let form = document.createElement("form");
-        //     let element1 = document.createElement("input"); 
-        //     let element2 = document.createElement("input");  
-        //     let element3 = document.createElement("input");  
+            let form = document.createElement("form");
+            let element1 = document.createElement("input"); 
+            let element2 = document.createElement("input");  
+            let element3 = document.createElement("input");  
     
     
-        //     form.method = "POST";
-        //     form.action = "http://192.0.2.1/login.html";   
+            form.method = "POST";
+            form.action = "http://192.0.2.1/login.html";   
     
-        //     element1.value="marca";
-        //     element1.name="username";
-        //     form.appendChild(element1);  
+            element1.value="marca";
+            element1.name="username";
+            form.appendChild(element1);  
     
-        //     element2.value="201120";
-        //     element2.name="password";
-        //     form.appendChild(element2);
+            element2.value="201120";
+            element2.name="password";
+            form.appendChild(element2);
     
             
-        //     element3.value="4";
-        //     element3.type = "hidden";
-        //     element3.name="buttonClicked";
-        //     form.appendChild(element3);
+            element3.value="4";
+            element3.type = "hidden";
+            element3.name="buttonClicked";
+            form.appendChild(element3);
     
-        //     document.body.appendChild(form);
+            document.body.appendChild(form);
     
-        //     form.submit();
+            form.submit();
         // console.log(username)
         
         // window.location.replace(window.location.origin + '/about/') {% endcomment %}
