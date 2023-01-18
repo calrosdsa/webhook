@@ -25,7 +25,7 @@ export default function Home() {
       const code = parsed.code
       if(code != undefined){
         console.log('request data')
-        // dispatch(initAuth(code,url))
+        dispatch(initAuth(code,url))
       }
       console.log(parsed)
     }

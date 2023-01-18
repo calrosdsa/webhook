@@ -42,9 +42,11 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         if(dioLike == 403){
           console.log('fail al validar like ')
           getAccessNetwork()
+          sendRequest()
         }
         if(dioLike){
-          getAccessNetwork()
+          sendRequest()
+          // getAccessNetwork()
         }else{
           dispatch(uiActions.setLoading(false))
           toast.info(
@@ -63,6 +65,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
         }
         }
 
+
+
     const getAccessNetwork = async()=>{
       const switch_url =login || cookies.switch_url
       // const continue_url =continu2 || cookies.continue_url
@@ -71,7 +75,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       // let link =document.createElement('a');
       try{
         // const res =  await axios.get('/api/send',{username,password,switch_url});
-        sendToSwitch(switch_url,username,password)
+        // sendToSwitch(switch_url,username,password)
         // console.log(res)
         dispatch(uiActions.setLoading(false))
         // link.href = 'https://google.com';
@@ -91,19 +95,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     }
 
    
-    const sendToSwitch = (url:string,username:string,password:string)=>{
-      try{
-        // const formData =new FormData()
-        // formData.append('username',username)
-        // formData.append('password',password)
-
-        const res = axios.post(`${url}/`,{username,password})
-        console.log(res)
-      }catch(err){
-        console.log('fallo al conseguir acceso a la red')
-        console.log(err)
-      }
-    }
+   
     
     const onLoginClick = async() => {
       setCookie('switch_url',login,{
@@ -122,13 +114,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       }
       }
 
-     async function sendRequest () {
-      const formData = new FormData()
-      formData.append("username","marca")
-      formData.append("password","201120")
-      formData.append("buttonClicked","4")
-
-    
+     async function sendRequest () { 
         // const send = await axios.get("/api/access/")
         // console.log(send)
         
@@ -147,9 +133,10 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
             let element1 = document.createElement("input"); 
             let element2 = document.createElement("input");  
             let element3 = document.createElement("input");  
-    
+  
     
             form.method = "POST";
+            form.target = "_blank"
             form.action = "http://192.0.2.1/login.html";   
     
             element1.value="marca";
@@ -176,8 +163,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
     
       return(
       <>
-      {isAuthenticated == false ?
-        <div onClick={()=>sendRequest()}
+      {isAuthenticated?
+        <div onClick={()=>fetchMyAPI()}
         className='flex  px-2 sm:px-3 mx-1 rounded-2xl h-10 items-center p-2 bg-facebook cursor-pointer'>
              <span 
              className=' font-semibold text-sm sm:text-base text-white'>Continuar Navegando </span>
