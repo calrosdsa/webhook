@@ -123,7 +123,7 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       }
 
      async function sendRequest () {
-        const send = await axios.get("/api/send")
+        const send = await axios.get("/api/access/")
         console.log(send)
         
       // fetch ("http://192.0.2.1/login.html",{

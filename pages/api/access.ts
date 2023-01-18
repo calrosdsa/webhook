@@ -5,7 +5,6 @@ import axios from 'axios';
 // import { json } from "node:stream/consumers";
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     // const {username,password,switch_url} = req.body
-    if(req.method == 'GET'){
       try{
         const send = await axios.post("http://192.0.2.1/login.html",{
           body:new  URLSearchParams("username=marca&password=2011200&buttonClicked=4")
@@ -19,13 +18,12 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
       console.log(send.status)
       //  if(sendRequest.status == 200){
         res.status(200).json({
-          ok:"send.data"
+          ok:send.data
         })
         // }else{
           // res.status(500)
           // }
         }catch(err ){
           console.log(err)
-        }
         }
 }
