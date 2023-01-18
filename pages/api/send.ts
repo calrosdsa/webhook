@@ -6,8 +6,8 @@ import axios from 'axios';
 export default async(req:NextApiRequest,res:NextApiResponse)=>{
     // const {username,password,switch_url} = req.body
     if(req.method == 'GET'){
-      const send = await axios.post("http://portal.teclumobility.com:8181/login.html",{
-        body:new URLSearchParams("username=Carlos&password=12ab34cd")
+      const send = await axios.post("http://192.0.2.1/login.html",{
+        body:new URLSearchParams("username=marca&password=201120")
       })
       console.log(send)
           //  if(sendRequest.status == 200){

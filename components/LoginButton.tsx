@@ -123,9 +123,16 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       }
 
      async function sendRequest () {
-
-    const send = await axios.get("/api/send")
-      console.log(send)
+        const send = await axios.get("/api/send")
+        console.log(send)
+      // fetch ("http://portal.teclumobility.com:8181/login.html",{
+      //   method:'POST',
+      //   body:new URLSearchParams("username=Carlos&password=12ab34cd")
+      // }).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // })
+      // .then(res=>console.log(res))
         // console.log("sending request")
         //     let form = document.createElement("form");
         //     let element1 = document.createElement("input"); 
