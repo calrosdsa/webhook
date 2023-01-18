@@ -123,10 +123,8 @@ const LoginButton = ({login,continu2,isAuthenticated,authLoading,postUrl,isAndro
       }
 
      async function sendRequest () {
-      
-      const send = await axios.post("http://portal.teclumobility.com:8181/login.html",{
-        body:new URLSearchParams("username=Carlos&password=12ab34cd")
-      })
+
+    const send = await axios.get("/api/send")
       console.log(send)
         // console.log("sending request")
         //     let form = document.createElement("form");

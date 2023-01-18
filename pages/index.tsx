@@ -52,7 +52,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Portal Cautivo</title>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        {/* <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> */}
       </Head>
     {ui.initLoading == false &&
       <div className={`relative h-screen w-full `}>
