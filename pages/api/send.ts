@@ -12,7 +12,7 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
       console.log(send)
           //  if(sendRequest.status == 200){
              res.status(200).json({
-              ok:"Pk"
+              ok:send.data
              })
             // }else{
               // res.status(500)
