@@ -7,6 +7,7 @@ import queryString from "query-string";
 import { getLink, initAuth } from '../context/actions/authActions';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from "next/head";
 
 
 export default function Home() {
@@ -48,6 +49,11 @@ export default function Home() {
         autoClose={15000}
         closeOnClick={false}
     />
+    <div>
+      <Head>
+        <title>Portal Cautivo</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </Head>
     {ui.initLoading == false &&
       <div className={`relative h-screen w-full `}>
         <Image
@@ -76,6 +82,7 @@ export default function Home() {
     }
         </div>
       }
+    </div>
         </>
   );
 };
