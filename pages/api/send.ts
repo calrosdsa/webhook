@@ -10,7 +10,7 @@ export default async(req:NextApiRequest,res:NextApiResponse)=>{
         const send = await axios.post("http://192.0.2.1/login.html",{
           body:new  URLSearchParams("username=marca&password=2011200&buttonClicked=4")
       },{
-        timeout:10000,
+        timeout:1000*20,
         headers:{
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
